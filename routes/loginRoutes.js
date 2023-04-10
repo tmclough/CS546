@@ -8,8 +8,10 @@ router
   .get(async (req, res) => {
     //code here for GET
     try {
-      
-      res.render("users/login", { title: "Login Page" });
+      res.render("users/login", {
+        title: "Login Page",
+        cssFile: "/public/css/logIn.css",
+      });
     } catch (e) {
       res.sendStatus(400).json({ error: e });
     }
