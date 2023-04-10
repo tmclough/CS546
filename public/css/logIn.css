@@ -1,5 +1,6 @@
 * {
   box-sizing: border-box;
+  font-family: "Raleway", sans-serif;
 }
 
 body {
@@ -22,9 +23,20 @@ form {
   max-width: 400px;
 }
 
+.log-in-title {
+  font-size: 30px;
+  font-weight: 700;
+  font-family: "Raleway", sans-serif;
+}
+
+.sign-up-text {
+  margin-bottom: 5px;
+}
+
 label {
   margin-bottom: 10px;
   color: #376596;
+  font-size: 18px;
 }
 
 input[type="text"],
@@ -44,4 +56,18 @@ input[type="submit"] {
   border: none;
   border-radius: 5px;
   cursor: pointer;
+}
+
+#log-in-button {
+  font-size: 16px;
+  width: 100%;
+  transition: 0.15s;
+}
+
+#log-in-button:hover {
+  opacity: 0.8;
+}
+
+#log-in-button:active {
+  opacity: 0.6;
 }
