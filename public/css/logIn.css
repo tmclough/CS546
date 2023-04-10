@@ -1,44 +1,73 @@
+* {
+  box-sizing: border-box;
+  font-family: "Raleway", sans-serif;
+}
+
 body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #bfeccc; 
-  }
-  
-  form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    background-color: white; 
-    width: 100%;
-    max-width: 400px;
-  }
-  
-  label {
-    margin-bottom: 10px;
-    color: #376596; 
-  }
-  
-  input[type="text"],
-  input[type="password"] {
-    padding: 10px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    width: 100%;
-    box-sizing: border-box;
-  }
-  
-  input[type="submit"] {
-    padding: 10px;
-    background-color: #007bff; 
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #bfeccc;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: white;
+  width: 100%;
+  max-width: 400px;
+}
+
+.sign-up-title {
+  font-size: 30px;
+  font-weight: 700;
+  font-family: "Raleway", sans-serif;
+}
+
+.already-text {
+  margin-bottom: 5px;
+}
+
+label {
+  margin-bottom: 10px;
+  color: #376596;
+  font-size: 18px;
+}
+
+input[type="text"],
+input[type="password"] {
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+input[type="submit"] {
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#sign-up-button {
+  font-size: 16px;
+  width: 100%;
+  transition: 0.15s;
+}
+
+#sign-up-button:hover {
+  opacity: 0.8;
+}
+
+#sign-up-button:active {
+  opacity: 0.6;
+}
