@@ -23,13 +23,13 @@ form {
   max-width: 400px;
 }
 
-.sign-up-title {
+.log-in-title {
   font-size: 30px;
   font-weight: 700;
   font-family: "Raleway", sans-serif;
 }
 
-.already-text {
+.sign-up-text {
   margin-bottom: 5px;
 }
 
@@ -58,16 +58,16 @@ input[type="submit"] {
   cursor: pointer;
 }
 
-#sign-up-button {
+#log-in-button {
   font-size: 16px;
   width: 100%;
   transition: 0.15s;
 }
 
-#sign-up-button:hover {
+#log-in-button:hover {
   opacity: 0.8;
 }
 
-#sign-up-button:active {
+#log-in-button:active {
   opacity: 0.6;
 }
