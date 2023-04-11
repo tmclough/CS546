@@ -1,31 +1,42 @@
-    <header>
-      <div class="header">
-          <a href="" class="home-link">Home</a> <!-- Add homepage link -->
-        </div>
-      </div>
-    </header>
-    <div class="form-container">
-      <form action="" method="POST">
-        <p class="sign-up-title">Sign Up!</p>
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" placeholder="Username" />
+<header>
+  <div class="header">
+    <a href="" class="home-link">Home</a> <!-- Add homepage link -->
+  </div>
+  </div>
+</header>
+<div class="form-container">
+  <form action="/signup" method="POST">
+    <p class="sign-up-title">Sign Up!</p>
 
-        <label for="password">Password:</label>
-        <input
-          type="password"
-          id="password"
-          name="password"
-          placeholder="Password"
-        />
+    <label for="firstName">First Name:</label>
+    <input type="text" id="firstName" name="firstName" placeholder="First Name" value="{{body.firstName}}" />
 
-        <label for="sign-up-button"></label>
-        <input
-          type="submit"
-          id="sign-up-button"
-          name="signUpButton"
-          value="Sign Up"
-        />
-        <p class="log-in-text">Already have an account?</p>
-        <a href="/login" class="log-in-button">Log In</a>
-      </form>
-    </div>
+    <label for="lastName">Last Name:</label>
+    <input type="text" id="lastName" name="lastName" placeholder="Last Name" value="{{body.lastName}}" />
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" placeholder="Email" value="{{body.email}}" />
+
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" placeholder="Username" value="{{body.username}}" />
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" placeholder="Password" value="{{body.password}}" />
+
+    <label for="sign-up-button"></label>
+    <input type="submit" id="sign-up-button" name="signUpButton" value="Sign Up" />
+    <p class="log-in-text">Already have an account?</p>
+    <a href="/login" class="log-in-button">Log In</a>
+  </form>
+</div>
+<div class="Error-container">
+  {{#if hasErrors}}
+  <ul class="error-list">
+    {{#each errors}}
+    <li>
+      {{this}}
+    </li>
+    {{/each}}
+  </ul>
+  {{/if}}
+</div>

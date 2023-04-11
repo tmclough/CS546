@@ -1,6 +1,7 @@
 import { Router } from "express";
 const router = Router();
 import { userData } from "../data/index.js";
+import validation from "../validation.js";
 
 router
   .route("/")
@@ -8,7 +9,7 @@ router
     //code here for GET
     try {
       res.render("users/signUp", {
-        title: "Login Page",
+        title: "SignUp Page",
         cssFile: "/public/css/signUp.css",
       });
     } catch (e) {
@@ -21,18 +22,35 @@ router
     if (!userInfo || Object.keys(userInfo).length === 0) {
       errors.push("No data inputted.");
     }
+
     try {
-      userInfo.email = validation.checkString(userInfo.email, "email");
-      userInfo.username = validation.checkString(userInfo.username, "username");
-      userInfo.password = validation.checkString(userInfo.password, "password");
-      userInfo.firstName = validation.checkString(
-        userInfo.firstName,
-        "firstName"
-      );
+      userInfo.firstName = validation.checkString(userInfo.firstName, "firstName");
+    } catch (e) {
+      errors.push(e);
+    }
+
+    try {
       userInfo.lastName = validation.checkString(userInfo.lastName, "lastName");
     } catch (e) {
       errors.push(e);
     }
+    try {
+      userInfo.email = validation.checkString(userInfo.email, "email");
+    } catch (e) {
+      errors.push(e);
+    }
+    try {
+      userInfo.username = validation.checkString(userInfo.username, "username");
+    } catch (e) {
+      errors.push(e);
+    }
+
+    try {
+      userInfo.password = validation.checkString(userInfo.password, "password");
+    } catch (e) {
+      errors.push(e);
+    }
+
 
     const prevUsers = await userData.getAll();
     for (let i in prevUsers) {
@@ -48,6 +66,8 @@ router
 
     if (errors.length > 0) {
       res.render("users/signUp", {
+        title: "SignUp Page",
+        cssFile: "/public/css/signUp.css",
         errors: errors,
         hasErrors: true,
         body: req.body,
@@ -63,7 +83,7 @@ router
         userInfo.firstName,
         userInfo.lastName
       );
-      res.redirect("/"); //redirect to account page once that's implemented.
+      res.redirect("/login"); //redirect to account page once that's implemented.
     } catch (e) {
       res.status(500).render("errorPage", { error: e });
       //implement error page
