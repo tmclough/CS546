@@ -18,13 +18,17 @@ router
   })
   .post(async (req, res) => {
     let userInfo = req.body;
+    console.log(userInfo);
     let errors = [];
     if (!userInfo || Object.keys(userInfo).length === 0) {
       errors.push("No data inputted.");
     }
 
     try {
-      userInfo.firstName = validation.checkString(userInfo.firstName, "firstName");
+      userInfo.firstName = validation.checkString(
+        userInfo.firstName,
+        "firstName"
+      );
     } catch (e) {
       errors.push(e);
     }
@@ -50,7 +54,6 @@ router
     } catch (e) {
       errors.push(e);
     }
-
 
     const prevUsers = await userData.getAll();
     for (let i in prevUsers) {

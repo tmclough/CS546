@@ -74,7 +74,7 @@ input[type="text"],
 input[type="password"],
 input[type="email"] {
   padding: 10px;
-  margin-bottom: 40px;
+  margin-bottom: 8px;
   border: 1px solid #ccc;
   border-radius: 5px;
   width: 100%;
@@ -116,4 +116,12 @@ input[type="submit"] {
 
 .log-in-button:active {
   opacity: 0.6;
+}
+
+.invalid-first-name,
+.invalid-last-name,
+.invalid-email,
+.invalid-username,
+.invalid-password {
+  margin-bottom: 20px;
 }
