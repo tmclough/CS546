@@ -1,14 +1,44 @@
 * {
   box-sizing: border-box;
   font-family: "Raleway", sans-serif;
+  padding: 0;
+  margin: 0;
 }
 
 body {
+  height: 100vh;
+  background-color: #bfeccc;
+}
+
+.header {
+  height: 100px;
+  background-color: #a4caaf;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: -100px;
+}
+
+.home-link {
+  text-decoration: none;
+  font-size: 38px;
+  color: white;
+  transition: 0.15s;
+}
+
+.home-link:hover {
+  opacity: 0.8;
+}
+
+.home-link:active {
+  opacity: 0.6;
+}
+
+.form-container {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #bfeccc;
 }
 
 form {
@@ -27,6 +57,7 @@ form {
   font-size: 30px;
   font-weight: 700;
   font-family: "Raleway", sans-serif;
+  margin-bottom: 32px;
 }
 
 .sign-up-text {
@@ -62,6 +93,8 @@ input[type="submit"] {
   font-size: 16px;
   width: 100%;
   transition: 0.15s;
+  margin-bottom: 24px;
+  box-shadow: 1px 1px 1px #5e9de0;
 }
 
 #log-in-button:hover {
@@ -69,5 +102,17 @@ input[type="submit"] {
 }
 
 #log-in-button:active {
+  opacity: 0.6;
+}
+
+.sign-up-button {
+  transition: 0.15s;
+}
+
+.sign-up-button:hover {
+  opacity: 0.8;
+}
+
+.sign-up-button:active {
   opacity: 0.6;
 }
