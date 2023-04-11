@@ -1,18 +1,31 @@
-<form action="" method="POST">
-  <p class="sign-up-title">Sign Up!</p>
-  <label for="username">Username:</label>
-  <input type="text" id="username" name="username" placeholder="Username" />
+    <header>
+      <div class="header">
+          <a href="" class="home-link">Home</a> <!-- Add homepage link -->
+        </div>
+      </div>
+    </header>
+    <div class="form-container">
+      <form action="" method="POST">
+        <p class="sign-up-title">Sign Up!</p>
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" placeholder="Username" />
 
-  <label for="password">Password:</label>
-  <input type="password" id="password" name="password" placeholder="Password" />
+        <label for="password">Password:</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          placeholder="Password"
+        />
 
-  <label for="sign-up-button"></label>
-  <input
-    type="submit"
-    id="sign-up-button"
-    name="signUpButton"
-    value="Sign Up"
-  />
-  <p class="already-text">Already have an account?</p>
-  <a href="/">Log In</a>
-</form>
+        <label for="sign-up-button"></label>
+        <input
+          type="submit"
+          id="sign-up-button"
+          name="signUpButton"
+          value="Sign Up"
+        />
+        <p class="log-in-text">Already have an account?</p>
+        <a href="/login" class="log-in-button">Log In</a>
+      </form>
+    </div>
