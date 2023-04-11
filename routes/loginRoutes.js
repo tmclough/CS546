@@ -23,14 +23,18 @@ router
       errors.push("Error: No data inputted.");
     }
     let { username, password } = req.body;
+    let usernameError = undefined;
     try {
-      username = validation.checkString(username, "username")
+      username = validation.checkString(username, "username");
     } catch (e) {
+      usernameError = e;
       errors.push(e);
     }
+    let passwordError = undefined;
     try {
       password = validation.checkString(password, "password");
     } catch (e) {
+      passwordError = e;
       errors.push(e);
     }
     if (errors.length > 0) {
@@ -39,7 +43,9 @@ router
         cssFile: "/public/css/logIn.css",
         body: req.body,
         errors: errors,
-        hasErrors: true
+        hasErrors: true,
+        usernameError: usernameError,
+        passwordError: passwordError,
       });
       return;
     }
@@ -57,7 +63,7 @@ router
         cssFile: "/public/css/logIn.css",
         body: req.body,
         errors: errors,
-        hasErrors: true
+        hasErrors: true,
       });
     }
   });

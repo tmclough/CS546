@@ -11,12 +11,12 @@ body {
 }
 
 .header {
-  height: 100px;
+  height: 75px;
   background-color: #a4caaf;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: -100px;
+  margin-bottom: -75px;
 }
 
 .home-link {
@@ -73,7 +73,7 @@ label {
 input[type="text"],
 input[type="password"] {
   padding: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 29px;
   border: 1px solid #ccc;
   border-radius: 5px;
   width: 100%;
@@ -115,4 +115,13 @@ input[type="submit"] {
 
 .sign-up-button:active {
   opacity: 0.6;
+}
+
+.invalid-username,
+.invalid-password {
+  margin-top: -20px;
+  height: 20px;
+  font-size: 13px;
+  color: rgb(226, 40, 40);
+  /* margin-bottom: 5px; */
 }

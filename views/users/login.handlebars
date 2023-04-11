@@ -9,9 +9,19 @@
     <p class="log-in-title">Log In!</p>
     <label for="username">Username:</label>
     <input type="text" id="username" name="username" placeholder="Username" value="{{body.username}}" />
+    {{#if usernameError}}
+      <div class="invalid-username">
+        {{usernameError}}
+      </div>
+    {{/if}}
 
     <label for="password">Password:</label>
     <input type="password" id="password" name="password" placeholder="Password" value="{{body.password}}" />
+    {{#if passwordError}}
+      <div class="invalid-password">
+        {{passwordError}}
+      </div>
+    {{/if}}
 
     <label for="log-in-button"></label>
     <input type="submit" id="log-in-button" name="logInButton" value="Log In" />
@@ -19,7 +29,7 @@
     <a href="/signup" class="sign-up-button">Sign Up</a>
   </form>
 </div>
-<div class="Error-container">
+{{!-- <div class="Error-container">
   {{#if hasErrors}}
   <ul class="error-list">
     {{#each errors}}
@@ -29,4 +39,4 @@
     {{/each}}
   </ul>
   {{/if}}
-</div>
+</div> --}}
