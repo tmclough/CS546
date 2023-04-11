@@ -24,7 +24,7 @@ router
       errors.push("No data inputted.");
     }
 
-    let firstNameError;
+    let firstNameError = undefined;
     try {
       userInfo.firstName = validation.checkString(
         userInfo.firstName,
@@ -35,28 +35,28 @@ router
       errors.push(e);
     }
 
-    let lastNameError;
+    let lastNameError = undefined;
     try {
       userInfo.lastName = validation.checkString(userInfo.lastName, "lastName");
     } catch (e) {
       lastNameError = e;
       errors.push(e);
     }
-    let emailError;
+    let emailError = undefined;
     try {
       userInfo.email = validation.checkString(userInfo.email, "email");
     } catch (e) {
       emailError = e;
       errors.push(e);
     }
-    let usernameError;
+    let usernameError = undefined;
     try {
       userInfo.username = validation.checkString(userInfo.username, "username");
     } catch (e) {
       usernameError = e;
       errors.push(e);
     }
-    let passwordError;
+    let passwordError = undefined;
     try {
       userInfo.password = validation.checkString(userInfo.password, "password");
     } catch (e) {
@@ -65,13 +65,17 @@ router
     }
     console.log(errors);
 
+    let duplicateEmailError = undefined;
+    let duplicateUsernameError = undefined;
     const prevUsers = await userData.getAll();
     for (let i in prevUsers) {
       if (prevUsers[i].email === userInfo.email) {
+        duplicateEmailError = "email aready in use";
         errors.push("email already in use");
         break;
       }
       if (prevUsers[i].username === userInfo.username) {
+        duplicateUsernameError = "username already in use";
         errors.push("username already in use");
         break;
       }
@@ -89,6 +93,8 @@ router
         emailError: emailError,
         usernameError: usernameError,
         passwordError: passwordError,
+        duplicateEmailError: duplicateEmailError,
+        duplicateUsernameError: duplicateUsernameError,
       });
       return;
     }

@@ -11,41 +11,51 @@
         <label for="firstName">First Name:</label>
         <input type="text" id="firstName" name="firstName" placeholder="First Name" value="{{body.firstName}}" />
         {{#if firstNameError}}
-        <div class="invalid-first-name">
-          {{firstNameError}}
-        </div>
+          <div class="invalid-first-name">
+            {{firstNameError}}
+          </div>
         {{/if}}
 
         <label for="lastName">Last Name:</label>
         <input type="text" id="lastName" name="lastName" placeholder="Last Name" value="{{body.lastName}}" />
         {{#if lastNameError}}
-        <div class="invalid-last-name">
-          {{lastNameError}}
-        </div>
+          <div class="invalid-last-name">
+            {{lastNameError}}
+          </div>
         {{/if}}
 
         <label for="email">Email:</label>
         <input type="email" id="email" name="email" placeholder="Email" value="{{body.email}}" />
         {{#if emailError}}
-        <div class="invalid-email">
-          {{emailError}}
-        </div>
-        {{/if}}
+          <div class="invalid-email">
+            {{emailError}}
+          </div>
+        {{else}} {{#if duplicateEmailError}}
+          <div class="invalid-email">
+            {{duplicateEmailError}}
+          </div>
+        {{else}}
+        {{/if}} {{/if}}
     
         <label for="username">Username:</label>
         <input type="text" id="username" name="username" placeholder="Username" value="{{body.username}}" />
         {{#if usernameError}}
-        <div class="invalid-username">
-          {{usernameError}}
-        </div>
-        {{/if}}
+          <div class="invalid-username">
+            {{usernameError}}
+          </div>
+        {{else}} {{#if duplicateUsernameError}}
+          <div class="invalid-username">
+            {{duplicateUsernameError}}
+          </div>
+        {{else}}
+        {{/if}} {{/if}}
 
         <label for="password">Password:</label>
         <input type="password" id="password" name="password" placeholder="Password" value="{{body.password}}" />
         {{#if passwordError}}
-        <div class="invalid-password">
-          {{passwordError}}
-        </div>
+          <div class="invalid-password">
+            {{passwordError}}
+          </div>
         {{/if}}
         
         <label for="sign-up-button"></label>
