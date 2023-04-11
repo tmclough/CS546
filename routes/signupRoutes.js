@@ -24,36 +24,46 @@ router
       errors.push("No data inputted.");
     }
 
+    let firstNameError;
     try {
       userInfo.firstName = validation.checkString(
         userInfo.firstName,
         "firstName"
       );
     } catch (e) {
+      firstNameError = e;
       errors.push(e);
     }
 
+    let lastNameError;
     try {
       userInfo.lastName = validation.checkString(userInfo.lastName, "lastName");
     } catch (e) {
+      lastNameError = e;
       errors.push(e);
     }
+    let emailError;
     try {
       userInfo.email = validation.checkString(userInfo.email, "email");
     } catch (e) {
+      emailError = e;
       errors.push(e);
     }
+    let usernameError;
     try {
       userInfo.username = validation.checkString(userInfo.username, "username");
     } catch (e) {
+      usernameError = e;
       errors.push(e);
     }
-
+    let passwordError;
     try {
       userInfo.password = validation.checkString(userInfo.password, "password");
     } catch (e) {
+      passwordError = e;
       errors.push(e);
     }
+    console.log(errors);
 
     const prevUsers = await userData.getAll();
     for (let i in prevUsers) {
@@ -74,6 +84,11 @@ router
         errors: errors,
         hasErrors: true,
         body: req.body,
+        firstNameError: firstNameError,
+        lastNameError: lastNameError,
+        emailError: emailError,
+        usernameError: usernameError,
+        passwordError: passwordError,
       });
       return;
     }

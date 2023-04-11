@@ -74,7 +74,7 @@ input[type="text"],
 input[type="password"],
 input[type="email"] {
   padding: 10px;
-  margin-bottom: 8px;
+  margin-bottom: 29px;
   border: 1px solid #ccc;
   border-radius: 5px;
   width: 100%;
@@ -123,5 +123,9 @@ input[type="submit"] {
 .invalid-email,
 .invalid-username,
 .invalid-password {
-  margin-bottom: 20px;
+  margin-top: -20px;
+  height: 20px;
+  font-size: 13px;
+  color: rgb(226, 40, 40);
+  /* margin-bottom: 5px; */
 }
