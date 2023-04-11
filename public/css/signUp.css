@@ -11,12 +11,12 @@ body {
 }
 
 .header {
-  height: 100px;
+  height: 75px;
   background-color: #a4caaf;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: -100px;
+  margin-bottom: -40px;
 }
 
 .home-link {
@@ -74,7 +74,7 @@ input[type="text"],
 input[type="password"],
 input[type="email"] {
   padding: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
   border: 1px solid #ccc;
   border-radius: 5px;
   width: 100%;
