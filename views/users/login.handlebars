@@ -10,17 +10,17 @@
     <label for="username">Username:</label>
     <input type="text" id="username" name="username" placeholder="Username" value="{{body.username}}" />
     {{#if usernameError}}
-      <div class="invalid-username">
-        {{usernameError}}
-      </div>
+    <div class="invalid-username">
+      {{usernameError}}
+    </div>
     {{/if}}
 
     <label for="password">Password:</label>
     <input type="password" id="password" name="password" placeholder="Password" value="{{body.password}}" />
     {{#if passwordError}}
-      <div class="invalid-password">
-        {{passwordError}}
-      </div>
+    <div class="invalid-password">
+      {{passwordError}}
+    </div>
     {{/if}}
 
     <label for="log-in-button"></label>
