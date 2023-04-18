@@ -79,3 +79,51 @@ body {
 .login-link:active {
   opacity: 0.6;
 }
+
+.main-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  z-index: 1;
+}
+
+.search-form {
+  width: 800px;
+  height: auto;
+}
+
+.search-label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-bar {
+  font-size: 21px;
+  width: 100%;
+  max-width: 500px;
+  padding: 10px 15px;
+  border-radius: 10px;
+  border: none;
+  margin-right: 10px;
+  flex: 1;
+}
+
+.search-button {
+  font-size: 18px;
+  padding: 7px 15px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: 0.15s;
+  border: none;
+}
+
+.search-button:hover {
+  background-color: rgb(100, 142, 231);
+  color: white;
+}
+
+.search-button:active {
+  background-color: rgb(152, 178, 233);
+}
