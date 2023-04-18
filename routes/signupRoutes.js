@@ -28,7 +28,7 @@ router
     try {
       userInfo.firstName = validation.checkString(
         userInfo.firstName,
-        "firstName"
+        "first name"
       );
     } catch (e) {
       firstNameError = e;
@@ -37,7 +37,10 @@ router
 
     let lastNameError = undefined;
     try {
-      userInfo.lastName = validation.checkString(userInfo.lastName, "lastName");
+      userInfo.lastName = validation.checkString(
+        userInfo.lastName,
+        "last name"
+      );
     } catch (e) {
       lastNameError = e;
       errors.push(e);

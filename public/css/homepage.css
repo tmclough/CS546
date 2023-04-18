@@ -1,0 +1,41 @@
+* {
+  box-sizing: border-box;
+  font-family: "Raleway", sans-serif;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  height: 100vh;
+  width: 100vw;
+  background-image: url("../images/maxresdefault.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: -1;
+}
+
+.header {
+  background-color: rgb(130, 196, 235);
+  opacity: 0.5;
+  height: 100px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: -100px;
+  z-index: 999;
+}
+
+.home-bar {
+  margin-left: 60px;
+}
+
+.home-link {
+  text-decoration: none;
+  font-size: 38px;
+  color: rgb(16, 53, 156);
+  transition: 0.15s;
+  cursor: pointer;
+  opacity: 1;
+}
