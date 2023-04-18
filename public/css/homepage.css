@@ -39,3 +39,43 @@ body {
   cursor: pointer;
   opacity: 1;
 }
+
+.home-link:hover {
+  opacity: 0.8;
+}
+
+.home-link:active {
+  opacity: 0.6;
+}
+
+.links {
+  margin-right: 60px;
+}
+
+.signup-link,
+.login-link {
+  font-size: 20px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: 0.15s;
+  font-weight: 700;
+}
+
+.signup-link {
+  margin-left: 24px;
+  color: rgb(238, 50, 50);
+  border: 2px solid rgb(238, 50, 50);
+  padding: 10px 40px;
+  border-radius: 15px;
+  box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.25);
+}
+
+.signup-link:hover,
+.login-link:hover {
+  opacity: 0.8;
+}
+
+.signup-link:active,
+.login-link:active {
+  opacity: 0.6;
+}
