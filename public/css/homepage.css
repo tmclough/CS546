@@ -40,14 +40,6 @@ body {
   opacity: 1;
 }
 
-.home-link:hover {
-  opacity: 0.8;
-}
-
-.home-link:active {
-  opacity: 0.6;
-}
-
 .links {
   margin-right: 60px;
 }
@@ -75,8 +67,21 @@ body {
   opacity: 0.8;
 }
 
+.signup-link:hover {
+  background-color: red;
+  color: white;
+}
+
 .signup-link:active,
 .login-link:active {
+  opacity: 0.6;
+}
+
+.home-link:hover {
+  opacity: 0.8;
+}
+
+.home-link:active {
   opacity: 0.6;
 }
 
@@ -103,7 +108,7 @@ body {
   font-size: 21px;
   width: 100%;
   max-width: 500px;
-  padding: 10px 15px;
+  padding: 13px 15px;
   border-radius: 10px;
   border: none;
   margin-right: 10px;
@@ -112,7 +117,7 @@ body {
 
 .search-button {
   font-size: 18px;
-  padding: 7px 15px;
+  padding: 9px 19px;
   border-radius: 12px;
   cursor: pointer;
   transition: 0.15s;
@@ -122,6 +127,7 @@ body {
 .search-button:hover {
   background-color: rgb(100, 142, 231);
   color: white;
+  box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.25);
 }
 
 .search-button:active {
