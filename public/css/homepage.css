@@ -140,6 +140,14 @@ header {
   display: none;
 }
 
+.toggle-button-image {
+  transition: all 0.3s ease-in-out;
+}
+
+.toggle-button-image.rotate {
+  transform: rotate(180deg);
+}
+
 .dropdown-menu {
   width: 200px;
   height: 100px;
@@ -149,6 +157,11 @@ header {
   background-color: rgb(44, 101, 224, 0.5);
   border-radius: 12px;
   display: none;
+  transition: all 0.3s ease-in-out;
+}
+
+.dropdown-menu.open {
+  display: block;
 }
 
 .dropdown-links {

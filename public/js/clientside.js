@@ -1,11 +1,25 @@
 const toggleButton = document.querySelector(".toggle-button");
 toggleButton.addEventListener("click", () => {
   const dropdownMenu = document.querySelector(".dropdown-menu");
-  if (dropdownMenu.style.display === "none") {
-    dropdownMenu.style.display = "block";
+  const toggleButtonImage = document.querySelector(".toggle-button-image");
+  if (dropdownMenu.classList.contains("open")) {
+    dropdownMenu.classList.remove("open");
+    toggleButtonImage.src = "/public/images/align-justify.svg";
+    toggleButtonImage.classList.remove("rotate");
   } else {
-    dropdownMenu.style.display = "none";
+    dropdownMenu.classList.add("open");
+    toggleButtonImage.src = "/public/images/x.svg";
+    toggleButtonImage.classList.add("rotate");
   }
+  // if (dropdownMenu.style.display === "none") {
+  //   dropdownMenu.style.display = "block";
+  //   toggleButtonImage.src = "/public/images/x.svg";
+  //   toggleButtonImage.classList.add("rotate");
+  // } else {
+  //   dropdownMenu.style.display = "none";
+  //   toggleButtonImage.src = "/public/images/align-justify.svg";
+  //   toggleButton.classList.add("rotate");
+  // }
 });
 
 window.addEventListener("resize", () => {
