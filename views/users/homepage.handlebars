@@ -22,5 +22,17 @@
         <input type="submit" class="search-button" value="Search" />
       </label>
     </form>
+     <div class="post-section">
+      <h2 id="post-list">My Posts</h2>
+      <div class="post-list">
+        {{#each posts}}
+          <div class="post">
+            <h2>{{title}}</h2>
+            <p>{{body}}</p>
+          </div>
+        {{/each}}
+      </div>
+    
+    </div>
   </div>
 </main>
