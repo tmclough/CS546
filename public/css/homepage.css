@@ -136,12 +136,18 @@ header {
 .toggle-button {
   margin-right: 30px;
   cursor: pointer;
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   display: none;
 }
 
 .toggle-button-image {
-  transition: all 0.3s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  width: 30px;
+  height: auto;
+}
+
+.toggle-button-image:hover {
+  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5));
 }
 
 .toggle-button-image.rotate {
@@ -156,12 +162,14 @@ header {
   top: 75px;
   background-color: rgb(44, 101, 224, 0.5);
   border-radius: 12px;
-  display: none;
-  transition: all 0.3s ease-in-out;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .dropdown-menu.open {
-  display: block;
+  opacity: 1;
+  visibility: visible;
 }
 
 .dropdown-links {
