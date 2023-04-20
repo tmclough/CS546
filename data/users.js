@@ -1,14 +1,21 @@
 import { users } from "../config/mongoCollections.js";
 import { ObjectId } from "mongodb";
 import validation from "../validation.js";
+import bcrypt from "bcrypt";
+const saltRounds = 16;
 
 let exportedMethods = {
   async getUserByUsernamePassword(username, password) {
-    username = validation.checkString(username);
-    password = validation.checkString(password);
+    username = validation.checkString(username, "username");
+    password = validation.checkPassword(password, "password");
+
     const userCollection = await users();
-    const user = await userCollection.findOne({ username, password });
-    if (!user) throw "Error: User not found";
+    const user = await userCollection.findOne({ username: username });
+    if (!user) throw "Error: invalid username or password";
+
+    let passwordMatch = await bcrypt.compare(password, user.hash);
+    if (!passwordMatch) throw "Error: invalid username or password";
+    user._id = user._id.toString();
     return user;
   },
 
@@ -25,35 +32,41 @@ let exportedMethods = {
 
   async addUser(email, username, password, firstName, lastName) {
 
-    try {
-      email = validation.checkString(email, "email");
-      username = validation.checkString(username, "username");
-      password = validation.checkString(password, "password");
-      firstName = validation.checkString(firstName, "firstName");
-      lastName = validation.checkString(lastName, "lastName");
-    } catch (e) {
-      throw `Error: ${e}`;
-    }
 
-    let prevUsers = await this.getAll();
-    for (let i in prevUsers) {
-      if (prevUsers[i].email === email) {
-        throw "Error: email already in use";
-      }
-      if (prevUsers[i].username === username) {
-        throw "Error: username already in use";
-      }
-    }
+    email = validation.checkEmail(email, "email");
+    username = validation.checkString(username, "username");
+    password = validation.checkPassword(password, "password");
+    firstName = validation.checkFirstAndLastName(firstName, "firstName");
+    lastName = validation.checkFirstAndLastName(lastName, "lastName");
+
+
+    const userCollection = await users();
+    const dupUsername = await userCollection.findOne({ username: username });
+    if (dupUsername) throw "Error: username already in use";
+    const dupEmail = await userCollection.findOne({ email: email });
+    if (dupEmail) throw "Error: username already in use";
+
+    // let prevUsers = await this.getAll();
+    // for (let i in prevUsers) {
+    //   if (prevUsers[i].email === email) {
+    //     throw "Error: email already in use";
+    //   }
+    //   if (prevUsers[i].username === username) {
+    //     throw "Error: username already in use";
+    //   }
+    // }
+
+
+    const hash = await bcrypt.hash(password, saltRounds);
 
     let newUser = {
       email: email,
       username: username,
-      password: password,
+      password: hash,
       firstName: firstName,
       lastName: lastName
     }
 
-    const userCollection = await users();
     const insertedInfo = await userCollection.insertOne(newUser);
     if (!insertedInfo.insertedId) throw "Error: insert failed.";
 
@@ -61,11 +74,8 @@ let exportedMethods = {
   },
 
   async getUserById(id) {
-    try {
-      id = validation.checkId(id);
-    } catch (e) {
-      throw `Error: ${e}`;
-    }
+
+    id = validation.checkId(id);
 
     const userCollection = await users();
     const userInfo = await userCollection.findOne({ _id: new ObjectId(id) });
