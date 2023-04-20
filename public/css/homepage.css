@@ -15,10 +15,11 @@ body {
   z-index: -1;
 }
 
-.header {
-  position: fixed;
-  left: 0;
-  top: 0;
+header {
+  position: relative;
+}
+
+.navbar {
   background-color: rgb(130, 196, 235);
   opacity: 0.5;
   height: 100px;
@@ -28,12 +29,6 @@ body {
   align-items: center;
   margin-bottom: -100px;
   z-index: 999;
-}
-
-@media (max-width: 1100px) {
-  header {
-    position: relative;
-  }
 }
 
 .home-bar {
@@ -136,6 +131,54 @@ body {
 
 .home-link:active {
   opacity: 0.6;
+}
+
+.toggle-button {
+  margin-right: 30px;
+  cursor: pointer;
+  font-size: 1.5rem;
+  display: none;
+}
+
+.dropdown-menu {
+  width: 200px;
+  height: 100px;
+  position: absolute;
+  right: 25px;
+  top: 75px;
+  background-color: rgb(44, 101, 224, 0.5);
+  border-radius: 12px;
+  display: none;
+}
+
+.dropdown-links {
+  height: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: column;
+}
+
+.dropdown-links a {
+  text-decoration: none;
+  cursor: pointer;
+  transition: 0.15s;
+  color: white;
+  transition: 0.15s;
+}
+
+.dropdown-links a:hover {
+  color: rgb(127, 225, 255);
+}
+
+@media (max-width: 1068px) {
+  .navbar .links {
+    display: none;
+  }
+
+  .navbar .toggle-button {
+    display: block;
+  }
 }
 
 .main-content {
