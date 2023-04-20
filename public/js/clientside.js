@@ -24,7 +24,10 @@ toggleButton.addEventListener("click", () => {
 
 window.addEventListener("resize", () => {
   const dropdownMenu = document.querySelector(".dropdown-menu");
-  dropdownMenu.style.display = "none";
+  const toggleButtonImage = document.querySelector(".toggle-button-image");
+  dropdownMenu.classList.remove("open");
+  toggleButtonImage.src = "/public/images/align-justify.svg";
+  toggleButtonImage.classList.remove("rotate");
 });
 
 document.addEventListener("click", (event) => {
@@ -33,6 +36,10 @@ document.addEventListener("click", (event) => {
     !event.target.closest(".dropdown-menu") &&
     !event.target.closest(".toggle-button")
   ) {
-    dropdownMenu.style.display = "none";
+    dropdownMenu.classList.remove("open");
+    const toggleButtonImage = document.querySelector(".toggle-button-image");
+    dropdownMenu.classList.remove("open");
+    toggleButtonImage.src = "/public/images/align-justify.svg";
+    toggleButtonImage.classList.remove("rotate");
   }
 });
