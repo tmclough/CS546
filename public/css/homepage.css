@@ -202,25 +202,46 @@ header {
   }
 }
 
-.main-content {
+main {
+  padding-top: 120px;
+}
+
+.posts-section {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  z-index: 1;
+  flex-direction: column;
+  margin: 0 auto;
+  width: 100%;
 }
 
-.post-list {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 100px;
-  border: 2px solid black;
+.posts-heading {
+  margin-top: 8px;
+  margin-bottom: -12px;
 }
-#post-list {
+
+.posts {
+  width: 70%;
+  height: 100px;
+  padding: 40px;
+}
+
+.post {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  padding: 20px;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  margin-top: 100px;
-  border: 2px solid black;
+  flex-direction: column;
+  transition: 0.15s;
+  cursor: pointer;
+}
+
+.post:hover {
+  opacity: 0.8;
+}
+
+.post:active {
+  opacity: 0.6;
 }

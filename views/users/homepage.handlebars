@@ -34,23 +34,21 @@
   </div>
 </header>
 <main>
-  <div class="main-content">
-    <div class="post-section">
-      <h2 id="post-list">My Posts</h2>
-      <div class="post-list">
-        {{#each posts}}
-          <div class="post">
-            <p>{{name}}</p>
-            <p>{{description}}</p>
-            <p>{{tags}}</p>
-            <p>{{location}}</p>
-            <p>{{postedDate}}</p>
-            <p>{{comments}}</p>
-            <p>{{rating}}</p>
-            <p>{{claimed}}</p>
-          </div>
-        {{/each}}
-      </div>
+  <div class="posts-section">
+    <h2 class="posts-heading">My Posts</h2>
+    <div class="posts">
+      {{#each posts}}
+        <div class="post">
+          <p class="name">{{name}}</p>
+          <p class="description">{{description}}</p>
+          <p class="tags">{{tags}}</p>
+          <p class="location">{{location}}</p>
+          <p class="posted-date">{{postedDate}}</p>
+          <p class="comments">{{comments}}</p>
+          <p class="rating">{{rating}}</p>
+          <p class="claimed">{{claimed}}</p>
+        </div>
+      {{/each}}
     </div>
   </div>
 </main>
