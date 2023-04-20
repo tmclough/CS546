@@ -50,14 +50,17 @@ router
       return;
     }
     //Look for user with password and username
-    let user = userData.getUserByUsernamePassword(username, password);
 
-    // client.close();
-    //valid user then redirect to homepage
-    if (user) {
+    try {
+      let user = await userData.getUserByUsernamePassword(username, password);
+      if (!user) {
+        res.status(500).send("Internal Server Error");
+        return;
+      }
+      req.session.user = user;
       res.redirect("/homepage");
-    } else {
-      errors.push("Invalid username or password");
+    } catch (e) {
+      errors.push(e);
       res.status(400).render("users/login", {
         title: "Login Page",
         cssFile: "/public/css/logIn.css",
