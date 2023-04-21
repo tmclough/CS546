@@ -32,7 +32,11 @@ header {
 }
 
 .home-bar {
-  margin-left: 30px;
+  margin-left: 50px;
+  margin-right: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .home-link {
@@ -57,7 +61,7 @@ header {
 .search-bar {
   font-size: 21px;
   width: 100%;
-  max-width: 600px;
+  max-width: 400px;
   padding: 13px 15px;
   border-radius: 10px;
   border: 2px solid black;
@@ -234,11 +238,13 @@ main {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  transition: 0.15s;
+  transition: 0.1s;
   cursor: pointer;
 }
 
 .post:hover {
+  background-color: rgb(246, 251, 255);
+  box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.25);
   opacity: 0.8;
 }
 
