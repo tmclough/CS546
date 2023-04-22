@@ -61,3 +61,25 @@ document.addEventListener("click", (event) => {
 //     }
 //   }
 // });
+
+const filterToggleButton = document.querySelector(".filter-toggle-button");
+const filterLabel = document.querySelector(".filter-label");
+const filterToggleButtonImage = document.querySelector(
+  ".filter-toggle-button-image"
+);
+filterToggleButton.addEventListener("mouseenter", () => {
+  filterLabel.style.opacity = 1;
+  filterToggleButtonImage.src = "public/images/chevron-up.svg";
+});
+filterToggleButton.addEventListener("mouseleave", () => {
+  filterLabel.style.opacity = 0;
+  filterToggleButtonImage.src = "public/images/chevron-down.svg";
+});
+filterLabel.addEventListener("mouseenter", () => {
+  filterLabel.style.opacity = 1;
+  filterToggleButtonImage.src = "public/images/chevron-up.svg";
+});
+filterLabel.addEventListener("mouseleave", () => {
+  filterLabel.style.opacity = 0;
+  filterToggleButtonImage.src = "public/images/chevron-down.svg";
+});

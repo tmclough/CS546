@@ -2,30 +2,70 @@
   <div class="navbar">
     <div class="home-bar">
       <a href="/" class="home-link">Home</a>
-      <form method="POST" action="/homepage/homepage" class="search-form" id ="search-form">
-        <label for="search-bar" class="search-label">Search for an Item:</label>
-        <input
-          name="searchText"
-          type="text"
-          placeholder="Search For..."
-          class="search-bar"
-          id="search-bar"
-          value=""
-        />
-        <label for="filter" class="filter-label">Select categories to filter by:</label>
-        <div id="filter" class="dropdown-check-list">
-          <ul class="tags">
-            <li><input name="tagSelect" type="checkbox" value="Clothes"/>Clothes</li>
-            <li><input name="tagSelect" type="checkbox" value="Textbooks" />Textbooks</li>
-            <li><input name="tagSelect" type="checkbox" value="Furniture"/>Furniture</li>
-            <li><input name="tagSelect" type="checkbox" value="Room Decor"/>Room Decor</li>
-            <li><input name="tagSelect" type="checkbox" value="Electronics"/>Electronics</li>
-            <li><input name="tagSelect" type="checkbox" value="Sports Equipment"/>Sports Equipment</li>
-          </ul>
-          
-          
+      <form
+        method="POST"
+        action="/homepage/homepage"
+        class="search-form"
+        id="search-form"
+      >
+        <label for="search-bar" class="search-label">
+          <input
+            name="searchText"
+            type="text"
+            placeholder="Search for an item"
+            class="search-bar"
+            id="search-bar"
+            value=""
+          />
+        </label>
+        <div class="filter-container">
+          <div class="filter-toggle-button">
+            Filter
+            <img
+              src="public/images/chevron-down.svg"
+              alt="filter button"
+              class="filter-toggle-button-image"
+            />
+          </div>
+          <label for="filter" class="filter-label">
+            <div class="clothes-container">
+              <input name="tagSelect" type="checkbox" value="Clothes" />Clothes
+            </div>
+            <div class="textbooks-container">
+              <input
+                name="tagSelect"
+                type="checkbox"
+                value="Textbooks"
+              />Textbooks
+            </div>
+            <div class="furniture-container">
+              <input
+                name="tagSelect"
+                type="checkbox"
+                value="Furniture"
+              />Furniture
+            </div>
+            <div class="room-decor-container">
+              <input name="tagSelect" type="checkbox" value="Room Decor" />Room
+              Decor
+            </div>
+            <div class="electronics">
+              <input
+                name="tagSelect"
+                type="checkbox"
+                value="Electronics"
+              />Electronics
+            </div>
+            <div class="sports-equipment-container">
+              <input
+                name="tagSelect"
+                type="checkbox"
+                value="Sports Equipment"
+              />Sports Equipment
+            </div>
+          </label>
         </div>
-        <button type="submit">Filter</button>
+        <button type="submit" class="search-button">Search</button>
       </form>
     </div>
     <div class="links">

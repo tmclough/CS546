@@ -21,7 +21,7 @@ header {
 
 .navbar {
   background-color: rgb(130, 196, 235);
-  opacity: 0.5;
+  opacity: 1;
   height: 100px;
   width: 100%;
   display: flex;
@@ -46,10 +46,14 @@ header {
   transition: 0.15s;
   cursor: pointer;
   opacity: 1;
+  margin-right: 23px;
 }
 
 .search-form {
   width: 600px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 }
 
 .search-label {
@@ -90,6 +94,52 @@ header {
 
 .search-button:active {
   background-color: rgb(152, 178, 233);
+}
+
+.filter-container {
+  position: relative;
+}
+
+.filter-toggle-button {
+  margin-left: 10px;
+  margin-right: 20px;
+  cursor: pointer;
+  transition: 0.15s;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.filter-label {
+  opacity: 0;
+  background-color: rgb(56, 114, 240);
+  width: 200px;
+  height: auto;
+  position: absolute;
+  right: auto;
+  left: auto;
+  z-index: 9999;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 10px;
+  padding: 15px 5px;
+}
+
+.filter-label div {
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.filter-label input {
+  margin-right: 7.5px;
+}
+
+.filter-label:hover {
 }
 
 .links {
