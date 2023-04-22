@@ -43,3 +43,21 @@ document.addEventListener("click", (event) => {
     toggleButtonImage.classList.remove("rotate");
   }
 });
+
+// const searchForm = document.getElementById("search-form");
+
+// searchForm.addEventListener("submit", async (event) => {
+//   event.preventDefault();
+//   const selectedTag = document.getElementById("tag-select").value;
+//   const response = await fetch(`/homepage?tag=${selectedTag}`);
+//   const responseData = await response.text();
+//   const posts = JSON.parse(responseData);
+//   const postElements = document.querySelectorAll(".post");
+//   for (let i = 0; i < postElements.length; i++) {
+//     postElements[i].style.display = "none";
+//     const postTags = postElements[i].getAttribute("data-tags").split(",");
+//     if (selectedTag === "" || postTags.includes(selectedTag)) {
+//       postElements[i].style.display = "block";
+//     }
+//   }
+// });

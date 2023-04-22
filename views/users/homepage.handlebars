@@ -2,16 +2,30 @@
   <div class="navbar">
     <div class="home-bar">
       <a href="/" class="home-link">Home</a>
-      <form action="" class="search-form">
-        <label for="search-bar" class="search-label">
-          <input
-            type="text"
-            placeholder="Search For..."
-            class="search-bar"
-            value=""
-          />
-          <input type="submit" class="search-button" value="Search" />
-        </label>
+      <form method="POST" action="/homepage/homepage" class="search-form" id ="search-form">
+        <label for="search-bar" class="search-label">Search for an Item:</label>
+        <input
+          name="searchText"
+          type="text"
+          placeholder="Search For..."
+          class="search-bar"
+          id="search-bar"
+          value=""
+        />
+        <label for="filter" class="filter-label">Select categories to filter by:</label>
+        <div id="filter" class="dropdown-check-list">
+          <ul class="tags">
+            <li><input name="tagSelect" type="checkbox" value="Clothes"/>Clothes</li>
+            <li><input name="tagSelect" type="checkbox" value="Textbooks" />Textbooks</li>
+            <li><input name="tagSelect" type="checkbox" value="Furniture"/>Furniture</li>
+            <li><input name="tagSelect" type="checkbox" value="Room Decor"/>Room Decor</li>
+            <li><input name="tagSelect" type="checkbox" value="Electronics"/>Electronics</li>
+            <li><input name="tagSelect" type="checkbox" value="Sports Equipment"/>Sports Equipment</li>
+          </ul>
+          
+          
+        </div>
+        <button type="submit">Filter</button>
       </form>
     </div>
     <div class="links">

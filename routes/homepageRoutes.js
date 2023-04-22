@@ -3,15 +3,47 @@ const router = Router();
 import { postData } from "../data/index.js";
 import validation from "../validation.js";
 
-
-
 router.route("/").get(async (req, res) => {
   try {
     const postList = await postData.getAllPosts();
-    res.render("users/homepage", { posts: postList, cssFile:"/public/css/homepage.css" });
+    res.render("users/homepage", {
+      posts: postList,
+      cssFile: "/public/css/homepage.css",
+    });
   } catch (e) {
     res.status(500).json({ error: e });
   }
 });
+router
+  .route("/homepage")
+  .get(async (req, res) => {
+    try {
+      const postList = await postData.getAllPosts();
+      res.render("users/homepage", {
+        posts: postList,
+        cssFile: "/public/css/homepage.css",
+      });
+    } catch (e) {
+      res.status(500).json({ error: e });
+    }
+  })
+  .post(async (req, res) => {
+    let tags = req.body.tagSelect;
+    if(typeof tags === "string"){
+      tags = [tags]
+    }
+    let postArr = [];
+    for (let i = 0; i < tags.length; i++) {
+      const posts = await postData.getPostsByTag(tags[i]);
+      if (posts && posts.length > 0) {
+        postArr.push(posts);
+      }
+    }
+    postArr = postArr.flat(100);
+    res.render("users/homepage", {
+      posts: postArr,
+      cssFile: "/public/css/homepage.css",
+    });
+  });
 
 export default router;

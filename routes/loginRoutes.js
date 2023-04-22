@@ -6,7 +6,7 @@ import { userData } from "../data/index.js";
 import validation from "../validation.js";
 router
   .route("/")
-  .get(async (req, res) => {
+  .get(async (req, res, next) => {
     //code here for GET
     try {
       res.render("users/login", {
