@@ -7,6 +7,11 @@
 <div class="form-container">
   <form action="" method="POST">
     <p class="log-in-title">Log In!</p>
+    {{#if invalidLoginError}}
+    <div class="invalid-login">
+      {{invalidLoginError}}
+    </div>
+    {{/if}}
     <label for="username">Username:</label>
     <input type="text" id="username" name="username" placeholder="Username" value="{{body.username}}" />
     {{#if usernameError}}
@@ -29,14 +34,3 @@
     <a href="/signup" class="sign-up-button">Sign Up</a>
   </form>
 </div>
-{{!-- <div class="Error-container">
-  {{#if hasErrors}}
-  <ul class="error-list">
-    {{#each errors}}
-    <li>
-      {{this}}
-    </li>
-    {{/each}}
-  </ul>
-  {{/if}}
-</div> --}}

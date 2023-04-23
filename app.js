@@ -37,31 +37,35 @@ app.use(
   })
 );
 
+
+
+app.use("/login", async (req, res, next) => {
+
+  if (req.session.user && req.method === "GET") {
+    return res.redirect("/homepage");
+  }
+  next();
+});
+
+app.use("/signup", async (req, res, next) => {
+  if (req.session.user && req.method === "GET") {
+    return res.redirect("/homepage");
+  }
+  next();
+});
+
+app.use("/logout", async (req, res, next) => {
+  if (!req.session.user && req.method === "GET") {
+    return res.redirect("/homepage");
+  }
+  next();
+});
+
+
 app.engine("handlebars", exphbs.engine({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
-// app.use("/login", (req, res, next) => {
-//   if (req.method === "GET") {
-//     if (req.session.user) {
-//       return res.redirect("/homepage");
-//     } else {
-//       next();
-//     }
-//   } else {
-//     next();
-//   }
-// });
-// app.use("/homepage", (req, res, next) => {
-//   if (req.method === "GET") {
-//     if (!req.session.user) {
-//       return res.redirect("/login");
-//     } else {
-//       next();
-//     }
-//   } else {
-//     next();
-//   }
-// });
+
 configRoutes(app);
 
 app.listen(3000, () => {

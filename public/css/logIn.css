@@ -118,7 +118,8 @@ input[type="submit"] {
 }
 
 .invalid-username,
-.invalid-password {
+.invalid-password,
+.invalid-login {
   margin-top: -20px;
   height: 20px;
   font-size: 13px;
