@@ -112,7 +112,7 @@ router
       );
       res.redirect("/login"); //redirect to account page once that's implemented.
     } catch (e) {
-      res.status(500).render("errorPage", { error: e });
+      res.status(500).render("users/errorPage", { error: e });
       //implement error page
     }
   });

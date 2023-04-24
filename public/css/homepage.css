@@ -50,7 +50,7 @@ header {
 }
 
 .search-form {
-  width: 580px;
+  width: 500px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
