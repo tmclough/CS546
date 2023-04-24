@@ -1,0 +1,30 @@
+<header>
+    <div class="header">
+        <a href="/homepage" class="home-link">Home</a> <!-- Add homepage link -->
+    </div>
+    </div>
+</header>
+<div class="form-container">
+    <form action="/post" method="POST" enctype="multipart/form-data">
+        <p class="add-post-title">Add Post!</p>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" placeholder="Name" value="{{body.name}}">
+
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" placeholder="Enter a description of your item"
+            value="{{body.description}}"></textarea>
+
+        <label for="location">Location:</label>
+
+        <select name="location" id="location">
+            {{#each locations}}
+            <option value="{{this}}">{{this}}</option>
+            {{/each}}
+        </select>
+
+        <input type="file" name="image">
+        <label for="add-post-button"></label>
+        <input type="submit" id="add-post-button" name="addPostButton" value="Add Post">
+
+    </form>
+</div>
