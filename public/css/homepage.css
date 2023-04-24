@@ -120,14 +120,13 @@ header {
   right: auto;
   left: auto;
   z-index: 9999;
-  cursor: pointer;
   transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   flex-direction: column;
   border-radius: 10px;
-  padding: 15px 5px;
+  padding: 15px;
 }
 
 .filter-label div {
@@ -135,11 +134,22 @@ header {
   font-weight: 700;
 }
 
-.filter-label input {
-  margin-right: 7.5px;
+.filter-label div input {
+  margin-right: 6.5px;
 }
 
-.filter-label:hover {}
+.filter-label div label {
+  cursor: pointer;
+  transition: 0.15s;
+  user-select: none;
+}
+
+.filter-label div label:hover {
+  color: white;
+}
+
+.filter-label:hover {
+}
 
 .links {
   margin-right: 30px;
