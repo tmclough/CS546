@@ -48,14 +48,20 @@ router
     }
     let usernameError = undefined;
     try {
-      userInfo.username = validation.checkUsername(userInfo.username, "username");
+      userInfo.username = validation.checkUsername(
+        userInfo.username,
+        "username"
+      );
     } catch (e) {
       usernameError = e;
       errors = true;
     }
     let passwordError = undefined;
     try {
-      userInfo.password = validation.checkPassword(userInfo.password, "password");
+      userInfo.password = validation.checkPassword(
+        userInfo.password,
+        "password"
+      );
     } catch (e) {
       passwordError = e;
       errors = true;
