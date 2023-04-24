@@ -6,14 +6,14 @@ const saltRounds = 16;
 
 let exportedMethods = {
   async getUserByUsernamePassword(username, password) {
-    username = validation.checkString(username, "username");
+    username = validation.checkUsername(username, "username");
     password = validation.checkPassword(password, "password");
 
     const userCollection = await users();
     const user = await userCollection.findOne({ username: username });
     if (!user) throw "Error: invalid username or password";
 
-    let passwordMatch = await bcrypt.compare(password, user.hash);
+    let passwordMatch = await bcrypt.compare(password, user.password);
     if (!passwordMatch) throw "Error: invalid username or password";
     user._id = user._id.toString();
     return user;
@@ -34,7 +34,7 @@ let exportedMethods = {
 
 
     email = validation.checkEmail(email, "email");
-    username = validation.checkString(username, "username");
+    username = validation.checkUsername(username, "username");
     password = validation.checkPassword(password, "password");
     firstName = validation.checkFirstAndLastName(firstName, "firstName");
     lastName = validation.checkFirstAndLastName(lastName, "lastName");
@@ -45,17 +45,6 @@ let exportedMethods = {
     if (dupUsername) throw "Error: username already in use";
     const dupEmail = await userCollection.findOne({ email: email });
     if (dupEmail) throw "Error: username already in use";
-
-    // let prevUsers = await this.getAll();
-    // for (let i in prevUsers) {
-    //   if (prevUsers[i].email === email) {
-    //     throw "Error: email already in use";
-    //   }
-    //   if (prevUsers[i].username === username) {
-    //     throw "Error: username already in use";
-    //   }
-    // }
-
 
     const hash = await bcrypt.hash(password, saltRounds);
 

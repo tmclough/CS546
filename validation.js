@@ -88,6 +88,15 @@ const exportedMethods = {
 
   },
 
+  checkUsername(strVal, varName) {
+    strVal = this.checkString(strVal, varName);
+    if (strVal.includes(" ")) throw `${varName} should not contain spaces`;
+    if (strVal.length < 2) throw `${varName} should be at least 2 characters long`;
+    else if (strVal.length > 25) throw `${varName} can only be at max 25 characters long`;
+
+    return strVal;
+  },
+
   checkEmail(strVal, varName) {
     strVal = this.checkString(strVal, varName).toLowerCase();
     if (!/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(strVal)) {

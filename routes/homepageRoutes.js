@@ -3,16 +3,8 @@ const router = Router();
 import { postData } from "../data/index.js";
 import validation from "../validation.js";
 
-router.route("/").get(async (req, res) => {
-  try {
-    const postList = await postData.getAllPosts();
-    res.render("users/homepage", {
-      posts: postList,
-      cssFile: "/public/css/homepage.css",
-    });
-  } catch (e) {
-    res.status(500).json({ error: e });
-  }
+router.route("/").get((req, res) => {
+  res.redirect("/homepage");
 });
 router
   .route("/homepage")
@@ -22,6 +14,7 @@ router
       res.render("users/homepage", {
         posts: postList,
         cssFile: "/public/css/homepage.css",
+        userLogin: req.session.user ? false : true
       });
     } catch (e) {
       res.status(500).json({ error: e });
@@ -29,7 +22,7 @@ router
   })
   .post(async (req, res) => {
     let tags = req.body.tagSelect;
-    if(typeof tags === "string"){
+    if (typeof tags === "string") {
       tags = [tags]
     }
     let postArr = [];
@@ -44,6 +37,13 @@ router
       posts: postArr,
       cssFile: "/public/css/homepage.css",
     });
+  });
+
+router
+  .route("/logout")
+  .get(async (req, res) => {
+    req.session.destroy();
+    res.redirect("/homepage");
   });
 
 export default router;
