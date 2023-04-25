@@ -1,6 +1,6 @@
 import { ObjectId } from 'mongodb';
 
-const locations = [
+export const locations = [
   "ABS Engineering Center",
   "Babbio Center",
   "Burchard Building",
@@ -38,7 +38,7 @@ const locations = [
   "Palmer Hall",
   "Harries Tower",
   "South Tower"
-]
+];
 
 const exportedMethods = {
   checkId(id, varName) {
