@@ -10,6 +10,7 @@ router
       res.render("users/signUp", {
         title: "SignUp Page",
         cssFile: "/public/css/signUp.css",
+        jsFile: "/public/js/signUp.js",
       });
     } catch (e) {
       res.sendStatus(500).json({ error: e });

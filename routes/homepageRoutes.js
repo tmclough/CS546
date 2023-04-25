@@ -14,7 +14,8 @@ router
       res.render("users/homepage", {
         posts: postList,
         cssFile: "/public/css/homepage.css",
-        userLogin: req.session.user ? false : true
+        jsFile: "/public/js/homepage.js",
+        userLogin: req.session.user ? false : true,
       });
     } catch (e) {
       res.status(500).json({ error: e });
@@ -23,7 +24,7 @@ router
   .post(async (req, res) => {
     let tags = req.body.tagSelect;
     if (typeof tags === "string") {
-      tags = [tags]
+      tags = [tags];
     }
     let postArr = [];
     for (let i = 0; i < tags.length; i++) {
@@ -39,11 +40,9 @@ router
     });
   });
 
-router
-  .route("/logout")
-  .get(async (req, res) => {
-    req.session.destroy();
-    res.redirect("/homepage");
-  });
+router.route("/logout").get(async (req, res) => {
+  req.session.destroy();
+  res.redirect("/homepage");
+});
 
 export default router;

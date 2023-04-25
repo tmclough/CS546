@@ -5,7 +5,7 @@
   </div>
 </header>
 <div class="form-container">
-  <form action="/signup" method="POST">
+  <form action="/signup" method="POST" id="signup-form">
     <p class="sign-up-title">Sign Up!</p>
 
     <label for="firstName">First Name:</label>
@@ -14,6 +14,9 @@
     <div class="invalid-first-name">
       {{firstNameError}}
     </div>
+    {{else}}
+      <div class="clientside-first-name-error">
+      </div>
     {{/if}}
 
     <label for="lastName">Last Name:</label>
@@ -22,6 +25,9 @@
     <div class="invalid-last-name">
       {{lastNameError}}
     </div>
+    {{else}}
+      <div class="clientside-last-name-error">
+      </div>
     {{/if}}
 
     <label for="email">Email:</label>
@@ -30,12 +36,14 @@
     <div class="invalid-email">
       {{emailError}}
     </div>
-    {{else}} {{#if duplicateEmailError}}
+    {{else if duplicateEmailError}}
     <div class="invalid-email">
       {{duplicateEmailError}}
     </div>
     {{else}}
-    {{/if}} {{/if}}
+      <div class="clientside-email-address-error">
+      </div>
+    {{/if}} 
 
     <label for="username">Username:</label>
     <input type="text" id="username" name="username" placeholder="Username" value="{{body.username}}" />
@@ -43,12 +51,14 @@
     <div class="invalid-username">
       {{usernameError}}
     </div>
-    {{else}} {{#if duplicateUsernameError}}
+    {{else if duplicateUsernameError}}
     <div class="invalid-username">
       {{duplicateUsernameError}}
     </div>
     {{else}}
-    {{/if}} {{/if}}
+      <div class="clientside-username-error">
+      </div>
+    {{/if}}
 
     <label for="password">Password:</label>
     <input type="password" id="password" name="password" placeholder="Password" value="{{body.password}}" />
@@ -56,6 +66,9 @@
     <div class="invalid-password">
       {{passwordError}}
     </div>
+    {{else}}
+      <div class="clientside-password-error">
+      </div>
     {{/if}}
 
     <label for="sign-up-button"></label>
