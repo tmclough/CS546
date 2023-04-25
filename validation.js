@@ -1,4 +1,44 @@
-import {ObjectId} from 'mongodb';
+import { ObjectId } from 'mongodb';
+
+export const locations = [
+  "ABS Engineering Center",
+  "Babbio Center",
+  "Burchard Building",
+  "Carnegie Laboratory",
+  "Davidson Laboratory ",
+  "Edwin A. Stevens Hall & DeBaun Auditorium",
+  "Gateway North",
+  "Gateway South",
+  "Kenneth J. Altorfer Academic Complex",
+  "Kidde Hall",
+  "McLean Hall",
+  "Morton Hal",
+  "Nicoll Environmental Laboratory",
+  "North Building",
+  "Peirce Hall",
+  "Rocco Technology Center",
+  "Samuel C. Williams Library",
+  "1 Ninth Street",
+  "2 Ninth Street",
+  "807 Castle Point Terrace",
+  "Gatehouse",
+  "Griffith Building",
+  "Hoxie House",
+  "Martha Bayard Stevens Hall",
+  "Ruesterholz Admissions Center",
+  "Student Wellness Center",
+  "Wesley J. Howe Center",
+  "University Center Complex",
+  "River Terrace",
+  "Castle Point Hall",
+  "Davis Hall",
+  "Humphreys Hall",
+  "Jonas Hall",
+  "Lore-El Center",
+  "Palmer Hall",
+  "Harries Tower",
+  "South Tower"
+];
 
 const exportedMethods = {
   checkId(id, varName) {
@@ -17,8 +57,8 @@ const exportedMethods = {
     strVal = strVal.trim();
     if (strVal.length === 0)
       throw `Error: ${varName} cannot be an empty string or string with just spaces`;
-    if (!isNaN(strVal))
-      throw `Error: ${strVal} is not a valid value for ${varName} as it only contains digits`;
+    // //if (!isNaN(strVal))
+    //     throw `Error: ${strVal} is not a valid value for ${varName} as it only contains digits`;
     return strVal;
   },
 
@@ -35,6 +75,51 @@ const exportedMethods = {
     }
 
     return arr;
+  },
+
+  checkFirstAndLastName(strVal, varName) {
+    strVal = this.checkString(strVal, varName);
+    if (strVal.includes(" ")) throw `${varName} should not contain spaces`;
+    if (/[0-9]/.test(strVal)) throw `${varName} cannot contain numbers`;
+    if (strVal.length < 2) throw `${varName} should be at least 2 characters long`;
+    else if (strVal.length > 25) throw `${varName} can only be at max 25 characters long`;
+
+    return strVal;
+
+  },
+
+  checkUsername(strVal, varName) {
+    strVal = this.checkString(strVal, varName);
+    if (strVal.includes(" ")) throw `${varName} should not contain spaces`;
+    if (strVal.length < 2) throw `${varName} should be at least 2 characters long`;
+    else if (strVal.length > 25) throw `${varName} can only be at max 25 characters long`;
+
+    return strVal;
+  },
+
+  checkEmail(strVal, varName) {
+    strVal = this.checkString(strVal, varName).toLowerCase();
+    if (!/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(strVal)) {
+      throw `${strVal} is an invalid email`;
+    }
+    return strVal;
+  },
+
+  checkPassword(strVal, varName) {
+    strVal = this.checkString(strVal, varName);
+    if (strVal.includes(" ")) throw `${varName} should not contain spaces`;
+    if (strVal.length < 8) throw `${varName} should be at least 8 characters long`;
+    if (!/[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/.test(strVal)) throw `${varName} should contain at least one special character`;
+    if (!/[A-Z]/.test(strVal)) throw `${varName} should contain at least one uppercase character`;
+    if (!/[0-9]/.test(strVal)) throw `${varName} should contain at least one number`;
+
+    return strVal;
+  },
+
+  checkLocation(strVal, varName) {
+    strVal = this.checkString(strVal, varName);
+    if (!locations.includes(strVal)) throw "Error: invalid location";
+    return strVal;
   }
 };
 

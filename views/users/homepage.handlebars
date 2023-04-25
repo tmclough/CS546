@@ -1,0 +1,143 @@
+<header>
+  <div class="navbar">
+    <div class="home-bar">
+      <a href="/" class="home-link">Home</a>
+      <form
+        method="POST"
+        action="/homepage"
+        class="search-form"
+        id="search-form"
+      >
+        <label for="search-bar" class="search-label">
+          <input
+            name="searchText"
+            type="text"
+            placeholder="Search for an item"
+            class="search-bar"
+            id="search-bar"
+            value=""
+          />
+        </label>
+        <div class="filter-container">
+          <div class="filter-toggle-button">
+            Filter
+            <img
+              src="public/images/chevron-down.svg"
+              alt="filter button"
+              class="filter-toggle-button-image"
+            />
+          </div>
+          <label for="filter" class="filter-label">
+            <div class="clothes-container">
+              <input
+                id="clothes-checkbox"
+                name="clothes-checkbox"
+                type="checkbox"
+                value="Clothes"
+              />
+              <label for="clothes-checkbox">Clothes</label>
+            </div>
+            <div class="textbooks-container">
+              <input
+                id="textbook-checkbox"
+                name="textbook-checkbox"
+                type="checkbox"
+                value="Clothes"
+              />
+              <label for="textbook-checkbox">Textbook</label>
+            </div>
+            <div class="furniture-container">
+              <input
+                id="furniture-checkbox"
+                name="furniture-checkbox"
+                type="checkbox"
+                value="Clothes"
+              />
+              <label for="furniture-checkbox">Furniture</label>
+            </div>
+            <div class="room-decor-container">
+              <input
+                id="room-decor-checkbox"
+                name="room-decor-checkbox"
+                type="checkbox"
+                value="Clothes"
+              />
+              <label for="room-decor-checkbox">Room Decor</label>
+            </div>
+            <div class="electronics">
+              <input
+                id="electronics-checkbox"
+                name="electronics-checkbox"
+                type="checkbox"
+                value="Clothes"
+              />
+              <label for="electronics-checkbox">Electronics</label>
+            </div>
+            <div class="sports-equipment-container">
+              <input
+                id="sports-equipment-checkbox"
+                name="sports-equipment-checkbox"
+                type="checkbox"
+                value="Clothes"
+              />
+              <label for="sports-equipment-checkbox">Sports Equipment</label>
+            </div>
+          </label>
+        </div>
+        <button type="submit" class="search-button">Search</button>
+      </form>
+    </div>
+    {{#if userLogin}}
+      <div class="links">
+        <a href="/login" class="login-link">Log In</a>
+        <a href="/signup" class="signup-link">Sign Up</a>
+      </div>
+    {{else}}
+      <div class="links">
+        <a href="/userpage" class="userpage-link">Account</a>
+        <a href="/logout" class="logout-link">Log Out</a>
+      </div>
+    {{/if}}
+    <div class="toggle-button">
+      <img
+        src="public/images/align-justify.svg"
+        alt="toggle button"
+        class="toggle-button-image"
+      />
+    </div>
+  </div>
+  {{#if userLogin}}
+    <div class="dropdown-menu">
+      <div class="dropdown-links">
+        <a href="/login">Log In</a>
+        <a href="/signup">Sign Up</a>
+      </div>
+    </div>
+  {{else}}
+    <div class="dropdown-menu">
+      <div class="dropdown-links">
+        <a href="/userpage">Account</a>
+        <a href="/logout">Log Out</a>
+      </div>
+    </div>
+  {{/if}}
+</header>
+<main>
+  <div class="posts-section">
+    <h2 class="posts-heading">My Posts</h2>
+    <div class="posts">
+      {{#each posts}}
+        <div class="post">
+          <p class="name">{{name}}</p>
+          <p class="description">{{description}}</p>
+          <p class="tags">{{tags}}</p>
+          <p class="location">{{location}}</p>
+          <p class="posted-date">{{postedDate}}</p>
+          <p class="comments">{{comments}}</p>
+          <p class="rating">{{rating}}</p>
+          <p class="claimed">{{claimed}}</p>
+        </div>
+      {{/each}}
+    </div>
+  </div>
+</main>

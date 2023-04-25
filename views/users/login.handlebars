@@ -1,11 +1,42 @@
-<form action="/login" method="POST">
-	<label for="username">Username:</label>
-	<input type="text" id="username" name="username" placeholder="Username">
-	<label for="password">Password:</label>
-	<input type="password" id="password" name="password" placeholder="Password">
-    <label for="submit">Password:</label>
-	<input type="submit" id="submit">Login</button>
-	<a href="/signUp">Sign up here</a>
-</form>
+<header>
+  <div class="header">
+    <a href="/homepage" class="home-link">Home</a> <!-- Add homepage link -->
+  </div>
+  </div>
+</header>
+<div class="form-container">
+  <form action="/login" method="POST" id="login-form">
+    <p class="log-in-title">Log In!</p>
+    {{#if invalidLoginError}}
+    <div class="invalid-login">
+      {{invalidLoginError}}
+    </div>
+    {{/if}}
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" placeholder="Username" value="{{body.username}}" />
+    {{#if usernameError}}
+    <div class="invalid-username">
+      {{usernameError}}
+    </div>
+    {{else}}
+      <div class="clientside-username-error">
+      </div>
+    {{/if}}
 
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" placeholder="Password" value="{{body.password}}" />
+    {{#if passwordError}}
+    <div class="invalid-password">
+      {{passwordError}}
+    </div>
+    {{else}}
+      <div class="clientside-password-error">
+      </div>
+    {{/if}}
 
+    <label for="log-in-button"></label>
+    <input type="submit" id="log-in-button" name="logInButton" value="Log In" />
+    <p class="sign-up-text">Don't have an account?</p>
+    <a href="/signup" class="sign-up-button">Sign Up</a>
+  </form>
+</div>

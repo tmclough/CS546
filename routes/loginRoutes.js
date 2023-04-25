@@ -3,34 +3,62 @@
 import { Router } from "express";
 const router = Router();
 import { userData } from "../data/index.js";
+import validation from "../validation.js";
 router
   .route("/")
   .get(async (req, res) => {
-    //code here for GET
     try {
       res.render("users/login", {
         title: "Login Page",
         cssFile: "/public/css/logIn.css",
+        jsFile: "/public/js/logIn.js",
       });
     } catch (e) {
-      res.sendStatus(400).json({ error: e });
+      res.sendStatus(500).json({ error: e });
     }
   })
   .post(async (req, res) => {
-    console.log("check1");
-    const { username, password } = req.body;
-    console.log("check2");
+    let { username, password } = req.body;
+    let usernameError = undefined;
+    let passwordError = undefined;
+    try {
+      username = validation.checkUsername(username, "username");
+    } catch (e) {
+      usernameError = e;
+    }
+    try {
+      password = validation.checkPassword(password, "password");
+    } catch (e) {
+      passwordError = e;
+    }
+    if (usernameError || passwordError) {
+      res.status(400).render("users/login", {
+        title: "Login Page",
+        cssFile: "/public/css/logIn.css",
+        body: req.body,
+        usernameError: usernameError,
+        passwordError: passwordError,
+      });
+      return;
+    }
+
     //Look for user with password and username
-    let user = userData.getUserByUsernamePassword(username, password);
-    console.log("check3");
-    // client.close();
-    //valid user then redirect to homepage
-    if (user) {
-      console.log("check4");
+    try {
+      let user = await userData.getUserByUsernamePassword(username, password);
+      if (!user) {
+        res.status(500).send("Internal Server Error");
+        return;
+      }
+      req.session.user = user;
       res.redirect("/homepage");
-    } else {
-      console.log("check5");
-      res.render("login", { error: "Invalid username or password" });
+    } catch (e) {
+      let invalidLoginError = e;
+      res.status(400).render("users/login", {
+        title: "Login Page",
+        cssFile: "/public/css/logIn.css",
+        body: req.body,
+        invalidLoginError: invalidLoginError,
+      });
     }
   });
 
