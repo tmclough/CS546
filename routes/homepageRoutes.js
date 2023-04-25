@@ -37,6 +37,7 @@ router
     res.render("users/homepage", {
       posts: postArr,
       cssFile: "/public/css/homepage.css",
+      jsFile: "/public/js/homepage.js",
     });
   });
 
