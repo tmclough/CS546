@@ -126,3 +126,12 @@ input[type="submit"] {
   color: rgb(226, 40, 40);
   /* margin-bottom: 5px; */
 }
+
+.clientside-username-error,
+.clientside-password-error {
+  margin-top: -20px;
+  height: 20px;
+  font-size: 13px;
+  color: rgb(226, 40, 40);
+  /* margin-bottom: 5px; */
+}

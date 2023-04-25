@@ -11,13 +11,13 @@ router
       res.render("users/login", {
         title: "Login Page",
         cssFile: "/public/css/logIn.css",
+        jsFile: "/public/js/logIn.js",
       });
     } catch (e) {
       res.sendStatus(500).json({ error: e });
     }
   })
   .post(async (req, res) => {
-
     let { username, password } = req.body;
     let usernameError = undefined;
     let passwordError = undefined;
@@ -57,7 +57,7 @@ router
         title: "Login Page",
         cssFile: "/public/css/logIn.css",
         body: req.body,
-        invalidLoginError: invalidLoginError
+        invalidLoginError: invalidLoginError,
       });
     }
   });
