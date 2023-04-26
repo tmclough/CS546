@@ -141,6 +141,11 @@ if (signupForm) {
     let clientsidePasswordError = document.querySelector(
       ".clientside-password-error"
     );
+    clientsideFirstNameError.innerHTML = "";
+    clientsideLastNameError.innerHTML = "";
+    clientsideEmailAddressError.innerHTML = "";
+    clientsideUsernameError.innerHTML = "";
+    clientsidePasswordError.innerHTML = "";
     if (errors) {
       event.preventDefault();
       if (firstNameError) {

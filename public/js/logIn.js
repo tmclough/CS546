@@ -105,6 +105,8 @@ if (loginForm) {
     let clientsidePasswordError = document.querySelector(
       ".clientside-password-error"
     );
+    clientsideUsernameError.innerHTML = "";
+    clientsidePasswordError.innerHTML = "";
     if (errors) {
       event.preventDefault();
       if (usernameError) {
