@@ -4,7 +4,6 @@ import validation from "../validation.js";
 
 let exportedMethods = {
   async addPost(userId, name, description, imgUrl, tags = [], location) {
-
     userId = validation.checkId(userId, "userId");
     name = validation.checkString(name, "name");
     description = validation.checkString(description, "description");
@@ -92,6 +91,27 @@ let exportedMethods = {
     //do validation
     const postCollection = await posts();
     const post = await postCollection.find({ tags: tag }).toArray();
+    if (!post) throw "Error: post not found";
+    return post;
+  },
+  async getPostsByName(name) {
+    //do validation
+    const postCollection = await posts();
+    const post = await postCollection.find({ name: name }).toArray();
+    if (!post) throw "Error: post not found";
+    return post;
+  },
+  async getPostsByDesciption(description) {
+    //do validation
+
+    const words = description.toLowerCase().trim().split(/\s+/);
+
+    const postCollection = await posts();
+    const post = await postCollection
+      .find({
+        description: { $regex: words.join("|"), $options: "i" },
+      })
+      .toArray();
     if (!post) throw "Error: post not found";
     return post;
   },

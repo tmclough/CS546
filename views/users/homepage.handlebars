@@ -17,6 +17,14 @@
             id="search-bar"
             value=""
           />
+           <button type="submit" class="search-button">Seach</button>
+          <form>
+             <form
+        method="POST"
+        action="/homepage"
+        class="search-form"
+        id="search-form"
+      >
         </label>
         <div class="filter-container">
           <div class="filter-toggle-button">
@@ -42,7 +50,7 @@
                 id="textbook-checkbox"
                 name="tagSelect"
                 type="checkbox"
-                value="Clothes"
+                value="Textbooks"
               />
               <label for="textbook-checkbox">Textbook</label>
             </div>
@@ -51,7 +59,7 @@
                 id="furniture-checkbox"
                 name="tagSelect"
                 type="checkbox"
-                value="Clothes"
+                value="Furniture"
               />
               <label for="furniture-checkbox">Furniture</label>
             </div>
@@ -60,7 +68,7 @@
                 id="room-decor-checkbox"
                 name="tagSelect"
                 type="checkbox"
-                value="Clothes"
+                value="Room Decor"
               />
               <label for="room-decor-checkbox">Room Decor</label>
             </div>
@@ -69,7 +77,7 @@
                 id="electronics-checkbox"
                 name="tagSelect"
                 type="checkbox"
-                value="Clothes"
+                value="Electronics"
               />
               <label for="electronics-checkbox">Electronics</label>
             </div>
@@ -78,13 +86,14 @@
                 id="sports-equipment-checkbox"
                 name="tagSelect"
                 type="checkbox"
-                value="Clothes"
+                value="Electronics"
               />
               <label for="sports-equipment-checkbox">Sports Equipment</label>
             </div>
           </label>
         </div>
-        <button type="submit" class="search-button">Search</button>
+        
+        <button type="submit" class="search-button">Filter</button>
       </form>
     </div>
     {{#if userLogin}}
