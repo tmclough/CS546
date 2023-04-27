@@ -76,7 +76,7 @@ router
       });
     } else {
       res.render("users/homepage", {
-        divClass: "search-form",
+        divClass: "search-label",
         posts: postArr,
         cssFile: "/public/css/homepage.css",
         jsFile: "/public/js/homepage.js",

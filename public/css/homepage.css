@@ -321,3 +321,7 @@ main {
   display: none;
   color: green;
 }
+
+#hidden-filter.search-label {
+  margin-left: 30px;
+}
