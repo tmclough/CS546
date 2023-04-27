@@ -9,10 +9,10 @@ body {
   height: 100vh;
   width: 100vw;
   /* background-image: url("../images/maxresdefault.jpg");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  z-index: -1; */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: -1; */
 }
 
 header {
@@ -72,7 +72,7 @@ header {
   margin-right: 10px;
   flex: 1;
   /* position: fixed;
-  align-self: center; */
+    align-self: center; */
 }
 
 .search-button {
@@ -83,7 +83,7 @@ header {
   transition: 0.15s;
   border: none;
   /* position: fixed;
-  align-self: center; */
+    align-self: center; */
 }
 
 .search-button:hover {
@@ -113,6 +113,7 @@ header {
 
 .filter-label {
   opacity: 0;
+  visibility: hidden;
   background-color: rgb(56, 114, 240);
   width: 200px;
   height: auto;
@@ -146,9 +147,6 @@ header {
 
 .filter-label div label:hover {
   color: white;
-}
-
-.filter-label:hover {
 }
 
 .links {
