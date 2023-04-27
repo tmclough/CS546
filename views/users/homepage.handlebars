@@ -127,75 +127,74 @@
 </header>
 <main>
   <div class={{divClass}} id="hidden-filter">
-    <form method="POST" action="/homepage" class="search-form">
-      <div class="filter-container">
-        <div class="filter-toggle-button">
-          Filter
-          <img
-            src="public/images/chevron-down.svg"
-            alt="filter button"
-            class="filter-toggle-button-image"
-          />
-        </div>
-        <label for="filter" class="filter-label">
-          <div class="clothes-container">
-            <input
-              id="clothes-checkbox1"
-              name="tagFilter"
-              type="checkbox"
-              value="Clothes"
-            />
-            <label for="clothes-checkbox1">Clothes</label>
-          </div>
-          <div class="textbooks-container">
-            <input
-              id="textbook-checkbox1"
-              name="tagFilter"
-              type="checkbox"
-              value="Textbooks"
-            />
-            <label for="textbook-checkbox1">Textbook</label>
-          </div>
-          <div class="furniture-container">
-            <input
-              id="furniture-checkbox1"
-              name="tagFilter"
-              type="checkbox"
-              value="Furniture"
-            />
-            <label for="furniture-checkbox1">Furniture</label>
-          </div>
-          <div class="room-decor-container">
-            <input
-              id="room-decor-checkbox1"
-              name="tagFilter"
-              type="checkbox"
-              value="Room Decor"
-            />
-            <label for="room-decor-checkbox1">Room Decor</label>
-          </div>
-          <div class="electronics">
-            <input
-              id="electronics-checkbox1"
-              name="tagFilter"
-              type="checkbox"
-              value="Electronics"
-            />
-            <label for="electronics-checkbox1">Electronics</label>
-          </div>
-          <div class="sports-equipment-container">
-            <input
-              id="sports-equipment-checkbox1"
-              name="tagFilter"
-              type="checkbox"
-              value="Electronics"
-            />
-            <label for="sports-equipment-checkbox1">Sports Equipment</label>
-          </div>
-        </label>
+    <div class="filter-container">
+      <div class="filter-toggle-button">
+        Filter
+        <img
+          src="public/images/chevron-down.svg"
+          alt="filter button"
+          class="filter-toggle-button-image"
+        />
       </div>
-      <button type="submit" class="search-button">Filter Tags</button>
-    </form>
+      <label for="filter" class="filter-label">
+        <div class="clothes-container">
+          <input
+            id="clothes-checkbox"
+            name="tagSelect"
+            type="checkbox"
+            value="Clothes"
+          />
+          <label for="clothes-checkbox">Clothes</label>
+        </div>
+        <div class="textbooks-container">
+          <input
+            id="textbook-checkbox"
+            name="tagSelect"
+            type="checkbox"
+            value="Textbooks"
+          />
+          <label for="textbook-checkbox">Textbook</label>
+        </div>
+        <div class="furniture-container">
+          <input
+            id="furniture-checkbox"
+            name="tagSelect"
+            type="checkbox"
+            value="Furniture"
+          />
+          <label for="furniture-checkbox">Furniture</label>
+        </div>
+        <div class="room-decor-container">
+          <input
+            id="room-decor-checkbox"
+            name="tagSelect"
+            type="checkbox"
+            value="Room Decor"
+          />
+          <label for="room-decor-checkbox">Room Decor</label>
+        </div>
+        <div class="electronics">
+          <input
+            id="electronics-checkbox"
+            name="tagSelect"
+            type="checkbox"
+            value="Electronics"
+          />
+          <label for="electronics-checkbox">Electronics</label>
+        </div>
+        <div class="sports-equipment-container">
+          <input
+            id="sports-equipment-checkbox"
+            name="tagSelect"
+            type="checkbox"
+            value="Electronics"
+          />
+          <label for="sports-equipment-checkbox">Sports Equipment</label>
+        </div>
+      </label>
+
+    </div>
+    <button type="submit" class="search-button">Filter</button>
   </div>
 
   <div class="posts-section">
@@ -216,4 +215,3 @@
     </div>
   </div>
 </main>
-<script src="/public/js/homepage.js"></script>

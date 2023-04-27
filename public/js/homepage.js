@@ -76,9 +76,6 @@ document.addEventListener("click", (event) => {
 //   }
 // });
 
-
-
-
 // const searchForm = document.getElementById("search-form");
 
 // searchForm.addEventListener("submit", async (event) => {
@@ -153,28 +150,31 @@ document.addEventListener("click", (event) => {
 //   }
 // });
 
-const filterToggleButton = document.querySelector(".filter-toggle-button");
-const filterLabel = document.querySelector(".filter-label");
-const filterToggleButtonImage = document.querySelector(
+const filterToggleButton = document.querySelectorAll(".filter-toggle-button");
+const filterLabel = document.querySelectorAll(".filter-label");
+const filterToggleButtonImage = document.querySelectorAll(
   ".filter-toggle-button-image"
 );
-filterToggleButton.addEventListener("mouseenter", () => {
-  filterLabel.style.opacity = 1;
-  filterLabel.style.visibility = "visible";
-  filterToggleButtonImage.src = "public/images/chevron-up.svg";
-});
-filterToggleButton.addEventListener("mouseleave", () => {
-  filterLabel.style.opacity = 0;
-  filterLabel.style.visibility = "hidden";
-  filterToggleButtonImage.src = "public/images/chevron-down.svg";
-});
-filterLabel.addEventListener("mouseenter", () => {
-  filterLabel.style.opacity = 1;
-  filterLabel.style.visibility = "visible";
-  filterToggleButtonImage.src = "public/images/chevron-up.svg";
-});
-filterLabel.addEventListener("mouseleave", () => {
-  filterLabel.style.opacity = 0;
-  filterLabel.style.visibility = "hidden";
-  filterToggleButtonImage.src = "public/images/chevron-down.svg";
-});
+
+for (let i = 0; i < filterToggleButton.length; i++) {
+  filterToggleButton[i].addEventListener("mouseenter", () => {
+    filterLabel[i].style.opacity = 1;
+    filterLabel[i].style.visibility = "visible";
+    filterToggleButtonImage[i].src = "public/images/chevron-up.svg";
+  });
+  filterToggleButton[i].addEventListener("mouseleave", () => {
+    filterLabel[i].style.opacity = 0;
+    filterLabel[i].style.visibility = "hidden";
+    filterToggleButtonImage[i].src = "public/images/chevron-down.svg";
+  });
+  filterLabel[i].addEventListener("mouseenter", () => {
+    filterLabel[i].style.opacity = 1;
+    filterLabel[i].style.visibility = "visible";
+    filterToggleButtonImage[i].src = "public/images/chevron-up.svg";
+  });
+  filterLabel[i].addEventListener("mouseleave", () => {
+    filterLabel[i].style.opacity = 0;
+    filterLabel[i].style.visibility = "hidden";
+    filterToggleButtonImage[i].src = "public/images/chevron-down.svg";
+  });
+}
