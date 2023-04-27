@@ -41,7 +41,7 @@ header {
 
 .home-link {
   text-decoration: none;
-  font-size: 30px;
+  font-size: 38px;
   color: rgb(16, 53, 156);
   transition: 0.15s;
   cursor: pointer;
@@ -64,7 +64,7 @@ header {
 
 .search-bar {
   font-size: 21px;
-  width: 300px;
+  width: 100%;
   max-width: 400px;
   padding: 13px 15px;
   border-radius: 10px;
@@ -156,8 +156,7 @@ header {
 .signup-link,
 .login-link,
 .userpage-link,
-.logout-link,
-.addpost-link {
+.logout-link {
   font-size: 18px;
   text-decoration: none;
   cursor: pointer;
@@ -175,16 +174,10 @@ header {
   box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.25);
 }
 
-.userpage-link,
-.addpost-link {
-  color: rgb(71, 71, 238);
-}
-
 .signup-link:hover,
 .login-link:hover,
 .userpage-link:hover,
-.logout-link:hover,
-.addpost-link:hover {
+.logout-link:hover {
   opacity: 0.8;
 }
 
@@ -197,8 +190,7 @@ header {
 .signup-link:active,
 .login-link:active,
 .userpage-link:active,
-.logout-link:active,
-.addpost-link:active {
+.logout-link:active {
   opacity: 0.6;
 }
 
@@ -210,16 +202,11 @@ header {
   opacity: 0.6;
 }
 
-.addpost-link {
-  margin-right: 18px;
-}
-
 .toggle-button {
   margin-right: 30px;
   cursor: pointer;
   font-size: 1.8rem;
   display: none;
-  padding-top: 5px;
 }
 
 .toggle-button-image {
@@ -238,7 +225,7 @@ header {
 
 .dropdown-menu {
   width: 200px;
-  height: 130px;
+  height: 100px;
   position: absolute;
   right: 25px;
   top: 75px;
@@ -274,7 +261,7 @@ header {
   color: rgb(127, 225, 255);
 }
 
-@media (max-width: 1170px) {
+@media (max-width: 1068px) {
   .navbar .links {
     display: none;
   }
@@ -328,13 +315,4 @@ main {
 
 .post:active {
   opacity: 0.6;
-}
-
-.hidden-filter {
-  display: none;
-  color: green;
-}
-
-#hidden-filter.search-label {
-  margin-left: 30px;
 }
