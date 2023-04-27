@@ -64,7 +64,7 @@ header {
 
 .search-bar {
   font-size: 21px;
-  width: 300px;
+  width: 100%;
   max-width: 400px;
   padding: 13px 15px;
   border-radius: 10px;
@@ -315,9 +315,4 @@ main {
 
 .post:active {
   opacity: 0.6;
-}
-
-.hidden-filter {
-  display: none;
-  color: green;
 }

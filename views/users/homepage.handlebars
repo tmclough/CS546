@@ -9,24 +9,16 @@
         id="search-form"
       >
         <label for="search-bar" class="search-label">
-        <input
-          name="searchText"
-          type="text"
-          placeholder="Search for an item"
-          class="search-bar"
-          id="search-bar"
-          value=""
-        />
-        <button type="submit" class="search-button">Search</button>
+          <input
+            name="searchText"
+            type="text"
+            placeholder="Search for an item"
+            class="search-bar"
+            id="search-bar"
+            value=""
+          />
+          <button type="submit" class="search-button">Search</button>
         </label>
-     
-      </form>
-      <form
-        method="POST"
-        action="/homepage"
-        class="search-form"
-        id="browse-catagory-filter"
-      >
         <div class="filter-container">
           <div class="filter-toggle-button">
             Filter
@@ -93,12 +85,11 @@
             </div>
           </label>
         </div>
-        
-        <button type="submit" class="search-button">Catergory</button>
+
+        <button type="submit" class="search-button">Filter</button>
       </form>
     </div>
 
-    
     {{#if userLogin}}
       <div class="links">
         <a href="/login" class="login-link">Log In</a>
@@ -136,11 +127,7 @@
 </header>
 <main>
   <div class={{divClass}} id="hidden-filter">
-    <form
-    method="POST"
-    action="/homepage"
-    class="search-form"
-    >
+    <form method="POST" action="/homepage" class="search-form">
       <div class="filter-container">
         <div class="filter-toggle-button">
           Filter
@@ -210,8 +197,6 @@
       <button type="submit" class="search-button">Filter Tags</button>
     </form>
   </div>
-
-
 
   <div class="posts-section">
     <h2 class="posts-heading">My Posts</h2>
