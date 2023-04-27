@@ -41,6 +41,8 @@ router
     });
   })
   .post(upload.single("image"), async (req, res) => {
+
+
     let postInfo = req.body;
 
     const params = {
@@ -51,9 +53,9 @@ router
       ContentType: "image/jpeg",
     };
 
-    // S3 ManagedUpload with callbacks are not supported in AWS SDK for JavaScript (v3).
-    // Please convert to `await client.upload(params, options).promise()`, and re-run aws-sdk-js-codemod.
-    s3.upload(params, async (error, data) => {
+
+
+    await s3.upload(params, async (error, data) => {
       if (error) {
         res.status(500).send({ error: error });
       }

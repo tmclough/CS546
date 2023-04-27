@@ -14,31 +14,36 @@ const db = await dbConnection();
 //   "tara",
 //   "mcloughlin"
 // );
+try {
+  await posts.addPost(
+    "6440a8f03e8eb999ca9a8cdf",
+    "chem textbook",
+    "2012 edition, lightly used",
+    "url",
+    ["Clothes", "Textbooks"],
+    "807 Castle Point Terrace"
+  );
 
-await posts.addPost(
-  "6440a8f03e8eb999ca9a8cdf",
-  "chem textbook",
-  "2012 edition, lightly used",
-  ["Clothing", "Books", "Textbooks"],
-  "807 Castle Point Terrace"
-);
+  await posts.addPost(
+    "6440a8f03e8eb999ca9a8cdf",
+    "new textbook",
+    "2012 edition, lightly used",
+    "url",
+    [],
+    "807 Castle Point Terrace"
+  );
 
-await posts.addPost(
-  "6440a8f03e8eb999ca9a8cdf",
-  "new textbook",
-  "2012 edition, lightly used",
-  [],
-  "807 Castle Point Terrace"
-);
-
-await posts.addPost(
-  "6440a8f03e8eb999ca9a8cdf",
-  "new textbook",
-  "2012 edition, lightly used",
-  ["Furniture"],
-  "807 Castle Point Terrace"
-);
-
+  await posts.addPost(
+    "6440a8f03e8eb999ca9a8cdf",
+    "new textbook",
+    "2012 edition, lightly used",
+    "url",
+    ["Furniture"],
+    "807 Castle Point Terrace"
+  );
+} catch (e) {
+  console.log(e);
+}
 // await posts.addPost(
 //   "6440a8f03e8eb999ca9a8cdf",
 //   "new textbook",

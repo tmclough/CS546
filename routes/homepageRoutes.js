@@ -24,9 +24,12 @@ router
   .post(async (req, res) => {
     let tags = req.body.tagSelect;
     let searchText = req.body.searchText;
+
+
     if (typeof tags === "string") {
       tags = [tags];
     }
+
     let postArr = [];
 
     if (!tags || tags.length === 0) {
