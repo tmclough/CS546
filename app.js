@@ -37,10 +37,7 @@ app.use(
   })
 );
 
-
-
 app.use("/login", async (req, res, next) => {
-
   if (req.session.user && req.method === "GET") {
     return res.redirect("/homepage");
   }
@@ -60,11 +57,15 @@ app.use("/logout", async (req, res, next) => {
   }
   next();
 });
-
+// app.use("/homepage", async (req, res, next) => {
+//   if (!req.session.user) {
+//     return res.redirect("/login");
+//   }
+//   next();
+// });
 
 app.engine("handlebars", exphbs.engine({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
-
 
 configRoutes(app);
 
