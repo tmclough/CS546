@@ -32,7 +32,7 @@ header {
 }
 
 .home-bar {
-  margin-left: 50px;
+  margin-left: 30px;
   margin-right: 25px;
   display: flex;
   justify-content: center;
@@ -50,7 +50,7 @@ header {
 }
 
 .search-form {
-  width: 500px;
+  width: 600px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -147,6 +147,16 @@ header {
 
 .filter-label div label:hover {
   color: white;
+}
+
+.filter-button {
+  font-size: 18px;
+  padding: 9px 19px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: 0.15s;
+  border: none;
+  margin-left: -12px;
 }
 
 .links {
