@@ -12,6 +12,7 @@ router
     try {
       const postList = await postData.getAllPosts();
       res.render("users/homepage", {
+        divClass: "hidden-filter",
         posts: postList,
         cssFile: "/public/css/homepage.css",
         jsFile: "/public/js/homepage.js",
@@ -23,8 +24,8 @@ router
   })
   .post(async (req, res) => {
     let tags = req.body.tagSelect;
+    let tagsFilter = req.body.tagFilter;
     let searchText = req.body.searchText;
-
 
     if (typeof tags === "string") {
       tags = [tags];
@@ -65,11 +66,23 @@ router
     }
 
     postArr = postArr.flat(100);
-    res.render("users/homepage", {
-      posts: postArr,
-      cssFile: "/public/css/homepage.css",
-      jsFile: "/public/js/homepage.js",
-    });
+
+    //new stuff
+    if (tags) {
+      res.render("users/homepage", {
+        divClass: "hidden-filter",
+        posts: postArr,
+        cssFile: "/public/css/homepage.css",
+        jsFile: "/public/js/homepage.js",
+      });
+    } else {
+      res.render("users/homepage", {
+        divClass: "search-label",
+        posts: postArr,
+        cssFile: "/public/css/homepage.css",
+        jsFile: "/public/js/homepage.js",
+      });
+    }
   });
 
 router.route("/logout").get(async (req, res) => {

@@ -2,7 +2,9 @@
   <div class="navbar">
     <div class="home-bar">
       <a href="/" class="home-link">Home</a>
+      <form method="POST" action="/homepage" class="search-form">
       {{!-- <form method="POST" action="/homepage" class="search-form" id="search-form">
+
         <label for="search-bar" class="search-label">
           <input name="searchText" type="text" placeholder="Search for an item" class="search-bar" id="search-bar"
             value="" />
@@ -41,7 +43,7 @@
           </label>
         </div>
 
-        <button type="submit" class="search-button">Filter</button>
+        <button type="submit" class="filter-button">Filter</button>
       </form>
     </div> --}}
     {{!-- {{#if userLogin}}
@@ -49,6 +51,16 @@
       <a href="/login" class="login-link">Log In</a>
       <a href="/signup" class="signup-link">Sign Up</a>
     </div>
+
+    {{#if userLogin}}
+    <div class="links">
+      <a href="/login" class="login-link">Log In</a>
+      <a href="/signup" class="signup-link">Sign Up</a>
+    </div>
+    {{else}}
+    <div class="links">
+      <a href="/post" class="addpost-link">Add Post</a>
+
     {{else}}
     <div class="links">
       <a href="/userpage" class="userpage-link">Account</a>
@@ -69,16 +81,47 @@
   {{else}}
   <div class="dropdown-menu">
     <div class="dropdown-links">
+      <a href="/post">Add Post</a>
       <a href="/userpage">Account</a>
       <a href="/logout">Log Out</a>
     </div>
   </div>
+  {{/if}}
   {{/if}} --}}
 </header>
 
 <main>
   <div class="form-container">
     <form action="/post" method="POST" enctype="multipart/form-data" id="add-post-form">
+      <p class="add-post-title">Add a New Post</p>
+
+      <label for="itemName">Item Name:</label>
+      <input type="text" id="itemName" name="itemName" placeholder="Item name" value="{{body.name}}" />
+      {{#if itemNameError}} <!-- this is for server-side errors -->
+      <div class="invalid-item-name-error">{{itemNameError}}</div>
+      {{else}} <!-- this is for clientside errors -->
+      <div class="clientside-item-name-error"></div>
+      {{/if}}
+
+      <label for="description">Description:</label>
+      <textarea name="description" id="description" cols="30" rows="10" value="{{body.description}}"
+        placeholder="Enter a description of your item"></textarea>
+      {{#if descriptionError}}
+      <div class="invalid-description-error"></div>
+      {{else}}
+      <div class="clientside-description-error"></div>
+      {{/if}}
+
+
+      <label for="location" class="location-container">Location:</label>
+      <select name="location" id="location">
+        {{#each locations}}
+        <option value="{{this}}">{{this}}</option>
+        {{/each}}
+      </select>
+
+      <p class="tags-title">Tags:</p>
+      <label for="tags" class="tags-container">
       <p class="add-post-title">Add Post!</p>
 
       <label for="name">Name:</label>
@@ -122,6 +165,15 @@
           <label for="sports-equipment">Sports Equipment</label>
         </div>
       </label>
+
+      <label for="image"></label>
+      <input type="file" name="image" / class="image">
+
+
+      <label for="add-post-button"></label>
+      <input type="submit" id="add-post-button" name="addPostButton" value="Add Post" />
+
+
       <label for="imageUpload">Select Image:</label>
       <input type="file" name="imageUpload" id="imageUpload" />
       <label for="add-post-button"></label>

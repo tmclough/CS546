@@ -32,7 +32,7 @@ header {
 }
 
 .home-bar {
-  margin-left: 50px;
+  margin-left: 30px;
   margin-right: 25px;
   display: flex;
   justify-content: center;
@@ -41,7 +41,7 @@ header {
 
 .home-link {
   text-decoration: none;
-  font-size: 38px;
+  font-size: 30px;
   color: rgb(16, 53, 156);
   transition: 0.15s;
   cursor: pointer;
@@ -50,7 +50,7 @@ header {
 }
 
 .search-form {
-  width: 500px;
+  width: 600px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -64,7 +64,7 @@ header {
 
 .search-bar {
   font-size: 21px;
-  width: 100%;
+  width: 300px;
   max-width: 400px;
   padding: 13px 15px;
   border-radius: 10px;
@@ -149,6 +149,16 @@ header {
   color: white;
 }
 
+.filter-button {
+  font-size: 18px;
+  padding: 9px 19px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: 0.15s;
+  border: none;
+  margin-left: -12px;
+}
+
 .links {
   margin-right: 30px;
 }
@@ -156,7 +166,8 @@ header {
 .signup-link,
 .login-link,
 .userpage-link,
-.logout-link {
+.logout-link,
+.addpost-link {
   font-size: 18px;
   text-decoration: none;
   cursor: pointer;
@@ -174,10 +185,16 @@ header {
   box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.25);
 }
 
+.userpage-link,
+.addpost-link {
+  color: rgb(71, 71, 238);
+}
+
 .signup-link:hover,
 .login-link:hover,
 .userpage-link:hover,
-.logout-link:hover {
+.logout-link:hover,
+.addpost-link:hover {
   opacity: 0.8;
 }
 
@@ -190,7 +207,8 @@ header {
 .signup-link:active,
 .login-link:active,
 .userpage-link:active,
-.logout-link:active {
+.logout-link:active,
+.addpost-link:active {
   opacity: 0.6;
 }
 
@@ -202,11 +220,16 @@ header {
   opacity: 0.6;
 }
 
+.addpost-link {
+  margin-right: 18px;
+}
+
 .toggle-button {
   margin-right: 30px;
   cursor: pointer;
   font-size: 1.8rem;
   display: none;
+  padding-top: 5px;
 }
 
 .toggle-button-image {
@@ -225,7 +248,7 @@ header {
 
 .dropdown-menu {
   width: 200px;
-  height: 100px;
+  height: 130px;
   position: absolute;
   right: 25px;
   top: 75px;
@@ -261,7 +284,7 @@ header {
   color: rgb(127, 225, 255);
 }
 
-@media (max-width: 1068px) {
+@media (max-width: 1170px) {
   .navbar .links {
     display: none;
   }
@@ -275,44 +298,98 @@ main {
   padding-top: 120px;
 }
 
-.posts-section {
+.form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#add-post-form {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  margin: 0 auto;
+  padding: 30px;
   width: 100%;
+  max-width: 900px;
+  border-radius: 10px;
 }
 
-.posts-heading {
-  margin-top: 8px;
-  margin-bottom: -12px;
+.add-post-title {
+  text-align: center;
+  margin-top: 10px;
+  font-size: 30px;
+  margin-bottom: 25px;
 }
 
-.posts {
-  width: 70%;
-  height: 100px;
-  padding: 40px;
+#itemName,
+#description,
+#location,
+.tags-container,
+.image {
+  margin-bottom: 15px;
 }
 
-.post {
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  margin-bottom: 20px;
-  padding: 20px;
+#itemName,
+#description {
+  width: 400px;
+  padding: 8px 10px;
+  border-radius: 6px;
+}
+
+.location-container {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+#location {
+  padding: 5px 10px;
+  border-radius: 6px;
+}
+
+.tags-title {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.tags-container {
+  display: flex;
   flex-direction: column;
-  transition: 0.1s;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.tags-container div {
+  margin-bottom: 7px;
+}
+
+.tags-container div label:hover {
+  color: rgb(51, 140, 241);
   cursor: pointer;
 }
 
-.post:hover {
-  background-color: rgb(246, 251, 255);
-  box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.25);
-  opacity: 0.8;
+#add-post-button {
+  padding: 12px 100px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 1.3rem;
+  transition: 0.15s;
+  color: white;
+  background-color: rgb(51, 140, 241);
 }
 
-.post:active {
-  opacity: 0.6;
+#add-post-button:hover {
+  background-color: rgb(71, 71, 238);
+}
+
+#add-post-form label {
+  margin-bottom: 10px;
+}
+
+.clientside-item-name-error,
+.clientside-description-error {
+  margin-bottom: 12px;
+  color: red;
 }

@@ -86,7 +86,13 @@ router.route("/:id").get(async (req, res) => {
 
   try {
     const post = await postData.getPostById(id);
-    res.render("posts/viewPost", post);
+    res.render("posts/viewPost", {
+      title: "View Post",
+      cssFile: "/public/css/viewPost.css",
+      jsFile: "/public/js/viewPost.js",
+      post: post,
+      userLogin: req.session.user ? false : true,
+    });
   } catch (e) {
     res.status(400).send({ error: e });
   }
