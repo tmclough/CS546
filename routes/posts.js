@@ -41,9 +41,8 @@ router
     });
   })
   .post(upload.single("image"), async (req, res) => {
-
-
     let postInfo = req.body;
+    let fileInfo = req.file;
 
     const params = {
       Bucket: process.env.AWS_BUCKET_NAME,
@@ -55,7 +54,7 @@ router
 
 
 
-    await s3.upload(params, async (error, data) => {
+    s3.upload(params, async (error, data) => {
       if (error) {
         res.status(500).send({ error: error });
       }

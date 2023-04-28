@@ -3,14 +3,13 @@ import { ObjectId } from "mongodb";
 import validation from "../validation.js";
 
 let exportedMethods = {
-  async addPost(userId, name, description, imgUrl, tags = [], location) {
+  async addPost(userId, name, description, imgUrl, tags, location) {
     userId = validation.checkId(userId, "userId");
-    name = validation.checkString(name, "name");
-    description = validation.checkString(description, "description");
+    name = validation.checkItemName(name, "name");
+    description = validation.checkItemDescription(description, "description");
     location = validation.checkLocation(location, "location");
-    if (tags.length !== 0) {
-      tags = validation.checkStringArray(tags, "tags");
-    }
+    tags = validation.checkTags(tags, "tags");
+    imgUrl = validation.checkImgUrl(imgUrl, "imgUrl");
 
     let date = new Date().toDateString();
     let newPost = {

@@ -3,48 +3,48 @@
     <div class="home-bar">
       <a href="/" class="home-link">Home</a>
       <form method="POST" action="/homepage" class="search-form">
-      {{!-- <form method="POST" action="/homepage" class="search-form" id="search-form">
+        {{!-- <form method="POST" action="/homepage" class="search-form" id="search-form">
 
-        <label for="search-bar" class="search-label">
-          <input name="searchText" type="text" placeholder="Search for an item" class="search-bar" id="search-bar"
-            value="" />
-          <button type="submit" class="search-button">Search</button>
-        </label>
-        <div class="filter-container">
-          <div class="filter-toggle-button">
-            Filter
-            <img src="public/images/chevron-down.svg" alt="filter button" class="filter-toggle-button-image" />
-          </div>
-          <label for="filter" class="filter-label">
-            <div class="clothes-container">
-              <input id="clothes-checkbox" name="tagSelect" type="checkbox" value="Clothes" />
-              <label for="clothes-checkbox">Clothes</label>
-            </div>
-            <div class="textbooks-container">
-              <input id="textbook-checkbox" name="tagSelect" type="checkbox" value="Textbooks" />
-              <label for="textbook-checkbox">Textbook</label>
-            </div>
-            <div class="furniture-container">
-              <input id="furniture-checkbox" name="tagSelect" type="checkbox" value="Furniture" />
-              <label for="furniture-checkbox">Furniture</label>
-            </div>
-            <div class="room-decor-container">
-              <input id="room-decor-checkbox" name="tagSelect" type="checkbox" value="Room Decor" />
-              <label for="room-decor-checkbox">Room Decor</label>
-            </div>
-            <div class="electronics">
-              <input id="electronics-checkbox" name="tagSelect" type="checkbox" value="Electronics" />
-              <label for="electronics-checkbox">Electronics</label>
-            </div>
-            <div class="sports-equipment-container">
-              <input id="sports-equipment-checkbox" name="tagSelect" type="checkbox" value="Electronics" />
-              <label for="sports-equipment-checkbox">Sports Equipment</label>
-            </div>
+          <label for="search-bar" class="search-label">
+            <input name="searchText" type="text" placeholder="Search for an item" class="search-bar" id="search-bar"
+              value="" />
+            <button type="submit" class="search-button">Search</button>
           </label>
-        </div>
+          <div class="filter-container">
+            <div class="filter-toggle-button">
+              Filter
+              <img src="public/images/chevron-down.svg" alt="filter button" class="filter-toggle-button-image" />
+            </div>
+            <label for="filter" class="filter-label">
+              <div class="clothes-container">
+                <input id="clothes-checkbox" name="tagSelect" type="checkbox" value="Clothes" />
+                <label for="clothes-checkbox">Clothes</label>
+              </div>
+              <div class="textbooks-container">
+                <input id="textbook-checkbox" name="tagSelect" type="checkbox" value="Textbooks" />
+                <label for="textbook-checkbox">Textbook</label>
+              </div>
+              <div class="furniture-container">
+                <input id="furniture-checkbox" name="tagSelect" type="checkbox" value="Furniture" />
+                <label for="furniture-checkbox">Furniture</label>
+              </div>
+              <div class="room-decor-container">
+                <input id="room-decor-checkbox" name="tagSelect" type="checkbox" value="Room Decor" />
+                <label for="room-decor-checkbox">Room Decor</label>
+              </div>
+              <div class="electronics">
+                <input id="electronics-checkbox" name="tagSelect" type="checkbox" value="Electronics" />
+                <label for="electronics-checkbox">Electronics</label>
+              </div>
+              <div class="sports-equipment-container">
+                <input id="sports-equipment-checkbox" name="tagSelect" type="checkbox" value="Electronics" />
+                <label for="sports-equipment-checkbox">Sports Equipment</label>
+              </div>
+            </label>
+          </div>
 
-        <button type="submit" class="filter-button">Filter</button>
-      </form>
+          <button type="submit" class="filter-button">Filter</button>
+        </form>
     </div> --}}
     {{!-- {{#if userLogin}}
     <div class="links">
@@ -61,33 +61,33 @@
     <div class="links">
       <a href="/post" class="addpost-link">Add Post</a>
 
+      {{else}}
+      <div class="links">
+        <a href="/userpage" class="userpage-link">Account</a>
+        <a href="/logout" class="logout-link">Log Out</a>
+      </div>
+      {{/if}}
+      <div class="toggle-button">
+        <img src="public/images/align-justify.svg" alt="toggle button" class="toggle-button-image" />
+      </div>
+    </div>
+    {{#if userLogin}}
+    <div class="dropdown-menu">
+      <div class="dropdown-links">
+        <a href="/login">Log In</a>
+        <a href="/signup">Sign Up</a>
+      </div>
+    </div>
     {{else}}
-    <div class="links">
-      <a href="/userpage" class="userpage-link">Account</a>
-      <a href="/logout" class="logout-link">Log Out</a>
+    <div class="dropdown-menu">
+      <div class="dropdown-links">
+        <a href="/post">Add Post</a>
+        <a href="/userpage">Account</a>
+        <a href="/logout">Log Out</a>
+      </div>
     </div>
     {{/if}}
-    <div class="toggle-button">
-      <img src="public/images/align-justify.svg" alt="toggle button" class="toggle-button-image" />
-    </div>
-  </div>
-  {{#if userLogin}}
-  <div class="dropdown-menu">
-    <div class="dropdown-links">
-      <a href="/login">Log In</a>
-      <a href="/signup">Sign Up</a>
-    </div>
-  </div>
-  {{else}}
-  <div class="dropdown-menu">
-    <div class="dropdown-links">
-      <a href="/post">Add Post</a>
-      <a href="/userpage">Account</a>
-      <a href="/logout">Log Out</a>
-    </div>
-  </div>
-  {{/if}}
-  {{/if}} --}}
+    {{/if}} --}}
 </header>
 
 <main>
@@ -122,24 +122,6 @@
 
       <p class="tags-title">Tags:</p>
       <label for="tags" class="tags-container">
-      <p class="add-post-title">Add Post!</p>
-
-      <label for="name">Name:</label>
-      <input type="text" id="name" name="name" placeholder="Name" value="{{body.name}}" />
-
-      <label for="description">Description:</label>
-      <textarea type="text" id="description" name="description" placeholder="Enter a description of your item"
-        value="{{body.description}}"></textarea>
-
-      <label for="location">Location:
-        <select name="location" id="location">
-          {{#each locations}}
-          <option value="{{this}}">{{this}}</option>
-          {{/each}}
-        </select>
-      </label>
-
-      <label for="tags" class="tags-container">Tags:
         <div>
           <input id="clothes" name="tagSelect" type="checkbox" value="Clothes" />
           <label for="clothes">Clothes</label>
@@ -165,14 +147,6 @@
           <label for="sports-equipment">Sports Equipment</label>
         </div>
       </label>
-
-      <label for="image"></label>
-      <input type="file" name="image" / class="image">
-
-
-      <label for="add-post-button"></label>
-      <input type="submit" id="add-post-button" name="addPostButton" value="Add Post" />
-
 
       <label for="imageUpload">Select Image:</label>
       <input type="file" name="imageUpload" id="imageUpload" />
