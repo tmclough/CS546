@@ -86,12 +86,21 @@
 
       <label for="itemName">Item Name:</label>
       <input type="text" id="itemName" name="itemName" placeholder="Item name" value="{{body.name}}" />
+      {{#if itemNameError}} <!-- this is for server-side errors -->
+      <div class="invalid-item-name-error">{{itemNameError}}</div>
+      {{else}} <!-- this is for clientside errors -->
       <div class="clientside-item-name-error"></div>
+      {{/if}}
 
       <label for="description">Description:</label>
       <textarea name="description" id="description" cols="30" rows="10" value="{{body.description}}"
         placeholder="Enter a description of your item"></textarea>
+      {{#if descriptionError}}
+      <div class="invalid-description-error"></div>
+      {{else}}
       <div class="clientside-description-error"></div>
+      {{/if}}
+
 
       <label for="location" class="location-container">Location:</label>
       <select name="location" id="location">
