@@ -1,4 +1,4 @@
-import { ObjectId } from 'mongodb';
+import { ObjectId } from "mongodb";
 
 export const locations = [
   "ABS Engineering Center",
@@ -37,13 +37,13 @@ export const locations = [
   "Lore-El Center",
   "Palmer Hall",
   "Harries Tower",
-  "South Tower"
+  "South Tower",
 ];
 
 const exportedMethods = {
   checkId(id, varName) {
     if (!id) throw `Error: You must provide a ${varName}`;
-    if (typeof id !== 'string') throw `Error:${varName} must be a string`;
+    if (typeof id !== "string") throw `Error:${varName} must be a string`;
     id = id.trim();
     if (id.length === 0)
       throw `Error: ${varName} cannot be an empty string or just spaces`;
@@ -53,7 +53,7 @@ const exportedMethods = {
 
   checkString(strVal, varName) {
     if (!strVal) throw `Error: You must supply a ${varName}!`;
-    if (typeof strVal !== 'string') throw `Error: ${varName} must be a string!`;
+    if (typeof strVal !== "string") throw `Error: ${varName} must be a string!`;
     strVal = strVal.trim();
     if (strVal.length === 0)
       throw `Error: ${varName} cannot be an empty string or string with just spaces`;
@@ -68,7 +68,7 @@ const exportedMethods = {
     if (!arr || !Array.isArray(arr))
       throw `You must provide an array of ${varName}`;
     for (let i in arr) {
-      if (typeof arr[i] !== 'string' || arr[i].trim().length === 0) {
+      if (typeof arr[i] !== "string" || arr[i].trim().length === 0) {
         throw `One or more elements in ${varName} array is not a string or is an empty string`;
       }
       arr[i] = arr[i].trim();
@@ -81,25 +81,32 @@ const exportedMethods = {
     strVal = this.checkString(strVal, varName);
     if (strVal.includes(" ")) throw `${varName} should not contain spaces`;
     if (/[0-9]/.test(strVal)) throw `${varName} cannot contain numbers`;
-    if (strVal.length < 2) throw `${varName} should be at least 2 characters long`;
-    else if (strVal.length > 25) throw `${varName} can only be at max 25 characters long`;
+    if (strVal.length < 2)
+      throw `${varName} should be at least 2 characters long`;
+    else if (strVal.length > 25)
+      throw `${varName} can only be at max 25 characters long`;
 
     return strVal;
-
   },
 
   checkUsername(strVal, varName) {
     strVal = this.checkString(strVal, varName);
     if (strVal.includes(" ")) throw `${varName} should not contain spaces`;
-    if (strVal.length < 2) throw `${varName} should be at least 2 characters long`;
-    else if (strVal.length > 25) throw `${varName} can only be at max 25 characters long`;
+    if (strVal.length < 2)
+      throw `${varName} should be at least 2 characters long`;
+    else if (strVal.length > 25)
+      throw `${varName} can only be at max 25 characters long`;
 
     return strVal;
   },
 
   checkEmail(strVal, varName) {
     strVal = this.checkString(strVal, varName).toLowerCase();
-    if (!/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(strVal)) {
+    if (
+      !/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
+        strVal
+      )
+    ) {
       throw `${strVal} is an invalid email`;
     }
     return strVal;
@@ -108,10 +115,14 @@ const exportedMethods = {
   checkPassword(strVal, varName) {
     strVal = this.checkString(strVal, varName);
     if (strVal.includes(" ")) throw `${varName} should not contain spaces`;
-    if (strVal.length < 8) throw `${varName} should be at least 8 characters long`;
-    if (!/[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/.test(strVal)) throw `${varName} should contain at least one special character`;
-    if (!/[A-Z]/.test(strVal)) throw `${varName} should contain at least one uppercase character`;
-    if (!/[0-9]/.test(strVal)) throw `${varName} should contain at least one number`;
+    if (strVal.length < 8)
+      throw `${varName} should be at least 8 characters long`;
+    if (!/[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/.test(strVal))
+      throw `${varName} should contain at least one special character`;
+    if (!/[A-Z]/.test(strVal))
+      throw `${varName} should contain at least one uppercase character`;
+    if (!/[0-9]/.test(strVal))
+      throw `${varName} should contain at least one number`;
 
     return strVal;
   },
@@ -120,7 +131,27 @@ const exportedMethods = {
     strVal = this.checkString(strVal, varName);
     if (!locations.includes(strVal)) throw "Error: invalid location";
     return strVal;
-  }
+  },
+
+  checkItemName(strVal, varName) {
+    strVal = this.checkString(strVal, varName);
+    if (strVal.includes(" ")) throw `${varName} should not contain spaces`;
+    if (strVal.length < 2)
+      throw `${varName} should be at least 2 characters long`;
+    else if (strVal.length > 60)
+      throw `${varName} can only be at max 60 characters long`;
+
+    return strVal;
+  },
+
+  checkDescription(strVal, varName) {
+    strVal = this.checkString(strVal, varName);
+    if (strVal.includes(" ")) throw `${varName} should not contain spaces`;
+    else if (strVal.length > 200)
+      throw `${varName} can only be at max 200 characters long`;
+
+    return strVal;
+  },
 };
 
 export default exportedMethods;

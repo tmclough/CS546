@@ -82,14 +82,16 @@
 <main>
   <div class="form-container">
     <form action="/post" method="POST" enctype="multipart/form-data" id="add-post-form">
-      <p class="add-post-title">Add Post!</p>
+      <p class="add-post-title">Add a New Post</p>
 
-      <label for="name">Name:</label>
-      <input type="text" id="name" name="name" placeholder="Name" value="{{body.name}}" />
+      <label for="itemName">Item Name:</label>
+      <input type="text" id="itemName" name="itemName" placeholder="Item name" value="{{body.name}}" />
+      <div class="clientside-item-name-error"></div>
 
       <label for="description">Description:</label>
-      <input type="text" id="description" name="description" placeholder="Enter a description of your item"
-        value="{{body.description}}" />
+      <textarea name="description" id="description" cols="30" rows="10" value="{{body.description}}"
+        placeholder="Enter a description of your item"></textarea>
+      <div class="clientside-description-error"></div>
 
       <label for="location" class="location-container">Location:</label>
       <select name="location" id="location">
