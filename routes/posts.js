@@ -35,12 +35,11 @@ router
     res.render("posts/addPost", {
       title: "Add Post",
       cssFile: "/public/css/addPost.css",
-      jsFile: "/public/js/addPost.js",
       userLogin: req.session.user ? false : true,
       locations: locations,
     });
   })
-  .post(upload.single("image"), async (req, res) => {
+  .post(upload.single("imageUpload"), async (req, res) => {
     let postInfo = req.body;
     let fileInfo = req.file;
 
