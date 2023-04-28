@@ -40,6 +40,17 @@ export const locations = [
   "South Tower",
 ];
 
+export const tags = [
+  "Electronics",
+  "Appliances",
+  "Furniture",
+  "Clothing",
+  "Sport Equipment",
+  "Books",
+  "School Supplies",
+  "Other"
+]
+
 const exportedMethods = {
   checkId(id, varName) {
     if (!id) throw `Error: You must provide a ${varName}`;
@@ -128,10 +139,14 @@ const exportedMethods = {
   },
 
   checkLocation(strVal, varName) {
-    strVal = this.checkString(strVal, varName);
-    if (!locations.includes(strVal)) throw "Error: invalid location";
+    strVal = this.checkString(strVal, varName).toLowerCase();
+    lowerCaseLocations = locations.map((i) => {
+      return i.toLowerCase();
+    })
+    if (!lowerCaseLocations.includes(strVal)) throw "Error: invalid location";
     return strVal;
   },
+
 
   checkItemName(strVal, varName) {
     strVal = this.checkString(strVal, varName);
@@ -152,6 +167,21 @@ const exportedMethods = {
 
     return strVal;
   },
+
+  checkTags(arr, varName) {
+    arr = this.checkStringArray(arr, varName);
+    arr = arr.map((i) => {
+      return i.toLowerCase();
+    })
+    lowerCaseTags = tags.map((i) => {
+      return i.toLowerCase();
+    })
+    for (let i = 0; i < arr.length; i++) {
+      if (!lowerCaseLocations.includes(arr[i])) throw `Error: Invalid Tags ${arr[i]}`;
+    }
+
+    return arr;
+  }
 };
 
 export default exportedMethods;

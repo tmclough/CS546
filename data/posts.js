@@ -63,7 +63,7 @@ let exportedMethods = {
   async getAllPosts() {
     const postCollection = await posts();
     const postList = await postCollection.find({}).toArray();
-    if (postList.length === 0) throw "Error: No posts in database";
+    //if (postList.length === 0) throw "Error: No posts in database";
     // postList.map((element) => {
     //     element._id = element._id.toString();
     //     element.userId = element._userId.toString();
@@ -96,13 +96,27 @@ let exportedMethods = {
   },
   async getPostsByName(name) {
     //do validation
+    // const postCollection = await posts();
+    // const post = await postCollection.find({ name: name }).toArray();
+    // if (!post) throw "Error: post not found";
+    // return post;
+    name = validation.checkString(name, "name");
+
+    const words = name.toLowerCase().trim().split(/\s+/);
+
     const postCollection = await posts();
-    const post = await postCollection.find({ name: name }).toArray();
+    const post = await postCollection
+      .find({
+        name: { $regex: words.join("|"), $options: "i" },
+      })
+      .toArray();
     if (!post) throw "Error: post not found";
     return post;
   },
   async getPostsByDesciption(description) {
     //do validation
+
+    description = validation.checkString(description, "description");
 
     const words = description.toLowerCase().trim().split(/\s+/);
 

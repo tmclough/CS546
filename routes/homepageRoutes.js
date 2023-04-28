@@ -30,6 +30,7 @@ router
     if (typeof tags === "string") {
       tags = [tags];
     }
+
     let postArr = [];
 
     if (!tags || tags.length === 0) {
