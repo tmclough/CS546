@@ -140,9 +140,9 @@ const exportedMethods = {
 
   checkLocation(strVal, varName) {
     strVal = this.checkString(strVal, varName).toLowerCase();
-    lowerCaseLocations = locations.map((i) => {
+    let lowerCaseLocations = locations.map((i) => {
       return i.toLowerCase();
-    })
+    });
     if (!lowerCaseLocations.includes(strVal)) throw "Error: invalid location";
     return strVal;
   },
@@ -150,7 +150,7 @@ const exportedMethods = {
 
   checkItemName(strVal, varName) {
     strVal = this.checkString(strVal, varName);
-    if (strVal.includes(" ")) throw `${varName} should not contain spaces`;
+    //if (strVal.includes(" ")) throw `${varName} should not contain spaces`;
     if (strVal.length < 2)
       throw `${varName} should be at least 2 characters long`;
     else if (strVal.length > 60)
@@ -161,8 +161,8 @@ const exportedMethods = {
 
   checkDescription(strVal, varName) {
     strVal = this.checkString(strVal, varName);
-    if (strVal.includes(" ")) throw `${varName} should not contain spaces`;
-    else if (strVal.length > 200)
+    //if (strVal.includes(" ")) throw `${varName} should not contain spaces`;
+    if (strVal.length > 200)
       throw `${varName} can only be at max 200 characters long`;
 
     return strVal;
@@ -176,11 +176,11 @@ const exportedMethods = {
     arr = arr.map((i) => {
       return i.toLowerCase();
     })
-    lowerCaseTags = tags.map((i) => {
+    let lowerCaseTags = tags.map((i) => {
       return i.toLowerCase();
     })
     for (let i = 0; i < arr.length; i++) {
-      if (!lowerCaseLocations.includes(arr[i])) throw `Error: Invalid Tags ${arr[i]}`;
+      if (!lowerCaseTags.includes(arr[i])) throw `Error: Invalid Tags ${arr[i]}`;
     }
 
     return arr;
