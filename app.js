@@ -58,12 +58,12 @@ app.use("/logout", async (req, res, next) => {
   next();
 });
 
-app.use("/post", async (req, res, next) => {
-  if (!req.session.user && req.method === "GET") {
-    return res.redirect("/homepage");
-  }
-  next();
-});
+// app.use("/post", async (req, res, next) => {
+//   if (!req.session.user && req.method === "GET") {
+//     return res.redirect("/homepage");
+//   }
+//   next();
+// });
 
 app.engine("handlebars", exphbs.engine({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");

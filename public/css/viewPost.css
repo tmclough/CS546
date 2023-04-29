@@ -9,10 +9,10 @@ body {
   height: 100vh;
   width: 100vw;
   /* background-image: url("../images/maxresdefault.jpg");
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: cover;
-      z-index: -1; */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: -1; */
 }
 
 header {
@@ -72,7 +72,7 @@ header {
   margin-right: 10px;
   flex: 1;
   /* position: fixed;
-      align-self: center; */
+    align-self: center; */
 }
 
 .search-button {
@@ -83,7 +83,7 @@ header {
   transition: 0.15s;
   border: none;
   /* position: fixed;
-      align-self: center; */
+    align-self: center; */
 }
 
 .search-button:hover {
