@@ -16,29 +16,37 @@
             <img src="public/images/chevron-down.svg" alt="filter button" class="filter-toggle-button-image" />
           </div>
           <label for="filter" class="filter-label">
-            <div class="clothes-container">
-              <input id="clothes-checkbox" name="tagSelect" type="checkbox" value="Clothes" />
-              <label for="clothes-checkbox">Clothes</label>
+            <div>
+              <input id="electronics" name="tagSelect" type="checkbox" value="Electronics" />
+              <label for="electronics">Electronics</label>
             </div>
-            <div class="textbooks-container">
-              <input id="textbook-checkbox" name="tagSelect" type="checkbox" value="Textbooks" />
-              <label for="textbook-checkbox">Textbook</label>
+            <div>
+              <input id="appliances" name="tagSelect" type="checkbox" value="Appliances" />
+              <label for="appliances">Appliances</label>
             </div>
-            <div class="furniture-container">
-              <input id="furniture-checkbox" name="tagSelect" type="checkbox" value="Furniture" />
-              <label for="furniture-checkbox">Furniture</label>
+            <div>
+              <input id="furniture" name="tagSelect" type="checkbox" value="Furniture" />
+              <label for="furniture">Furniture</label>
             </div>
-            <div class="room-decor-container">
-              <input id="room-decor-checkbox" name="tagSelect" type="checkbox" value="Room Decor" />
-              <label for="room-decor-checkbox">Room Decor</label>
+            <div>
+              <input id="clothing" name="tagSelect" type="checkbox" value="Clothing" />
+              <label for="clothing">Clothing</label>
             </div>
-            <div class="electronics">
-              <input id="electronics-checkbox" name="tagSelect" type="checkbox" value="Electronics" />
-              <label for="electronics-checkbox">Electronics</label>
+            <div>
+              <input id="sport-equipment" name="tagSelect" type="checkbox" value="Sports Equipment" />
+              <label for="sport-equipment">Sport Equipment</label>
             </div>
-            <div class="sports-equipment-container">
-              <input id="sports-equipment-checkbox" name="tagSelect" type="checkbox" value="Electronics" />
-              <label for="sports-equipment-checkbox">Sports Equipment</label>
+            <div>
+              <input id="books" name="tagSelect" type="checkbox" value="Books" />
+              <label for="books">Books</label>
+            </div>
+            <div>
+              <input id="school-supplies" name="tagSelect" type="checkbox" value="School Supplies" />
+              <label for="school-supplies">School Supplies</label>
+            </div>
+            <div>
+              <input id="other" name="tagSelect" type="checkbox" value="Other" />
+              <label for="other">Other</label>
             </div>
           </label>
         </div>
@@ -126,28 +134,36 @@
       <p class="tags-title">Tags:</p>
       <label for="tags" class="tags-container">
         <div>
-          <input id="clothes" name="tagSelect" type="checkbox" value="Clothes" />
-          <label for="clothes">Clothes</label>
+          <input id="electronics" name="tagSelect" type="checkbox" value="Electronics" />
+          <label for="electronics">Electronics</label>
         </div>
         <div>
-          <input id="textbook" name="tagSelect" type="checkbox" value="Textbooks" />
-          <label for="textbook">Textbook</label>
+          <input id="appliances" name="tagSelect" type="checkbox" value="Appliances" />
+          <label for="appliances">Appliances</label>
         </div>
         <div>
           <input id="furniture" name="tagSelect" type="checkbox" value="Furniture" />
           <label for="furniture">Furniture</label>
         </div>
         <div>
-          <input id="room-decor" name="tagSelect" type="checkbox" value="Room Decor" />
-          <label for="room-decor">Room Decor</label>
+          <input id="clothing" name="tagSelect" type="checkbox" value="Clothing" />
+          <label for="clothing">Clothing</label>
         </div>
         <div>
-          <input id="electronics" name="tagSelect" type="checkbox" value="Electronics" />
-          <label for="electronics">Electronics</label>
+          <input id="sport-equipment" name="tagSelect" type="checkbox" value="Sports Equipment" />
+          <label for="sport-equipment">Sport Equipment</label>
         </div>
-        <div class="sports-equipment">
-          <input id="sports-equipment" name="tagSelect" type="checkbox" value="Sports Equipment" />
-          <label for="sports-equipment">Sports Equipment</label>
+        <div>
+          <input id="books" name="tagSelect" type="checkbox" value="Books" />
+          <label for="books">Books</label>
+        </div>
+        <div>
+          <input id="school-supplies" name="tagSelect" type="checkbox" value="School Supplies" />
+          <label for="school-supplies">School Supplies</label>
+        </div>
+        <div>
+          <input id="other" name="tagSelect" type="checkbox" value="Other" />
+          <label for="other">Other</label>
         </div>
       </label>
       {{#if tagsError}} <!-- this is for server-side errors -->
