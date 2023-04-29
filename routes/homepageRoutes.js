@@ -67,6 +67,12 @@ router
 
     postArr = postArr.flat(100);
 
+    for (let i = 0; i < postArr.length; i++) {
+      let post = postArr[i];
+      post._id = post._id.toString();
+    }
+    console.log(postArr);
+
     //new stuff
     if (tags) {
       res.render("users/homepage", {

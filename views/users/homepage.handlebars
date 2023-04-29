@@ -139,16 +139,18 @@
     <h2 class="posts-heading">My Posts</h2>
     <div class="posts">
       {{#each posts}}
-      <div class="post">
-        <p class="name">{{name}}</p>
-        <p class="description">{{description}}</p>
-        <p class="tags">{{tags}}</p>
-        <p class="location">{{location}}</p>
-        <p class="posted-date">{{postedDate}}</p>
-        <p class="comments">{{comments}}</p>
-        <p class="rating">{{rating}}</p>
-        <p class="claimed">{{claimed}}</p>
-      </div>
+      <a href="viewPost/{{_id}}">
+        <div class="post">
+          <p class="name">{{name}}</p>
+          <p class="description">{{description}}</p>
+          <p class="tags">{{tags}}</p>
+          <p class="location">{{location}}</p>
+          <p class="posted-date">{{postedDate}}</p>
+          <p class="comments">{{comments}}</p>
+          <p class="rating">{{rating}}</p>
+          <p class="claimed">{{claimed}}</p>
+        </div>
+      </a>
       {{/each}}
     </div>
   </div>

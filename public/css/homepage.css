@@ -328,6 +328,12 @@ main {
   flex-direction: column;
   transition: 0.1s;
   cursor: pointer;
+  text-decoration: none;
+}
+
+.posts a {
+  text-decoration: none;
+  color: black;
 }
 
 .post:hover {
