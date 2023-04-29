@@ -370,6 +370,10 @@ main {
   cursor: pointer;
 }
 
+.invalid-image-error {
+  margin-top: 10px;
+}
+
 #add-post-button {
   padding: 12px 100px;
   cursor: pointer;
@@ -388,8 +392,21 @@ main {
   margin-bottom: 10px;
 }
 
+.invalid-user-error,
+.invalid-item-name-error,
+.invalid-description-error,
+.invalid-location-error,
+.invalid-tags-error,
+.invalid-image-error {
+  margin-bottom: 12px;
+  color: red;
+}
+
 .clientside-item-name-error,
-.clientside-description-error {
+.clientside-description-error,
+.clientside-location-error,
+.clientside-tags-error,
+.clientside-image-error {
   margin-bottom: 12px;
   color: red;
 }

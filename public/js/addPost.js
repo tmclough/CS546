@@ -149,8 +149,10 @@ if (addPostForm) {
     let clientsideDescriptionError = document.querySelector(
       ".clientside-description-error"
     );
+
     clientsideItemNameError.innerHTML = "";
     clientsideDescriptionError.innerHTML = "";
+
     if (errors) {
       event.preventDefault();
       if (itemNameInputError) {

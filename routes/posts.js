@@ -15,7 +15,11 @@ const storage = multer.memoryStorage({
 });
 
 const fileFilter = (req, file, cb) => {
-  if (file.mimetype === "image/jpeg" || file.mimetype === "image/jpg" || file.mimetype === "image/png") {
+  if (
+    file.mimetype === "image/jpeg" ||
+    file.mimetype === "image/jpg" ||
+    file.mimetype === "image/png"
+  ) {
     cb(null, true);
   } else {
     cb(null, false);
@@ -35,6 +39,7 @@ router
     res.render("posts/addPost", {
       title: "Add Post",
       cssFile: "/public/css/addPost.css",
+      jsFile: "/public/js/addPost.js",
       userLogin: req.session.user ? false : true,
       locations: locations,
     });
@@ -52,7 +57,10 @@ router
 
     let itemNameError;
     try {
-      postInfo.itemName = validation.checkItemName(postInfo.itemName, "itemName");
+      postInfo.itemName = validation.checkItemName(
+        postInfo.itemName,
+        "itemName"
+      );
     } catch (e) {
       hasError = true;
       itemNameError = e;
@@ -60,7 +68,10 @@ router
 
     let descriptionError;
     try {
-      postInfo.description = validation.checkDescription(postInfo.description, "description");
+      postInfo.description = validation.checkDescription(
+        postInfo.description,
+        "description"
+      );
     } catch (e) {
       hasError = true;
       descriptionError = e;
@@ -68,7 +79,10 @@ router
 
     let locationError;
     try {
-      postInfo.location = validation.checkLocation(postInfo.location, "location");
+      postInfo.location = validation.checkLocation(
+        postInfo.location,
+        "location"
+      );
     } catch (e) {
       hasError = true;
       locationError = e;
@@ -99,11 +113,9 @@ router
         descriptionError,
         locationError,
         tagsError,
-        imageError
+        imageError,
       });
     }
-
-
 
     const params = {
       Bucket: process.env.AWS_BUCKET_NAME,
@@ -112,8 +124,6 @@ router
       ACL: "public-read-write",
       ContentType: "image/jpeg",
     };
-
-
 
     s3.upload(params, async (error, data) => {
       if (error) {
