@@ -70,20 +70,20 @@ const filterToggleButtonImage = document.querySelector(
 filterToggleButton.addEventListener("mouseenter", () => {
   filterLabel.style.opacity = 1;
   filterLabel.style.visibility = "visible";
-  filterToggleButtonImage.src = "public/images/chevron-up.svg";
+  filterToggleButtonImage.src = "/public/images/chevron-up.svg";
 });
 filterToggleButton.addEventListener("mouseleave", () => {
   filterLabel.style.opacity = 0;
   filterLabel.style.visibility = "hidden";
-  filterToggleButtonImage.src = "public/images/chevron-down.svg";
+  filterToggleButtonImage.src = "/public/images/chevron-down.svg";
 });
 filterLabel.addEventListener("mouseenter", () => {
   filterLabel.style.opacity = 1;
   filterLabel.style.visibility = "visible";
-  filterToggleButtonImage.src = "public/images/chevron-up.svg";
+  filterToggleButtonImage.src = "/public/images/chevron-up.svg";
 });
 filterLabel.addEventListener("mouseleave", () => {
   filterLabel.style.opacity = 0;
   filterLabel.style.visibility = "hidden";
-  filterToggleButtonImage.src = "public/images/chevron-down.svg";
+  filterToggleButtonImage.src = "/public/images/chevron-down.svg";
 });
