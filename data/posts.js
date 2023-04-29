@@ -6,10 +6,10 @@ let exportedMethods = {
   async addPost(userId, name, description, imgUrl, tags, location) {
     userId = validation.checkId(userId, "userId");
     name = validation.checkItemName(name, "name");
-    description = validation.checkItemDescription(description, "description");
+    description = validation.checkDescription(description, "description");
     location = validation.checkLocation(location, "location");
     tags = validation.checkTags(tags, "tags");
-    imgUrl = validation.checkImgUrl(imgUrl, "imgUrl");
+    //imgUrl = validation.checkImgUrl(imgUrl, "imgUrl");
 
     let date = new Date().toDateString();
     let newPost = {

@@ -89,7 +89,7 @@ router
     }
 
     if (hasError) {
-      res.render("posts/addPost", {
+      return res.render("posts/addPost", {
         title: "Add Post",
         cssFile: "/public/css/addPost.css",
         userLogin: req.session.user ? false : true,
@@ -115,9 +115,9 @@ router
 
 
 
-    await s3.upload(params, async (error, data) => {
+    s3.upload(params, async (error, data) => {
       if (error) {
-        res.status(500).send({ error: error });
+        res.status(500).send({ uploadError: error });
       }
 
       try {
@@ -130,7 +130,7 @@ router
           postInfo.location
         );
         if (post) {
-          res.send({ postAdded: true });
+          res.redirect("/homepage");
         } else {
           res.send({ error: "something happend" });
         }
