@@ -15,7 +15,7 @@ const storage = multer.memoryStorage({
 });
 
 const fileFilter = (req, file, cb) => {
-  if (file.mimetype === "image/jpeg" || file.mimetype === "image/jpg") {
+  if (file.mimetype === "image/jpeg" || file.mimetype === "image/jpg" || file.mimetype === "image/png") {
     cb(null, true);
   } else {
     cb(null, false);
@@ -42,6 +42,68 @@ router
   .post(upload.single("imageUpload"), async (req, res) => {
     let postInfo = req.body;
     let fileInfo = req.file;
+    let hasError = false;
+
+    let userError;
+    if (!req.session.user) {
+      hasError = true;
+      userError = "Error: no user signed in";
+    }
+
+    let itemNameError;
+    try {
+      postInfo.itemName = validation.checkItemName(postInfo.itemName, "itemName");
+    } catch (e) {
+      hasError = true;
+      itemNameError = e;
+    }
+
+    let descriptionError;
+    try {
+      postInfo.description = validation.checkDescription(postInfo.description, "description");
+    } catch (e) {
+      hasError = true;
+      descriptionError = e;
+    }
+
+    let locationError;
+    try {
+      postInfo.location = validation.checkLocation(postInfo.location, "location");
+    } catch (e) {
+      hasError = true;
+      locationError = e;
+    }
+
+    let tagsError;
+    try {
+      postInfo.tagSelect = validation.checkTags(postInfo.tagSelect, "tags");
+    } catch (e) {
+      hasError = true;
+      tagsError = e;
+    }
+
+    let imageError;
+    if (!fileInfo) {
+      hasError = true;
+      imageError = "Error: no file provided";
+    }
+
+    if (hasError) {
+      res.render("posts/addPost", {
+        title: "Add Post",
+        cssFile: "/public/css/addPost.css",
+        userLogin: req.session.user ? false : true,
+        locations: locations,
+        userError,
+        itemNameError,
+        descriptionError,
+        locationError,
+        tagsError,
+        imageError
+      });
+    }
+
+
 
     const params = {
       Bucket: process.env.AWS_BUCKET_NAME,
@@ -53,19 +115,18 @@ router
 
 
 
-    s3.upload(params, async (error, data) => {
+    await s3.upload(params, async (error, data) => {
       if (error) {
         res.status(500).send({ error: error });
       }
 
-      console.log(postInfo);
       try {
         const post = await postData.addPost(
           req.session.user._id,
-          postInfo.name,
+          postInfo.itemName,
           postInfo.description,
           data.Location,
-          [],
+          postInfo.tagSelect,
           postInfo.location
         );
         if (post) {

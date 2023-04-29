@@ -169,6 +169,9 @@ const exportedMethods = {
   },
 
   checkTags(arr, varName) {
+    if (typeof arr === "string") {
+      arr = [arr];
+    }
     arr = this.checkStringArray(arr, varName);
     arr = arr.map((i) => {
       return i.toLowerCase();

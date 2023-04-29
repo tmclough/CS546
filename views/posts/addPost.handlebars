@@ -86,7 +86,7 @@
       <p class="add-post-title">Add a New Post</p>
 
       <label for="itemName">Item Name:</label>
-      <input type="text" id="itemName" name="itemName" placeholder="Item name" value="{{body.name}}" />
+      <input type="text" id="itemName" name="itemName" placeholder="Item name" value="{{body.itemName}}" />
       {{#if itemNameError}} <!-- this is for server-side errors -->
       <div class="invalid-item-name-error">{{itemNameError}}</div>
       {{else}} <!-- this is for clientside errors -->
@@ -109,6 +109,11 @@
         <option value="{{this}}">{{this}}</option>
         {{/each}}
       </select>
+      {{#if locationError}} <!-- this is for server-side errors -->
+      <div class="invalid-location-error">{{locationError}}</div>
+      {{else}} <!-- this is for clientside errors -->
+      <div class="clientside-location-error"></div>
+      {{/if}}
 
       <p class="tags-title">Tags:</p>
       <label for="tags" class="tags-container">
@@ -137,9 +142,20 @@
           <label for="sports-equipment">Sports Equipment</label>
         </div>
       </label>
+      {{#if tagsError}} <!-- this is for server-side errors -->
+      <div class="invalid-tags-error">{{tagsError}}</div>
+      {{else}} <!-- this is for clientside errors -->
+      <div class="clientside-tags-error"></div>
+      {{/if}}
+
 
       <label for="imageUpload">Select Image:</label>
       <input type="file" name="imageUpload" id="imageUpload" />
+      {{#if imageError}} <!-- this is for server-side errors -->
+      <div class="invalid-image-error">{{imageError}}</div>
+      {{else}} <!-- this is for clientside errors -->
+      <div class="clientside-image-error"></div>
+      {{/if}}
       <label for="add-post-button"></label>
       <input type="submit" id="add-post-button" name="addPostButton" value="Add Post" />
     </form>
