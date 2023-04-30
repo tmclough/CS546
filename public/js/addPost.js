@@ -101,12 +101,11 @@ function checkString(strVal, varName) {
 
 function checkItemName(strVal, varName) {
   strVal = this.checkString(strVal, varName);
-  if (strVal.includes(" ")) throw `${varName} should not contain spaces`;
+  //if (strVal.includes(" ")) throw `${varName} should not contain spaces`;
   if (strVal.length < 2)
     throw `${varName} should be at least 2 characters long`;
   else if (strVal.length > 60)
     throw `${varName} can only be at max 60 characters long`;
-
   return strVal;
 }
 
