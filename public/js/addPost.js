@@ -119,18 +119,15 @@ function checkDescription(strVal, varName) {
 }
 
 const addPicBtn = document.getElementById("add-image-button");
+let imageUploadLabel = document.querySelector(".image-upload-label");
 
 addPicBtn.addEventListener("click", (event) => {
-  console.log("here");
-  let fileInput = document.createElement("input")
+  let fileInput = document.createElement("input");
   fileInput.type = "file";
   fileInput.name = "images";
-  let imageDiv = document.getElementById("imageUpload-container");
-  imageDiv.append(fileInput);
-
+  fileInput.classList.add("imageUpload");
+  imageUploadLabel.appendChild(fileInput);
 });
-
-
 
 const addPostForm = document.querySelector("#add-post-form");
 

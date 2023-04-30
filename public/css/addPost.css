@@ -295,7 +295,7 @@ header {
 }
 
 main {
-  padding-top: 120px;
+  padding-top: 100px;
 }
 
 .form-container {
@@ -370,8 +370,49 @@ main {
   cursor: pointer;
 }
 
+#imageUpload-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+#imageUpload-container p {
+  margin-bottom: 15px;
+}
+
+.image-upload-label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.imageUpload {
+  margin-bottom: 15px;
+}
+
 .invalid-image-error {
   margin-top: 10px;
+}
+
+#add-image-button {
+  font-size: 16px;
+  padding: 5px 10px;
+  cursor: pointer;
+  margin-top: -25px;
+  background-color: aliceblue;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  border-radius: 6px;
+  margin-bottom: 10px;
+}
+
+#add-image-button:hover {
+  opacity: 0.7;
+}
+
+#add-image-button:active {
+  opacity: 0.5;
 }
 
 #add-post-button {
