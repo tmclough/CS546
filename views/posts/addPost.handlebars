@@ -150,7 +150,7 @@
           <label for="clothing">Clothing</label>
         </div>
         <div>
-          <input id="sport-equipment" name="tagSelect" type="checkbox" value="Sports Equipment" />
+          <input id="sport-equipment" name="tagSelect" type="checkbox" value="Sport Equipment" />
           <label for="sport-equipment">Sport Equipment</label>
         </div>
         <div>
@@ -172,14 +172,23 @@
       <div class="clientside-tags-error"></div>
       {{/if}}
 
+      <div id="imageUpload-container">
+        <label for="imageUpload">Select Image:</label>
+        <input type="file" name="images" id="imageUpload" />
+        {{#if imageError}} <!-- this is for server-side errors -->
+        <div class="invalid-image-error">{{imageError}}</div>
+        {{else}} <!-- this is for clientside errors -->
+        <div class="clientside-image-error"></div>
+        {{/if}}
+        {{#if imageUploadError}} <!-- this is for server-side errors -->
+        <div class="invalid-image-upload-error">{{imageUploadError}}</div>
+        {{else}} <!-- this is for clientside errors -->
+        <div class="clientside-image-upload-error"></div>
+        {{/if}}
+      </div>
 
-      <label for="imageUpload">Select Image:</label>
-      <input type="file" name="imageUpload" id="imageUpload" />
-      {{#if imageError}} <!-- this is for server-side errors -->
-      <div class="invalid-image-error">{{imageError}}</div>
-      {{else}} <!-- this is for clientside errors -->
-      <div class="clientside-image-error"></div>
-      {{/if}}
+      <label for="add-image-button"></label>
+      <input type="button" id="add-image-button" name="addImage" value="+">
       <label for="add-post-button"></label>
       <input type="submit" id="add-post-button" name="addPostButton" value="Add Post" />
     </form>

@@ -101,7 +101,7 @@ function checkString(strVal, varName) {
 
 function checkItemName(strVal, varName) {
   strVal = this.checkString(strVal, varName);
-  if (strVal.includes(" ")) throw `${varName} should not contain spaces`;
+  //if (strVal.includes(" ")) throw `${varName} should not contain spaces`;
   if (strVal.length < 2)
     throw `${varName} should be at least 2 characters long`;
   else if (strVal.length > 60)
@@ -112,12 +112,26 @@ function checkItemName(strVal, varName) {
 
 function checkDescription(strVal, varName) {
   strVal = this.checkString(strVal, varName);
-  if (strVal.includes(" ")) throw `${varName} should not contain spaces`;
-  else if (strVal.length > 200)
+  //if (strVal.includes(" ")) throw `${varName} should not contain spaces`;
+  if (strVal.length > 200)
     throw `${varName} can only be at max 200 characters long`;
 
   return strVal;
 }
+
+const addPicBtn = document.getElementById("add-image-button");
+
+addPicBtn.addEventListener("click", (event) => {
+  console.log("here");
+  let fileInput = document.createElement("input")
+  fileInput.type = "file";
+  fileInput.name = "images";
+  let imageDiv = document.getElementById("imageUpload-container");
+  imageDiv.append(fileInput);
+
+});
+
+
 
 const addPostForm = document.querySelector("#add-post-form");
 
