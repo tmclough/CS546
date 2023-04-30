@@ -3,7 +3,7 @@ import { ObjectId } from "mongodb";
 import validation from "../validation.js";
 
 let exportedMethods = {
-  async addPost(userId, name, description, imgUrl, tags, location) {
+  async addPost(userId, name, description, imgUrlArray, tags, location) {
     userId = validation.checkId(userId, "userId");
     name = validation.checkItemName(name, "name");
     description = validation.checkDescription(description, "description");
@@ -16,7 +16,7 @@ let exportedMethods = {
       userId: userId,
       name: name,
       description: description,
-      imgUrl: imgUrl,
+      imgUrls: imgUrlArray,
       tags: tags,
       location: location,
       postedDate: date,
