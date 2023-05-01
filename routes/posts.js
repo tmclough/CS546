@@ -146,6 +146,11 @@ router
           commentInfo["madeByCurrentUser"] = false;
         }
       }
+
+      post._id = post._id.toString();
+      for (let i = 0; i < post.comments.length; i++) {
+        post.comments[i]._id = post.comments[i]._id.toString();
+      }
       console.log(post);
 
       res.render("posts/viewPost", {
@@ -203,7 +208,7 @@ router
       let commentId = req.body.commentId.toString();
       const deletedInfo = await commentData.deleteComment(postId, commentId);
       if (deletedInfo) {
-        res.redirect("/");
+        res.redirect(`/post/${postId}`);
       } else {
         res.status(400).json({ error: "deletion unsuccessful" });
       }

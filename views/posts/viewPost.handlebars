@@ -125,7 +125,7 @@
                         <p class="comment">{{this.comment}}</p> <!-- add username: "comment"-->
                         {{#if ../isOwnerOfPost}}
                         <div class="delete-comment-container">
-                            <form action="/comment/{{../post._id}}" method="POST">
+                            <form action="comment/{{../post._id}}" method="POST">
                                 <input type="text" name="_method" value="DELETE" hidden>
                                 <input type="submit" class="delete-comment-button" value="Delete Comment">
                                 <input type="text" name="commentId" value={{this._id}} hidden>
@@ -136,7 +136,7 @@
                         <div class="comment-container2">
                             <button class="reply-comment-button">Reply</button>
                             <div class="delete-comment-container">
-                                <form action="/comment/{{../post._id}}" method="POST">
+                                <form action="comment/{{../post._id}}" method="POST">
                                     <input type="text" name="_method" value="DELETE" hidden>
                                     <input type="submit" class="delete-comment-button" value="Delete Comment">
                                     <input type="text" name="commentId" value={{this._id}} hidden>

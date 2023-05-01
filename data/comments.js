@@ -67,12 +67,12 @@ let exportedMethods = {
     postId = validation.checkId(postId, "postId");
     const postCollection = await posts();
     const deletionInfo = await postCollection.findOneAndUpdate(
-      { _id: new ObjectId(postId) },
+      { "comments._id": new ObjectId(commentId) },
       { $pull: { comments: { _id: new ObjectId(commentId) } } },
-      { returnOriginal: false }
+      { returnDocument: "after" }
     );
     if (deletionInfo.lastErrorObject.n === 0) {
-      throw "Error: Could not delete comment";
+      throw "no album exists with specified albumId";
     }
     return { deleted: true };
   },
