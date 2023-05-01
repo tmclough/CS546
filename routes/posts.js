@@ -5,7 +5,6 @@ import validation from "../validation.js";
 import { locations } from "../validation.js";
 import { uploadImages } from "../imageUploadConfig.js";
 
-
 router
   .route("/")
   .get(async (req, res) => {
@@ -18,7 +17,6 @@ router
     });
   })
   .post(uploadImages, async (req, res) => {
-
     let postInfo = req.body;
     let filesInfo = req.files;
     let hasError = false;
@@ -95,7 +93,7 @@ router
         locationError,
         tagsError,
         imageError,
-        imageUploadError
+        imageUploadError,
       });
     }
 
@@ -120,7 +118,6 @@ router
     } catch (e) {
       res.status(500).send({ error: e });
     }
-
   });
 
 router.route("/:id").get(async (req, res) => {
@@ -128,6 +125,7 @@ router.route("/:id").get(async (req, res) => {
 
   try {
     const post = await postData.getPostById(id);
+    console.log(post);
     res.render("posts/viewPost", {
       title: "View Post",
       cssFile: "/public/css/viewPost.css",

@@ -120,13 +120,17 @@ function checkDescription(strVal, varName) {
 
 const addPicBtn = document.getElementById("add-image-button");
 let imageUploadLabel = document.querySelector(".image-upload-label");
+let numberOfPictures = 0;
 
 addPicBtn.addEventListener("click", (event) => {
-  let fileInput = document.createElement("input");
-  fileInput.type = "file";
-  fileInput.name = "images";
-  fileInput.classList.add("imageUpload");
-  imageUploadLabel.appendChild(fileInput);
+  if (numberOfPictures < 3) {
+    let fileInput = document.createElement("input");
+    fileInput.type = "file";
+    fileInput.name = "images";
+    fileInput.classList.add("imageUpload");
+    imageUploadLabel.appendChild(fileInput);
+    numberOfPictures++;
+  }
 });
 
 const addPostForm = document.querySelector("#add-post-form");
