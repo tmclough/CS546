@@ -123,27 +123,31 @@ const addCommentConfirmButton = document.querySelector(
   ".add-comment-confirm-button"
 );
 const comments = document.querySelector(".comments");
+const addCommentForm = document.querySelector("#add-comment-form");
 
-addCommentConfirmButton.addEventListener("click", (event) => {
-  event.preventDefault();
-  header.style.zIndex = 10000;
-  let newCommentInput = document.querySelector("#add-comment-input").value;
-  let newCommentContainer = document.createElement("div");
-  newCommentContainer.classList.add("comment-container");
+if (addCommentForm) {
+  addCommentForm.addEventListener("submit", (event) => {
+    header.style.zIndex = 10000;
+    let newCommentInput = document.querySelector("#add-comment-input").value;
+    let newCommentContainer = document.createElement("div");
+    newCommentContainer.classList.add("comment-container");
 
-  let newComment = document.createElement("p");
-  newComment.innerHTML = newCommentInput;
-  newCommentContainer.appendChild(newComment);
+    let newComment = document.createElement("p");
+    newComment.innerHTML = newCommentInput;
+    newCommentContainer.appendChild(newComment);
 
-  let deleteCommentButton = document.createElement("button");
-  deleteCommentButton.classList.add("delete-comment-button");
-  deleteCommentButton.innerHTML = "Delete Comment";
-  newCommentContainer.appendChild(deleteCommentButton);
+    let deleteCommentButton = document.createElement("button");
+    deleteCommentButton.classList.add("delete-comment-button");
+    deleteCommentButton.innerHTML = "Delete Comment";
+    newCommentContainer.appendChild(deleteCommentButton);
 
-  comments.appendChild(newCommentContainer);
+    comments.appendChild(newCommentContainer);
 
-  addCommentInputContainer.style.opacity = 0;
-  addCommentInputContainer.style.visibility = "hidden";
+    addCommentInputContainer.style.opacity = 0;
+    addCommentInputContainer.style.visibility = "hidden";
 
-  attachDeleteCommentListener();
-});
+    attachDeleteCommentListener();
+
+    addCommentForm.submit();
+  });
+}
