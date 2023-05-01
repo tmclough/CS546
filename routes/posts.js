@@ -1,6 +1,7 @@
 import { Router } from "express";
 const router = Router();
 import { postData } from "../data/index.js";
+import { userData } from "../data/index.js";
 import validation from "../validation.js";
 import { locations } from "../validation.js";
 import { uploadImages } from "../imageUploadConfig.js";
@@ -125,13 +126,22 @@ router.route("/:id").get(async (req, res) => {
 
   try {
     const post = await postData.getPostById(id);
+    const userInfo = await userData.getUserById(req.session.user._id);
+    let isOwnerOfPost = false;
+    if (post.userId === userInfo._id) {
+      isOwnerOfPost = true;
+    }
     console.log(post);
+    console.log(userInfo);
+    console.log(isOwnerOfPost);
     res.render("posts/viewPost", {
       title: "View Post",
       cssFile: "/public/css/viewPost.css",
       jsFile: "/public/js/viewPost.js",
       post: post,
+      userInfo: userInfo,
       userLogin: req.session.user ? false : true,
+      isOwnerOfPost: isOwnerOfPost,
     });
   } catch (e) {
     res.status(400).send({ error: e });

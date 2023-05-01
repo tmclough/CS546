@@ -296,6 +296,7 @@ header {
 
 main {
   padding-top: 150px;
+  position: relative;
 }
 
 #post-container {
@@ -333,8 +334,10 @@ main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  outline: 1px solid black;
+  border: 1px solid black;
+  border-radius: 10px;
   height: 100%;
+  margin-bottom: 100px;
 }
 
 .post-information {
@@ -344,8 +347,8 @@ main {
   align-items: center;
   width: 800px;
   height: 400px;
-  outline: 1px solid black;
   padding-top: 30px;
+  border-bottom: 1px solid black;
 }
 
 .name {
@@ -380,6 +383,7 @@ main {
   background-color: rgb(116, 156, 241);
   transition: 0.15s;
   cursor: pointer;
+  width: 150px;
 }
 
 .claim-button:hover {
@@ -393,8 +397,113 @@ main {
   align-items: flex-start;
   flex-direction: column;
   padding: 30px 0px;
+  width: 100%;
+  padding-left: 20px;
+  margin-bottom: 25px;
+}
+
+.comments-heading {
+  margin-bottom: 12px;
+}
+
+.comment-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+  width: 100%;
+  padding: 20px;
 }
 
 .comment {
   margin-bottom: 15px;
+  margin-right: 20px;
+  font-size: 18px;
+}
+
+.modify-comments {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 10px;
+  width: 100%;
+}
+
+.add-comment-button {
+  font-size: 18px;
+  margin-right: 15px;
+  padding: 5px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.15s;
+}
+
+.add-comment-button:hover {
+  color: white;
+  background-color: powderblue;
+}
+
+.delete-comment-button {
+  font-size: 12px;
+  padding: 5px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.15s;
+  background-color: grey;
+  color: white;
+  margin-top: 20px;
+}
+
+.delete-comment-button:hover {
+  opacity: 0.75;
+}
+
+.add-comment-input-container {
+  /* opacity: 0;
+  visibility: hidden; */
+  display: none;
+  position: fixed;
+  width: 500px;
+  height: 500px;
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+  margin: 0 auto;
+  outline: 1px solid black;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+}
+
+#add-comment-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+#add-comment-form label {
+  margin-bottom: 15px;
+  font-size: 24px;
+}
+
+#add-comment-input {
+  padding: 20px;
+  margin-bottom: 15px;
+}
+
+.add-comment-confirm-button {
+  font-size: 20px;
+  padding: 5px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.15s;
+  background-color: rgb(80, 210, 243);
+  color: white;
+  margin-top: 20px;
+}
+
+.add-comment-confirm-button:hover {
+  background-color: rgb(48, 129, 236);
 }

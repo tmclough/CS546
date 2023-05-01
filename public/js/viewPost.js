@@ -87,3 +87,56 @@ filterLabel.addEventListener("mouseleave", () => {
   filterLabel.style.visibility = "hidden";
   filterToggleButtonImage.src = "/public/images/chevron-down.svg";
 });
+
+function attachDeleteCommentListener() {
+  const deleteCommentButton = document.querySelectorAll(
+    ".delete-comment-button"
+  );
+  deleteCommentButton.forEach((button) => {
+    button.addEventListener("click", (event) => {
+      let commentContainer = event.target.parentNode;
+      commentContainer.innerHTML = "";
+    });
+  });
+}
+
+attachDeleteCommentListener();
+
+const addCommentButton = document.querySelector(".add-comment-button");
+const addCommentInputContainer = document.querySelector(
+  ".add-comment-input-container"
+);
+addCommentButton.addEventListener("click", (event) => {
+  event.preventDefault();
+  addCommentInputContainer.style.display = "block";
+  let newCommentInput = document.querySelector("#add-comment-input");
+  newCommentInput.value = "";
+  newCommentInput.focus();
+});
+
+const addCommentConfirmButton = document.querySelector(
+  ".add-comment-confirm-button"
+);
+const comments = document.querySelector(".comments");
+
+addCommentConfirmButton.addEventListener("click", (event) => {
+  event.preventDefault();
+  let newCommentInput = document.querySelector("#add-comment-input").value;
+  let newCommentContainer = document.createElement("div");
+  newCommentContainer.classList.add("comment-container");
+
+  let newComment = document.createElement("p");
+  newComment.innerHTML = newCommentInput;
+  newCommentContainer.appendChild(newComment);
+
+  let deleteCommentButton = document.createElement("button");
+  deleteCommentButton.classList.add("delete-comment-button");
+  deleteCommentButton.innerHTML = "Delete Comment";
+  newCommentContainer.appendChild(deleteCommentButton);
+
+  comments.appendChild(newCommentContainer);
+
+  addCommentInputContainer.style.display = "none";
+
+  attachDeleteCommentListener();
+});
