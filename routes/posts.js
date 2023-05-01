@@ -146,6 +146,7 @@ router
           commentInfo["madeByCurrentUser"] = false;
         }
       }
+      console.log(post);
 
       res.render("posts/viewPost", {
         title: "View Post",
