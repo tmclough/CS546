@@ -137,10 +137,19 @@ router
       console.log(post);
       console.log(userInfo);
       console.log(isOwnerOfPost);
-      //we should make comments into an array of objects instead:
-      //comments: {{username: username, comment: comment}}
-      // for (let i = 0; i < post.comments.length; i++) {
 
+      let isOwnerOfComment = true;
+      let commentsMadeByCurrentUser = [];
+      //we should make comments into an array of objects instead:
+      //comments: [{userId: userId, username: username, comment: comment}]
+      // for (let i = 0; i < post.comments.length; i++) {
+      //    let commentInfo = post.comments[i];
+      //    if (commentInfo.userId === req.session.user._id) {
+      //        commentsMadeByCurrentUser.push(true);
+      //    }
+      //    else {
+      //        commentsMadeByCurrentUser.push(false);
+      //    }
       // }
       res.render("posts/viewPost", {
         title: "View Post",
