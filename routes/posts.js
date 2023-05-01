@@ -137,6 +137,11 @@ router
       console.log(post);
       console.log(userInfo);
       console.log(isOwnerOfPost);
+      //we should make comments into an array of objects instead:
+      //comments: {{username: username, comment: comment}}
+      // for (let i = 0; i < post.comments.length; i++) {
+
+      // }
       res.render("posts/viewPost", {
         title: "View Post",
         cssFile: "/public/css/viewPost.css",
