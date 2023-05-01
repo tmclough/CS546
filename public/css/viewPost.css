@@ -462,7 +462,19 @@ main {
   margin-top: 20px;
 }
 
-.delete-comment-button:hover {
+.reply-comment-button {
+  font-size: 12px;
+  padding: 5px 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.15s;
+  background-color: grey;
+  color: white;
+  margin-top: 20px;
+}
+
+.delete-comment-button:hover,
+.reply-comment-button:hover {
   opacity: 0.75;
 }
 

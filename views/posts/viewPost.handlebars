@@ -109,6 +109,14 @@
                     <p class="posted-date">{{post.postedDate}}</p>
                     <p class="rating">Raiting: {{post.rating}}</p>
                     <button type="submit" class="claim-button">Claim!</button>
+                    {{#if isOwnerOfPost}}
+                    <div class="delete-post-container">
+                        <form action="" method="POST">
+                            <input type="text" name="_method" value="DELETE" hidden>
+                            <input type="submit" class="delete-post-button" value="Delete Post">
+                        </form>
+                    </div>
+                    {{/if}}
                 </div>
                 <div class="comments">
                     <h2 class="comments-heading">Comments</h2>
@@ -119,6 +127,7 @@
                         <button class="delete-comment-button">Delete Comment</button>
                         {{else}}
                         {{#if this.madeByCurrentUser}}
+                        <button class="reply-comment-button">Reply</button>
                         <button class="delete-comment-button">Delete Comment</button>
                         {{/if}}
                         {{/if}}
@@ -136,7 +145,7 @@
         </div>
     </div>
     <div class="add-comment-input-container">
-        <form action="" id="add-comment-form" method="POST">
+        <form action="comment/{{post._id}}" id="add-comment-form" method="POST">
             <label for="addCommentInput">Add Comment:</label>
             <textarea name="addCommentInput" id="add-comment-input" cols="50" rows="15"></textarea>
             <input type="submit" class="add-comment-confirm-button" value="Confirm">

@@ -160,6 +160,22 @@ router
       res.status(400).send({ error: e });
     }
   })
+  .delete(async (req, res) => {
+    const id = validation.checkId(req.params.id);
+    try {
+      const deletedInfo = await postData.deletePost(id);
+      if (deletedInfo) {
+        res.redirect("/");
+      } else {
+        res.status(400).json({ error: "deletion unsuccessful" });
+      }
+    } catch (e) {
+      res.status(400).json({ error: e });
+    }
+
+  });
+router
+  .route("/comment/:id")
   .post(async (req, res) => {
     const id = validation.checkId(req.params.id);
     try {
@@ -173,10 +189,23 @@ router
         postId,
         addCommentInput
       );
+      res.redirect(`/post/${postId}`);
     } catch (e) {
       res.status(400).send({ error: e });
     }
   })
-  .delete(async (req, res) => {});
+  .delete(async (req, res) => {
+
+  });
+router
+  .route("/reply/:id")
+  .post(async (req, res) => {
+
+  })
+  .delete(async (req, res) => {
+
+  });
+
+
 
 export default router;
