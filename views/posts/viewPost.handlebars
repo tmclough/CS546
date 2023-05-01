@@ -114,9 +114,13 @@
                     <h2 class="comments-heading">Comments</h2>
                     {{#each post.comments}}
                     <div class="comment-container">
-                        <p class="comment">{{this}}</p> <!-- add username: "comment"-->
+                        <p class="comment">{{this.comment}}</p> <!-- add username: "comment"-->
                         {{#if ../isOwnerOfPost}}
                         <button class="delete-comment-button">Delete Comment</button>
+                        {{else}}
+                        {{#if this.madeByCurrentUser}}
+                        <button class="delete-comment-button">Delete Comment</button>
+                        {{/if}}
                         {{/if}}
                     </div>
                     {{/each}}

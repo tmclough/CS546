@@ -1,5 +1,6 @@
 import { posts } from "../config/mongoCollections.js";
 import { postData } from "./index.js";
+import { userData } from "./index.js";
 import { ObjectId } from "mongodb";
 import validation from "../validation.js";
 import { dbConnection, closeConnection } from "../config/mongoConnection.js";
@@ -13,10 +14,22 @@ let exportedMethods = {
     const post = await postData.getPostById(postId);
     if (post.claimed) throw "Cannot comment on claimed post";
 
+    const userInfo = await userData.getUserById(userId);
+    let username = userInfo.username;
+
+    let newComment = {
+      _id: new ObjectId(),
+      userId: new ObjectId(userId),
+      postId: new ObjectId(postId),
+      username: username,
+      comment: comment,
+      replies: [],
+    };
+
     const postCollection = await posts();
     const postInfo = await postCollection.findOneAndUpdate(
       { _id: new ObjectId(postId) },
-      { $push: { comments: comment } }
+      { $push: { comments: newComment } }
     );
     if (postInfo.lastErrorObject.n === 0) throw "Error: Could not update post";
 

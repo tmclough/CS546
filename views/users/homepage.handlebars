@@ -146,7 +146,9 @@
           <p class="tags">{{tags}}</p>
           <p class="location">{{location}}</p>
           <p class="posted-date">{{postedDate}}</p>
-          <p class="comments">{{comments}}</p>
+          {{#each comments}}
+          <p class="comments">{{this.comment}}</p>
+          {{/each}}
           <p class="rating">{{rating}}</p>
           <p class="claimed">{{claimed}}</p>
         </div>
