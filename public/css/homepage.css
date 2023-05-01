@@ -159,6 +159,12 @@ header {
   margin-left: -12px;
 }
 
+.filter-button:hover {
+  background-color: rgb(100, 142, 231);
+  color: white;
+  box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.25);
+}
+
 .links {
   margin-right: 30px;
 }

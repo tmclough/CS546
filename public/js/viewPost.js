@@ -96,6 +96,8 @@ function attachDeleteCommentListener() {
     button.addEventListener("click", (event) => {
       let commentContainer = event.target.parentNode;
       commentContainer.innerHTML = "";
+      commentContainer.style.padding = 0;
+      commentContainer.style.marginBottom = 0;
     });
   });
 }
@@ -106,9 +108,12 @@ const addCommentButton = document.querySelector(".add-comment-button");
 const addCommentInputContainer = document.querySelector(
   ".add-comment-input-container"
 );
+const header = document.querySelector("header");
 addCommentButton.addEventListener("click", (event) => {
   event.preventDefault();
-  addCommentInputContainer.style.display = "block";
+  header.style.zIndex = 0;
+  addCommentInputContainer.style.opacity = 1;
+  addCommentInputContainer.style.visibility = "visible";
   let newCommentInput = document.querySelector("#add-comment-input");
   newCommentInput.value = "";
   newCommentInput.focus();
@@ -121,6 +126,7 @@ const comments = document.querySelector(".comments");
 
 addCommentConfirmButton.addEventListener("click", (event) => {
   event.preventDefault();
+  header.style.zIndex = 10000;
   let newCommentInput = document.querySelector("#add-comment-input").value;
   let newCommentContainer = document.createElement("div");
   newCommentContainer.classList.add("comment-container");
@@ -136,7 +142,8 @@ addCommentConfirmButton.addEventListener("click", (event) => {
 
   comments.appendChild(newCommentContainer);
 
-  addCommentInputContainer.style.display = "none";
+  addCommentInputContainer.style.opacity = 0;
+  addCommentInputContainer.style.visibility = "hidden";
 
   attachDeleteCommentListener();
 });
