@@ -4,12 +4,12 @@ import validation from "../validation.js";
 
 let exportedMethods = {
   async addPost(userId, name, description, imgUrl, tags, location) {
-    userId = validation.checkId(userId, "userId");
-    name = validation.checkItemName(name, "name");
-    description = validation.checkItemDescription(description, "description");
-    location = validation.checkLocation(location, "location");
-    tags = validation.checkTags(tags, "tags");
-    imgUrl = validation.checkImgUrl(imgUrl, "imgUrl");
+  //  userId = validation.checkId(userId, "userId");
+    // name = validation.checkItemName(name, "name");
+    // description = validation.checkItemDescription(description, "description");
+    // location = validation.checkLocation(location, "location");
+    // tags = validation.checkTags(tags, "tags");
+    // imgUrl = validation.checkImgUrl(imgUrl, "imgUrl");
 
     let date = new Date().toDateString();
     let newPost = {
@@ -21,7 +21,6 @@ let exportedMethods = {
       location: location,
       postedDate: date,
       comments: [],
-      rating: 0,
       claimed: false,
     };
 

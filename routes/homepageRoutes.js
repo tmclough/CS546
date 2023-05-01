@@ -4,6 +4,7 @@ import { ObjectId } from "mongodb";
 import { postData, userData } from "../data/index.js";
 import validation from "../validation.js";
 let searchStr = "";
+
 router.route("/").get((req, res) => {
   res.redirect("/homepage");
 });
@@ -24,6 +25,7 @@ router
     }
   })
   .post(async (req, res) => {
+    let orderByRating = false;
     const postList = await postData.getAllPosts();
     let tags = req.body.tagSelect;
     let tagsFilter = req.body.tagFilter;
@@ -33,10 +35,20 @@ router
     }
     if (typeof tags === "string") {
       tags = [tags];
+      let index = tags.indexOf("Rating");
+      if (index > -1) {
+        orderByRating = true;
+        tags.splice(index, 1);
+      }
     }
 
     if (typeof tagsFilter === "string") {
       tagsFilter = [tagsFilter];
+      let index = tagsFilter.indexOf("Rating");
+      if (index > -1) {
+        orderByRating = true;
+        tags.splice(index, 1);
+      }
     }
 
     let postArr = [];
@@ -52,6 +64,7 @@ router
         }
       }
     }
+
     let postArr2 = [];
     if (!tagsFilter || tagsFilter.length === 0) {
       postArr2 = [];
@@ -85,7 +98,6 @@ router
       } else {
         postArr = postArr;
       }
-      // console.log(postArr);
     } else {
       if (postArr.length === 0) {
         postArr = postList;
@@ -115,6 +127,7 @@ router
         postArr = postList;
       }
     }
+
     if (searchText && searchText.trim() !== "") {
       try {
         const user = await userData.getUserByName(searchText.trim());
@@ -128,7 +141,7 @@ router
               );
               return matchingPost ? true : false;
             });
-  
+
             postArr.push(postUpdated);
           } else {
             postArr.push(posts);
@@ -143,12 +156,32 @@ router
 
     postArr = postArr.flat(100);
     tagsArr = tagsArr.flat(100);
+    let finalArr = postArr;
+    if (finalArr === []) finalArr = tagsArr;
 
-    //new stuff
+    if (orderByRating) {
+
+      let ratingArr = [];
+      for(let p of finalArr){
+        const user = await userData.getUserById(p.userId);
+        
+        ratingArr.push(user.rating);
+      }
+ 
+      let resArr = [];
+      for (let x = 5; x > 0; x--) {
+        for (let a = 0; a < ratingArr.length; a++) {
+          if (ratingArr[a] === x) resArr.push(finalArr[a]);
+        }
+      }
+      finalArr = resArr;
+    }
+
     if (tags) {
+
       res.render("users/homepage", {
         divClass: "hidden-filter",
-        posts: tagsArr,
+        posts: finalArr,
         cssFile: "/public/css/homepage.css",
         jsFile: "/public/js/homepage.js",
         searchText: searchText,
@@ -156,7 +189,7 @@ router
     } else {
       res.render("users/homepage", {
         divClass: "search-label",
-        posts: postArr,
+        posts: finalArr,
         cssFile: "/public/css/homepage.css",
         jsFile: "/public/js/homepage.js",
         searchText: searchText,

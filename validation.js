@@ -48,8 +48,8 @@ export const tags = [
   "Sport Equipment",
   "Books",
   "School Supplies",
-  "Other"
-]
+  "Other",
+];
 
 const exportedMethods = {
   checkId(id, varName) {
@@ -142,11 +142,15 @@ const exportedMethods = {
     strVal = this.checkString(strVal, varName).toLowerCase();
     lowerCaseLocations = locations.map((i) => {
       return i.toLowerCase();
-    })
+    });
     if (!lowerCaseLocations.includes(strVal)) throw "Error: invalid location";
     return strVal;
   },
-
+  // checkRating(strVal, varName) {
+  //   strVal = this.checkString(strVal, varName).toLowerCase();
+  //   if (!int(strVal)) throw "Error: invalid rating";
+  //   return strVal;
+  // },
 
   checkItemName(strVal, varName) {
     strVal = this.checkString(strVal, varName);
@@ -172,12 +176,13 @@ const exportedMethods = {
     arr = this.checkStringArray(arr, varName);
     arr = arr.map((i) => {
       return i.toLowerCase();
-    })
+    });
     lowerCaseTags = tags.map((i) => {
       return i.toLowerCase();
-    })
+    });
     for (let i = 0; i < arr.length; i++) {
-      if (!lowerCaseLocations.includes(arr[i])) throw `Error: Invalid Tags ${arr[i]}`;
+      if (!lowerCaseLocations.includes(arr[i]))
+        throw `Error: Invalid Tags ${arr[i]}`;
     }
 
     return arr;
@@ -185,15 +190,18 @@ const exportedMethods = {
 
   checkImgUrl(url, varName) {
     url = this.checkString(url, varName);
-    let urlRegex = new RegExp('^(https?:\\/\\/)?' + // validate protocol
-      '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // validate domain name
-      '((\\d{1,3}\\.){3}\\d{1,3}))' + // validate OR ip (v4) address
-      '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + // validate port and path
-      '(\\?[;&a-z\\d%_.~+=-]*)?' + // validate query string
-      '(\\#[-a-z\\d_]*)?$', 'i'); // validate fragment locator)
+    let urlRegex = new RegExp(
+      "^(https?:\\/\\/)?" + // validate protocol
+        "((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|" + // validate domain name
+        "((\\d{1,3}\\.){3}\\d{1,3}))" + // validate OR ip (v4) address
+        "(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*" + // validate port and path
+        "(\\?[;&a-z\\d%_.~+=-]*)?" + // validate query string
+        "(\\#[-a-z\\d_]*)?$",
+      "i"
+    ); // validate fragment locator)
     if (!urlRegex.test(url)) throw "Error: Invalid Url";
     return url;
-  }
+  },
 };
 
 export default exportedMethods;

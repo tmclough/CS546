@@ -38,6 +38,7 @@ let exportedMethods = {
     password = validation.checkPassword(password, "password");
     firstName = validation.checkFirstAndLastName(firstName, "firstName");
     lastName = validation.checkFirstAndLastName(lastName, "lastName");
+    let rating = 1;
 
 
     const userCollection = await users();
@@ -53,7 +54,8 @@ let exportedMethods = {
       username: username,
       password: hash,
       firstName: firstName,
-      lastName: lastName
+      lastName: lastName,
+      rating: rating,
     }
 
     const insertedInfo = await userCollection.insertOne(newUser);

@@ -78,10 +78,20 @@
               />
               <label for="sports-equipment-checkbox">Sports Equipment</label>
             </div>
+            <div class="hightolow-container">
+              <input
+                id="hightolow-checkbox"
+                name="tagSelect"
+                type="checkbox"
+                value="Rating"
+              />
+              <label for="hightolow-checkbox">High to Low Rating</label>
+            </div>
           </label>
         </div>
         <button type="submit" class="filter-button">Filter</button>
       </form>
+
     </div>
 
     {{#if userLogin}}
@@ -188,6 +198,15 @@
               value="Electronics"
             />
             <label for="sports-equipment-checkbox2">Sports Equipment</label>
+          </div>
+          <div class="hightolow-container">
+            <input
+              id="hightolow-checkbox"
+              name="tagSelect"
+              type="checkbox"
+              value="Rating"
+            />
+            <label for="hightolow-checkbox">High to Low Rating</label>
           </div>
         </label>
       </div>
