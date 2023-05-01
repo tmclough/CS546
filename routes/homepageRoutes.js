@@ -1,7 +1,7 @@
 import { Router } from "express";
 const router = Router();
 import { ObjectId } from "mongodb";
-import { postData } from "../data/index.js";
+import { postData, userData } from "../data/index.js";
 import validation from "../validation.js";
 let searchStr = "";
 router.route("/").get((req, res) => {
@@ -40,7 +40,7 @@ router
     }
 
     let postArr = [];
-    let tagsArr =[]
+    let tagsArr = [];
 
     if (!tags || tags.length === 0) {
       postArr = postArr;
@@ -50,7 +50,6 @@ router
         if (posts && posts.length > 0) {
           tagsArr.push(posts);
         }
-        
       }
     }
     let postArr2 = [];
@@ -74,7 +73,7 @@ router
         if (postArr2.length > 0) {
           let postUpdated = posts.filter((post) => {
             let matchingPost = postArr2.find(
-              (obj) => obj._id.toString() === post._id.toString()
+              (pst) => pst._id.toString() === post._id.toString()
             );
             return matchingPost ? true : false;
           });
@@ -99,7 +98,7 @@ router
         if (postArr2.length > 0) {
           let postUpdated = posts.filter((post) => {
             let matchingPost = postArr2.find(
-              (obj) => obj._id.toString() === post._id.toString()
+              (pst) => pst._id.toString() === post._id.toString()
             );
             return matchingPost ? true : false;
           });
@@ -116,33 +115,37 @@ router
         postArr = postList;
       }
     }
-  //   if (searchText && searchText.trim() !== "") {
-  //     if (ObjectId.isValid(searchText)) {
-  //     const posts = await postData.getPostbyUser(searchText.trim());
-  //     if (posts && posts.length > 0) {
-  //       if (postArr2.length > 0) {
-  //         postUpdated = posts.filter((post) => postArr2.includes(post));
-  //         postArr.push(postUpdated);
-  //       } else {
-  //         postArr.push(posts);
-  //       }
-  //     } else {
-  //       postArr = postArr;
-  //     }
-  //   } else {
-  //     if (postArr.length === 0) {
-  //       postArr = postList;
-  //     }
-  //   }
-  // }
+    if (searchText && searchText.trim() !== "") {
+      try {
+        const user = await userData.getUserByName(searchText.trim());
+        const posts = await postData.getPostbyUser(user._id.toString());
+
+        if (posts && posts.length > 0) {
+          if (postArr2.length > 0) {
+            let postUpdated = posts.filter((post) => {
+              let matchingPost = postArr2.find(
+                (pst) => pst._id.toString() === post._id.toString()
+              );
+              return matchingPost ? true : false;
+            });
+  
+            postArr.push(postUpdated);
+          } else {
+            postArr.push(posts);
+          }
+        }
+      } catch (e) {
+        if (postArr.length === 0) {
+          postArr = postList;
+        }
+      }
+    }
 
     postArr = postArr.flat(100);
     tagsArr = tagsArr.flat(100);
-  
 
     //new stuff
     if (tags) {
-      
       res.render("users/homepage", {
         divClass: "hidden-filter",
         posts: tagsArr,

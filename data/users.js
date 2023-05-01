@@ -71,7 +71,17 @@ let exportedMethods = {
     if (!userInfo) throw `Error: no user found with id ${id}`;
     userInfo._id = userInfo._id.toString();
     return userInfo;
-  }
+  },
+  async getUserByName(username) {
+    username = validation.checkString(username, "username");
+    const userCollection = await users();
+    const userInfo = await userCollection.findOne({ username: username })
+
+    if (!userInfo) throw "Error: user not found";
+    userInfo._id = userInfo._id.toString();
+    return userInfo;
+  },
+  
 
 };
 
