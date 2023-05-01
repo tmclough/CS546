@@ -68,7 +68,7 @@
         </div>
         {{/if}}
         <div class="toggle-button">
-            <img src="/public/images/align-justify.svg" alt="toggle button" class="toggle-button-image" />
+            <img src="public/images/align-justify.svg" alt="toggle button" class="toggle-button-image" />
         </div>
     </div>
     {{#if userLogin}}
@@ -88,34 +88,32 @@
     </div>
     {{/if}}
 </header>
+
 <main>
-    <div id="post-container">
-        <div class="post">
-            <div class="pictures-container">
-                {{#each post.imgUrls}}
-                <img src={{this}} alt="" class="picture">
-                {{/each}}
-            </div>
-            <div class="post-container2">
-                <div class="post-information">
-                    <p class="name">{{post.name}}</p>
-                    <p class="description">{{post.description}}</p>
-                    <ul class="tags">
-                        {{#each post.tags}}
-                        <li>{{this}}</li>
-                        {{/each}}
-                    </ul>
-                    <p class="location">{{post.location}}</p>
-                    <p class="posted-date">{{post.postedDate}}</p>
-                    <p class="rating">Raiting: {{post.rating}}</p>
-                    <button type="submit" class="claim-button">Claim!</button>
+    <div class="user-info">
+        <h2 class="user-info-heading">My Info</h2>
+        <p>{{userInfo.firstName}}</p>
+        <p>{{userInfo.lastName}}</p>
+        <p>{{userInfo.username}}</p>
+        <p>{{userInfo.email}}</p>
+    </div>
+    <div class="posts-section">
+        <h2 class="posts-heading">My Posts</h2>
+        <div class="posts">
+            {{#each posts}}
+            <a href="post/{{_id}}">
+                <div class="post">
+                    <p class="name">{{name}}</p>
+                    <p class="description">{{description}}</p>
+                    <p class="tags">{{tags}}</p>
+                    <p class="location">{{location}}</p>
+                    <p class="posted-date">{{postedDate}}</p>
+                    <p class="comments">{{comments}}</p>
+                    <p class="rating">{{rating}}</p>
+                    <p class="claimed">{{claimed}}</p>
                 </div>
-                <div class="comments">
-                    {{#each post.comments}}
-                    <p class="comment">{{this}}</p> <!-- add username: "comment"-->
-                    {{/each}}
-                </div>
-            </div>
+            </a>
+            {{/each}}
         </div>
     </div>
 </main>
