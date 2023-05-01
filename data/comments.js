@@ -62,9 +62,20 @@ let exportedMethods = {
     return await postInfo.value;
   },
 
-  // async deleteComment() {
-
-  // },
+  async deleteComment(postId, commentId) {
+    commentId = validation.checkId(commentId, "commentId");
+    postId = validation.checkId(postId, "postId");
+    const postCollection = await posts();
+    const deletionInfo = await postCollection.findOneAndUpdate(
+      { _id: new ObjectId(postId) },
+      { $pull: { comments: { _id: new ObjectId(commentId) } } },
+      { returnOriginal: false }
+    );
+    if (deletionInfo.lastErrorObject.n === 0) {
+      throw "Error: Could not delete comment";
+    }
+    return { deleted: true };
+  },
 
   // async getAllComments() {
 

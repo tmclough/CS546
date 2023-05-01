@@ -334,6 +334,7 @@ main {
   width: 300px;
   object-fit: cover;
   margin-bottom: 75px;
+  border-radius: 10px;
 }
 
 .post-container2 {
@@ -356,6 +357,7 @@ main {
   height: 400px;
   padding-top: 30px;
   border-bottom: 1px solid black;
+  position: relative;
 }
 
 .name {
@@ -391,11 +393,42 @@ main {
   transition: 0.15s;
   cursor: pointer;
   width: 150px;
+  color: white;
 }
 
 .claim-button:hover {
   background-color: rgb(40, 95, 158);
   color: white;
+}
+
+.claim-button:active {
+  opacity: 0.75;
+}
+
+.delete-post-container {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+}
+
+.delete-post-button {
+  padding: 5px 12px;
+  border-radius: 8px;
+  font-size: 20px;
+  background-color: rgb(255, 0, 0);
+
+  transition: 0.15s;
+  cursor: pointer;
+  width: 150px;
+  color: white;
+}
+
+.delete-post-button:hover {
+  background-color: rgb(252, 120, 103);
+}
+
+.delete-post-button:active {
+  opacity: 0.75;
 }
 
 .comments {
@@ -411,6 +444,7 @@ main {
 
 .comments-heading {
   margin-bottom: 12px;
+  margin-top: -19px;
 }
 
 .comment-container {
@@ -419,6 +453,10 @@ main {
   margin-bottom: 30px;
   width: 100%;
   padding: 20px;
+}
+
+.comment-container2 {
+  display: flex;
 }
 
 .comment {
@@ -457,7 +495,7 @@ main {
   border-radius: 5px;
   cursor: pointer;
   transition: 0.15s;
-  background-color: grey;
+  background-color: rgb(245, 52, 52);
   color: white;
   margin-top: 20px;
 }
@@ -471,6 +509,7 @@ main {
   background-color: grey;
   color: white;
   margin-top: 20px;
+  margin-right: 15px;
 }
 
 .delete-comment-button:hover,

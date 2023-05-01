@@ -94,7 +94,8 @@ function attachDeleteCommentListener() {
   );
   deleteCommentButton.forEach((button) => {
     button.addEventListener("click", (event) => {
-      let commentContainer = event.target.parentNode;
+      let commentContainer =
+        event.target.parentNode.parentNode.parentNode.parentNode;
       commentContainer.innerHTML = "";
       commentContainer.style.padding = 0;
       commentContainer.style.marginBottom = 0;

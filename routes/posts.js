@@ -173,7 +173,6 @@ router
     } catch (e) {
       res.status(400).json({ error: e });
     }
-
   });
 router
   .route("/comment/:id")
@@ -196,17 +195,25 @@ router
     }
   })
   .delete(async (req, res) => {
-
+    const id = validation.checkId(req.params.id);
+    try {
+      const post = await postData.getPostById(id);
+      const userInfo = await userData.getUserById(req.session.user._id);
+      let postId = post._id.toString();
+      let commentId = req.body.commentId.toString();
+      const deletedInfo = await commentData.deleteComment(postId, commentId);
+      if (deletedInfo) {
+        res.redirect("/");
+      } else {
+        res.status(400).json({ error: "deletion unsuccessful" });
+      }
+    } catch (e) {
+      res.status(400).send({ error: e });
+    }
   });
 router
   .route("/reply/:id")
-  .post(async (req, res) => {
-
-  })
-  .delete(async (req, res) => {
-
-  });
-
-
+  .post(async (req, res) => {})
+  .delete(async (req, res) => {});
 
 export default router;
