@@ -50,8 +50,6 @@ export const tags = [
   "School Supplies",
   "Other",
 ];
-  "Other",
-];
 
 const exportedMethods = {
   checkId(id, varName) {
@@ -185,12 +183,11 @@ const exportedMethods = {
     let lowerCaseTags = tags.map((i) => {
       return i.toLowerCase();
     });
-    });
     for (let i = 0; i < arr.length; i++) {
-      if (!lowerCaseTags.includes(arr[i]))
+      if (!lowerCaseTags.includes(arr[i])) {
         throw `Error: Invalid Tags ${arr[i]}`;
+      }
     }
-
     return arr;
   },
 
@@ -218,5 +215,5 @@ const exportedMethods = {
 
     return comment;
   },
-
+};
 export default exportedMethods;
