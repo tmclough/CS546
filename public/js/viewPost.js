@@ -88,6 +88,27 @@ filterLabel.addEventListener("mouseleave", () => {
   filterToggleButtonImage.src = "/public/images/chevron-down.svg";
 });
 
+function checkString(strVal, varName) {
+  if (!strVal) throw `Error: You must supply a ${varName}!`;
+  if (typeof strVal !== "string") throw `Error: ${varName} must be a string!`;
+  strVal = strVal.trim();
+  if (strVal.length === 0)
+    throw `Error: ${varName} cannot be an empty string or string with just spaces`;
+  // //if (!isNaN(strVal))
+  //     throw `Error: ${strVal} is not a valid value for ${varName} as it only contains digits`;
+  return strVal;
+}
+
+function checkCommentInput(comment, varName) {
+  comment = this.checkString(comment, varName);
+  if (comment.length === 0)
+    throw `${varName} should be at least 2 characters long`;
+  else if (comment.length > 60)
+    throw `${varName} can only be at max 60 characters long`;
+
+  return comment;
+}
+
 function attachDeleteCommentListener() {
   const deleteCommentButton = document.querySelectorAll(
     ".delete-comment-button"
@@ -132,25 +153,56 @@ if (addCommentForm) {
   addCommentForm.addEventListener("submit", (event) => {
     header.style.zIndex = 10000;
     let newCommentInput = document.querySelector("#add-comment-input").value;
-    let newCommentContainer = document.createElement("div");
-    newCommentContainer.classList.add("comment-container");
+    let commentError;
+    let errors = false;
+    try {
+      newCommentInput = checkCommentInput(newCommentInput, "comment");
+    } catch (e) {
+      commentError = e;
+      errors = true;
+    }
 
-    let newComment = document.createElement("p");
-    newComment.innerHTML = newCommentInput;
-    newCommentContainer.appendChild(newComment);
+    let clientsideCommentError = document.querySelector(
+      ".clientside-comment-error"
+    );
+    clientsideCommentError.innerHTML = "";
+    if (errors) {
+      event.preventDefault();
+      if (commentError) {
+        clientsideCommentError.innerHTML = commentError;
+      }
+    } else {
+      let newCommentContainer = document.createElement("div");
+      newCommentContainer.classList.add("comment-container");
 
-    let deleteCommentButton = document.createElement("button");
-    deleteCommentButton.classList.add("delete-comment-button");
-    deleteCommentButton.innerHTML = "Delete Comment";
-    newCommentContainer.appendChild(deleteCommentButton);
+      let newComment = document.createElement("p");
+      newComment.innerHTML = newCommentInput;
+      newCommentContainer.appendChild(newComment);
 
-    comments.appendChild(newCommentContainer);
+      let deleteCommentButton = document.createElement("button");
+      deleteCommentButton.classList.add("delete-comment-button");
+      deleteCommentButton.innerHTML = "Delete Comment";
+      newCommentContainer.appendChild(deleteCommentButton);
 
-    addCommentInputContainer.style.opacity = 0;
-    addCommentInputContainer.style.visibility = "hidden";
+      comments.appendChild(newCommentContainer);
 
-    attachDeleteCommentListener();
+      addCommentInputContainer.style.opacity = 0;
+      addCommentInputContainer.style.visibility = "hidden";
 
-    addCommentForm.submit();
+      attachDeleteCommentListener();
+
+      addCommentForm.submit();
+    }
   });
 }
+
+const exitAddCommentButton = document.querySelector(".exit-add-comment");
+
+exitAddCommentButton.addEventListener("click", (event) => {
+  addCommentInputContainer.style.opacity = 0;
+  addCommentInputContainer.style.visibility = "hidden";
+  let clientsideCommentError = document.querySelector(
+    ".clientside-comment-error"
+  );
+  clientsideCommentError.innerHTML = "";
+});

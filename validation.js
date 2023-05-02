@@ -48,8 +48,8 @@ export const tags = [
   "Sport Equipment",
   "Books",
   "School Supplies",
-  "Other"
-]
+  "Other",
+];
 
 const exportedMethods = {
   checkId(id, varName) {
@@ -147,7 +147,6 @@ const exportedMethods = {
     return strVal;
   },
 
-
   checkItemName(strVal, varName) {
     strVal = this.checkString(strVal, varName);
     //if (strVal.includes(" ")) throw `${varName} should not contain spaces`;
@@ -175,12 +174,13 @@ const exportedMethods = {
     arr = this.checkStringArray(arr, varName);
     arr = arr.map((i) => {
       return i.toLowerCase();
-    })
+    });
     let lowerCaseTags = tags.map((i) => {
       return i.toLowerCase();
-    })
+    });
     for (let i = 0; i < arr.length; i++) {
-      if (!lowerCaseTags.includes(arr[i])) throw `Error: Invalid Tags ${arr[i]}`;
+      if (!lowerCaseTags.includes(arr[i]))
+        throw `Error: Invalid Tags ${arr[i]}`;
     }
 
     return arr;
@@ -188,15 +188,28 @@ const exportedMethods = {
 
   checkImgUrl(url, varName) {
     url = this.checkString(url, varName);
-    let urlRegex = new RegExp('^(https?:\\/\\/)?' + // validate protocol
-      '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // validate domain name
-      '((\\d{1,3}\\.){3}\\d{1,3}))' + // validate OR ip (v4) address
-      '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + // validate port and path
-      '(\\?[;&a-z\\d%_.~+=-]*)?' + // validate query string
-      '(\\#[-a-z\\d_]*)?$', 'i'); // validate fragment locator)
+    let urlRegex = new RegExp(
+      "^(https?:\\/\\/)?" + // validate protocol
+        "((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|" + // validate domain name
+        "((\\d{1,3}\\.){3}\\d{1,3}))" + // validate OR ip (v4) address
+        "(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*" + // validate port and path
+        "(\\?[;&a-z\\d%_.~+=-]*)?" + // validate query string
+        "(\\#[-a-z\\d_]*)?$",
+      "i"
+    ); // validate fragment locator)
     if (!urlRegex.test(url)) throw "Error: Invalid Url";
     return url;
-  }
+  },
+
+  checkCommentInput(comment, varName) {
+    comment = this.checkString(comment, varName);
+    if (comment.length === 0)
+      throw `${varName} should be at least 2 characters long`;
+    else if (comment.length > 60)
+      throw `${varName} can only be at max 60 characters long`;
+
+    return comment;
+  },
 };
 
 export default exportedMethods;

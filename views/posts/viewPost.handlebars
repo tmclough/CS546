@@ -162,7 +162,12 @@
         <form action="comment/{{post._id}}" id="add-comment-form" method="POST">
             <label for="addCommentInput">Add Comment:</label>
             <textarea name="addCommentInput" id="add-comment-input" cols="50" rows="15"></textarea>
+            <div class="clientside-comment-error"></div>
             <input type="submit" class="add-comment-confirm-button" value="Confirm">
+            <img src="/public/images/x.svg" alt="" class="exit-add-comment">
         </form>
     </div>
+    {{#if commentError}}
+    <div class="serverside-comment-error">{{commentError}}</div>
+    {{/if}}
 </main>

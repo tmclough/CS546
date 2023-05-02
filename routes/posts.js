@@ -186,9 +186,28 @@ router
     try {
       const post = await postData.getPostById(id);
       const userInfo = await userData.getUserById(req.session.user._id);
-      const addCommentInput = req.body.addCommentInput;
+      let addCommentInput = req.body.addCommentInput;
       let userId = userInfo._id.toString();
       let postId = post._id.toString();
+      let commentError = undefined;
+      try {
+        addCommentInput = validation.checkCommentInput(
+          addCommentInput,
+          "Comment"
+        );
+      } catch (e) {
+        commentError = e;
+      }
+
+      if (commentError) {
+        res.render("posts/viewPost", {
+          title: "View Post",
+          cssFile: "/public/css/viewPost.css",
+          jsFile: "/public/js/viewPost.js",
+          commentError: commentError,
+        });
+        return;
+      }
       const postWithNewComment = await commentData.addComment(
         userId,
         postId,

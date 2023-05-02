@@ -540,6 +540,7 @@ main {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  position: relative;
 }
 
 #add-comment-form label {
@@ -550,6 +551,13 @@ main {
 #add-comment-input {
   padding: 20px;
   margin-bottom: 15px;
+}
+
+.exit-add-comment {
+  position: absolute;
+  right: -22px;
+  top: -35px;
+  cursor: pointer;
 }
 
 .add-comment-confirm-button {
@@ -565,4 +573,13 @@ main {
 
 .add-comment-confirm-button:hover {
   background-color: rgb(48, 129, 236);
+}
+
+.clientside-comment-error {
+  color: red;
+}
+
+.serverside-comment-error {
+  display: flex;
+  justify-content: center;
 }
