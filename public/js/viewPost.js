@@ -206,6 +206,13 @@ replyCommentButton.addEventListener("click", (event) => {
   header.style.zIndex = 0;
   replyCommentInputContainer.style.opacity = 1;
   replyCommentInputContainer.style.visibility = "visible";
+  let hiddenCommentId = document.createElement("input");
+  hiddenCommentId.type = "text";
+  hiddenCommentId.hidden = true;
+  hiddenCommentId.name = "commentId";
+  hiddenCommentId.value = replyCommentButton.value;
+  let replyCommentForm = document.querySelector("#reply-comment-form")
+  replyCommentForm.appendChild(hiddenCommentId);
   let replyCommentInput = document.querySelector("#reply-comment-input");
   replyCommentInput.value = "";
   replyCommentInput.focus();

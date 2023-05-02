@@ -124,12 +124,13 @@
                     {{#each post.comments}}
                     <div class="comment-container">
                         <div class="replies-container">
+
                             <p class="comment">{{this.username}}: {{this.comment}}</p> <!-- add username: "comment"-->
                             <p class="replies-heading">Replies:</p>
                             <div class="replies">
-                                {{#each post.replies}}
+                                {{#each this.replies}}
                                 <!-- array of objects: replyId, postId, userId, username, reply-->
-                                <p class="reply">{{this.reply}}</p>
+                                <p class="reply">{{this.comment}}</p>
                                 {{/each}}
                             </div>
                         </div>
@@ -158,7 +159,7 @@
                         {{else}}
                         <div class="comment-container2">
                             <div class="reply-comment-container">
-                                <button id="reply-comment-button">Reply</button>
+                                <button id="reply-comment-button" value="{{this._id}}">Reply</button>
                             </div>
                         </div>
                         {{/if}}
