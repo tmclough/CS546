@@ -13,6 +13,7 @@ router
             const userInfo = await userData.getUserById(req.session.user._id);
             res.render("users/account", {
                 title: "Account",
+                userLogin: req.session.user ? false : true,
                 cssFile: "/public/css/account.css",
                 posts,
                 userInfo

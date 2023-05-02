@@ -205,6 +205,7 @@ router
       if (commentError) {
         res.render("posts/viewPost", {
           title: "View Post",
+          userLogin: req.session.user ? false : true,
           cssFile: "/public/css/viewPost.css",
           jsFile: "/public/js/viewPost.js",
           commentError: commentError,
