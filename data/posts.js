@@ -1,7 +1,7 @@
 import { posts } from "../config/mongoCollections.js";
 import { ObjectId } from "mongodb";
 import validation from "../validation.js";
-
+import userData from "./users.js"
 let exportedMethods = {
   async addPost(userId, name, description, imgUrl, tags, location) {
   //  userId = validation.checkId(userId, "userId");
@@ -12,6 +12,9 @@ let exportedMethods = {
     // imgUrl = validation.checkImgUrl(imgUrl, "imgUrl");
 
     let date = new Date().toDateString();
+    const user = await userData.getUserById(userId);
+    if(!user) throw "Error: insert Failed"
+    
     let newPost = {
       userId: userId,
       name: name,
@@ -22,6 +25,8 @@ let exportedMethods = {
       postedDate: date,
       comments: [],
       claimed: false,
+      username: user.username,
+      rating: user.rating
     };
 
     const postCollection = await posts();
@@ -60,7 +65,13 @@ let exportedMethods = {
 
   async getAllPosts() {
     const postCollection = await posts();
-    const postList = await postCollection.find({}).toArray();
+    let postList = await postCollection.find({}).toArray();
+
+      postList = postList.filter((p)=> p.claimed === false)
+  
+ 
+
+  
     //if (postList.length === 0) throw "Error: No posts in database";
     // postList.map((element) => {
     //     element._id = element._id.toString();
