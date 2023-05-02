@@ -199,6 +199,7 @@ if (addCommentForm) {
 const exitAddCommentButton = document.querySelector(".exit-add-comment");
 
 exitAddCommentButton.addEventListener("click", (event) => {
+  header.style.zIndex = 10000;
   addCommentInputContainer.style.opacity = 0;
   addCommentInputContainer.style.visibility = "hidden";
   let clientsideCommentError = document.querySelector(

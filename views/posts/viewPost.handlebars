@@ -122,7 +122,7 @@
                     <h2 class="comments-heading">Comments</h2>
                     {{#each post.comments}}
                     <div class="comment-container">
-                        <p class="comment">{{this.comment}}</p> <!-- add username: "comment"-->
+                        <p class="comment">{{this.username}}: {{this.comment}}</p> <!-- add username: "comment"-->
                         {{#if ../isOwnerOfPost}}
                         <div class="delete-comment-container">
                             <form action="comment/{{../post._id}}" method="POST">

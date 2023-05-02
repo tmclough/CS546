@@ -151,13 +151,12 @@ document.addEventListener("click", (event) => {
 // });
 
 function clickPostFunction(postId) {
-
   fetch(`/post/${postId}`, { method: "GET" })
-  .then(response => response.text())
-  .then(data => {
-    window.location.href = `/post/${postId}`;
-  })
-  .catch(error => console.log(error));
+    .then((response) => response.text())
+    .then((data) => {
+      window.location.href = `/post/${postId}`;
+    })
+    .catch((error) => console.log(error));
 }
 
 const filterToggleButton = document.querySelectorAll(".filter-toggle-button");
@@ -188,3 +187,9 @@ for (let i = 0; i < filterToggleButton.length; i++) {
     filterToggleButtonImage[i].src = "public/images/chevron-down.svg";
   });
 }
+
+// const welcome = document.querySelector(".welcome");
+
+// setTimeout(() => {
+//   welcome.textContent = "Home"; // Change the text back to "Home" after 3 seconds
+// }, 3000);
