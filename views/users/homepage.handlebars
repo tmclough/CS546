@@ -218,12 +218,12 @@
     <h2 class="posts-heading">My Posts</h2>
     <div class="posts">
       {{#each posts}}
-        <div class="post">
+        <div class="post" onclick="clickPostFunction('{{_id}}')">
           <p class="name">{{name}}</p>
           <p class="description">Description: {{description}}</p>
           <p class="tags">Tags: {{tags}}</p>
           <p class="location">Pick-Up Location: {{location}}</p>
-          <p class="posted-date">{{postedDate}}</p>
+          <p class="posted-date">Posted On: {{postedDate}}</p>
           <p class="comments">Comments: {{comments}}</p>
           <p class="username">User: {{username}}</p>
           <p class="rating">Rating: {{rating}}</p>

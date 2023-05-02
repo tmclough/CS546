@@ -150,6 +150,16 @@ document.addEventListener("click", (event) => {
 //   }
 // });
 
+function clickPostFunction(postId) {
+
+  fetch(`/post/${postId}`, { method: "GET" })
+  .then(response => response.text())
+  .then(data => {
+    window.location.href = `/post/${postId}`;
+  })
+  .catch(error => console.log(error));
+}
+
 const filterToggleButton = document.querySelectorAll(".filter-toggle-button");
 const filterLabel = document.querySelectorAll(".filter-label");
 const filterToggleButtonImage = document.querySelectorAll(

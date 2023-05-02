@@ -58,7 +58,6 @@ router
         res.status(500).send({ error: error });
       }
 
-      console.log(postInfo);
       try {
         const post = await postData.addPost(
           req.session.user._id,
