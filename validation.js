@@ -50,6 +50,8 @@ export const tags = [
   "School Supplies",
   "Other",
 ];
+  "Other",
+];
 
 const exportedMethods = {
   checkId(id, varName) {
@@ -146,6 +148,11 @@ const exportedMethods = {
     if (!lowerCaseLocations.includes(strVal)) throw "Error: invalid location";
     return strVal;
   },
+  // checkRating(strVal, varName) {
+  //   strVal = this.checkString(strVal, varName).toLowerCase();
+  //   if (!int(strVal)) throw "Error: invalid rating";
+  //   return strVal;
+  // },
 
   checkItemName(strVal, varName) {
     strVal = this.checkString(strVal, varName);
@@ -177,6 +184,7 @@ const exportedMethods = {
     });
     let lowerCaseTags = tags.map((i) => {
       return i.toLowerCase();
+    });
     });
     for (let i = 0; i < arr.length; i++) {
       if (!lowerCaseTags.includes(arr[i]))
@@ -210,6 +218,5 @@ const exportedMethods = {
 
     return comment;
   },
-};
 
 export default exportedMethods;

@@ -38,6 +38,7 @@ let exportedMethods = {
     password = validation.checkPassword(password, "password");
     firstName = validation.checkFirstAndLastName(firstName, "firstName");
     lastName = validation.checkFirstAndLastName(lastName, "lastName");
+    let rating = 1;
 
 
     const userCollection = await users();
@@ -53,7 +54,8 @@ let exportedMethods = {
       username: username,
       password: hash,
       firstName: firstName,
-      lastName: lastName
+      lastName: lastName,
+      rating: rating,
     }
 
     const insertedInfo = await userCollection.insertOne(newUser);
@@ -71,7 +73,17 @@ let exportedMethods = {
     if (!userInfo) throw `Error: no user found with id ${id}`;
     userInfo._id = userInfo._id.toString();
     return userInfo;
-  }
+  },
+  async getUserByName(username) {
+    username = validation.checkString(username, "username");
+    const userCollection = await users();
+    const userInfo = await userCollection.findOne({ username: username })
+
+    if (!userInfo) throw "Error: user not found";
+    userInfo._id = userInfo._id.toString();
+    return userInfo;
+  },
+  
 
 };
 

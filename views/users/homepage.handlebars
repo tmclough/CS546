@@ -48,11 +48,15 @@
               <input id="other" name="tagSelect" type="checkbox" value="Other" />
               <label for="other">Other</label>
             </div>
+            <div class="hightolow-container">
+              <input id="hightolow-checkbox" name="tagSelect" type="checkbox" value="Rating" />
+              <label for="hightolow-checkbox">High to Low Rating</label>
+            </div>
           </label>
         </div>
-
         <button type="submit" class="filter-button">Filter</button>
       </form>
+
     </div>
     {{#if userLogin}}
     <div class="links">
@@ -128,6 +132,10 @@
           <div>
             <input id="other2" name="tagSelect" type="checkbox" value="Other" />
             <label for="other2">Other</label>
+          </div>
+          <div class="hightolow-container">
+            <input id="hightolow-checkbox" name="tagSelect" type="checkbox" value="Rating" />
+            <label for="hightolow-checkbox">High to Low Rating</label>
           </div>
         </label>
       </div>
