@@ -521,7 +521,7 @@ main {
   margin-top: 20px;
 }
 
-#reply-comment-button {
+.reply-comment-button {
   font-size: 12px;
   padding: 5px 5px;
   border-radius: 5px;

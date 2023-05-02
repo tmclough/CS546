@@ -196,26 +196,28 @@ if (addCommentForm) {
   });
 }
 
-const replyCommentButton = document.querySelector("#reply-comment-button");
+const replyCommentButtons = document.querySelectorAll(".reply-comment-button");
 const replyCommentInputContainer = document.querySelector(
   ".reply-comment-input-container"
 );
 
-replyCommentButton.addEventListener("click", (event) => {
-  event.preventDefault();
-  header.style.zIndex = 0;
-  replyCommentInputContainer.style.opacity = 1;
-  replyCommentInputContainer.style.visibility = "visible";
-  let hiddenCommentId = document.createElement("input");
-  hiddenCommentId.type = "text";
-  hiddenCommentId.hidden = true;
-  hiddenCommentId.name = "commentId";
-  hiddenCommentId.value = replyCommentButton.value;
-  let replyCommentForm = document.querySelector("#reply-comment-form")
-  replyCommentForm.appendChild(hiddenCommentId);
-  let replyCommentInput = document.querySelector("#reply-comment-input");
-  replyCommentInput.value = "";
-  replyCommentInput.focus();
+replyCommentButtons.forEach((button) => {
+  button.addEventListener("click", (event) => {
+    event.preventDefault();
+    header.style.zIndex = 0;
+    replyCommentInputContainer.style.opacity = 1;
+    replyCommentInputContainer.style.visibility = "visible";
+    let hiddenCommentId = document.createElement("input");
+    hiddenCommentId.type = "text";
+    hiddenCommentId.hidden = true;
+    hiddenCommentId.name = "commentId";
+    hiddenCommentId.value = button.value;
+    let replyCommentForm = document.querySelector("#reply-comment-form");
+    replyCommentForm.appendChild(hiddenCommentId);
+    let replyCommentInput = document.querySelector("#reply-comment-input");
+    replyCommentInput.value = "";
+    replyCommentInput.focus();
+  });
 });
 
 const replyCommentConfirmButton = document.querySelector(
