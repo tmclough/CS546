@@ -153,6 +153,8 @@ router
       }
       console.log(post);
 
+      let currentUserInfo = req.session.user;
+
       res.render("posts/viewPost", {
         title: "View Post",
         cssFile: "/public/css/viewPost.css",
@@ -161,6 +163,7 @@ router
         userInfo: userInfo,
         userLogin: req.session.user ? false : true,
         isOwnerOfPost: isOwnerOfPost,
+        currentUserInfo: currentUserInfo,
       });
     } catch (e) {
       res.status(400).send({ error: e });

@@ -411,12 +411,11 @@ main {
   top: 20px;
 }
 
-.delete-post-button {
+#delete-post-button {
   padding: 5px 12px;
   border-radius: 8px;
   font-size: 20px;
   background-color: rgb(255, 0, 0);
-
   transition: 0.15s;
   cursor: pointer;
   width: 150px;
@@ -453,16 +452,38 @@ main {
   margin-bottom: 30px;
   width: 100%;
   padding: 20px;
+  outline: 1px solid black;
+  position: relative;
 }
 
 .comment-container2 {
-  display: flex;
+  position: absolute;
+  top: -10px;
+  right: 12px;
 }
 
 .comment {
-  margin-bottom: 15px;
+  margin-bottom: 30px;
   margin-right: 20px;
   font-size: 18px;
+}
+
+.replies-heading {
+  margin-left: 12px;
+  margin-bottom: 12px;
+}
+
+.replies {
+  margin-left: 12px;
+}
+
+.reply {
+  margin-bottom: 15px;
+}
+
+.rightside {
+  display: flex;
+  flex-direction: column;
 }
 
 .modify-comments {
@@ -500,7 +521,7 @@ main {
   margin-top: 20px;
 }
 
-.reply-comment-button {
+#reply-comment-button {
   font-size: 12px;
   padding: 5px 5px;
   border-radius: 5px;
@@ -513,11 +534,16 @@ main {
 }
 
 .delete-comment-button:hover,
-.reply-comment-button:hover {
+#reply-comment-button:hover {
   opacity: 0.75;
 }
 
-.add-comment-input-container {
+#reply-comment-button {
+  margin-right: 4px;
+}
+
+.add-comment-input-container,
+.reply-comment-input-container {
   opacity: 0;
   visibility: hidden;
   /* display: none; */
@@ -535,7 +561,8 @@ main {
   background-color: white;
 }
 
-#add-comment-form {
+#add-comment-form,
+#reply-comment-form {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -543,24 +570,28 @@ main {
   position: relative;
 }
 
-#add-comment-form label {
+#add-comment-form label,
+#reply-comment-form label {
   margin-bottom: 15px;
   font-size: 24px;
 }
 
-#add-comment-input {
+#add-comment-input,
+#reply-comment-input {
   padding: 20px;
   margin-bottom: 15px;
 }
 
-.exit-add-comment {
+.exit-add-comment,
+.exit-reply-comment {
   position: absolute;
   right: -22px;
   top: -35px;
   cursor: pointer;
 }
 
-.add-comment-confirm-button {
+#add-comment-confirm-button,
+#reply-comment-confirm-button {
   font-size: 20px;
   padding: 5px 12px;
   border-radius: 5px;
@@ -571,11 +602,13 @@ main {
   margin-top: 20px;
 }
 
-.add-comment-confirm-button:hover {
+#add-comment-confirm-button:hover,
+#reply-comment-confirm-button:hover {
   background-color: rgb(48, 129, 236);
 }
 
-.clientside-comment-error {
+.clientside-add-comment-error,
+.clientside-reply-comment-error {
   color: red;
 }
 
