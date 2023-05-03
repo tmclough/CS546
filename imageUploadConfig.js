@@ -1,4 +1,4 @@
-import { S3Client } from "@aws-sdk/client-s3";
+import { S3, S3Client } from "@aws-sdk/client-s3";
 import multerS3 from "multer-s3"
 import multer from "multer";
 import path from "path";
@@ -14,7 +14,22 @@ const config = {
     }
 }
 const s3 = new S3Client(config);
+const newS3 = new S3(config);
 
+export const deleteFile = async (url) => {
+    let filename = url.substring(48, url.length);
+    let params = {
+        Bucket: process.env.AWS_BUCKET_NAME,
+        Key: filename
+    }
+    await newS3.deleteObject(params, function (err, data) {
+        if (err) {
+            throw "Error: AWS deletion error";
+        }
+    });
+
+    return { deleted: true };
+}
 
 export const uploadImages = (req, res, next) => {
     const upload = multer({

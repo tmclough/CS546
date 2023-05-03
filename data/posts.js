@@ -2,6 +2,7 @@ import { posts } from "../config/mongoCollections.js";
 import { ObjectId } from "mongodb";
 import validation from "../validation.js";
 import userData from "./users.js";
+import deleteFile from "../imageUploadConfig.js";
 let exportedMethods = {
   async addPost(userId, name, description, imgUrlArray, tags, location) {
     userId = validation.checkId(userId, "userId");
@@ -13,7 +14,7 @@ let exportedMethods = {
 
     let date = new Date().toDateString();
     const user = await userData.getUserById(userId);
-    if (!user) throw "Error: insert Failed";
+    if (!user) throw "Error: No user found";
 
     let newPost = {
       userId: userId,
@@ -44,7 +45,11 @@ let exportedMethods = {
     });
     if (deletionInfo.lastErrorObject.n === 0)
       throw "Error: Could not delete post";
-
+    // if (deletionInfo.value.imgUrls) {
+    //   for (let i = 0; i < deletionInfo.value.imgUrls.length; i++) {
+    //     await deleteFile(deletionInfo.value.imgUrls[i]);
+    //   }
+    // }
     return { deleted: true };
   },
 
