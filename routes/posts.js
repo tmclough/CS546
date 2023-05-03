@@ -153,6 +153,8 @@ router
       }
       console.log(post);
 
+      let currentUserInfo = req.session.user;
+
       res.render("posts/viewPost", {
         title: "View Post",
         cssFile: "/public/css/viewPost.css",
@@ -161,6 +163,7 @@ router
         userInfo: userInfo,
         userLogin: req.session.user ? false : true,
         isOwnerOfPost: isOwnerOfPost,
+        currentUserInfo: currentUserInfo,
       });
     } catch (e) {
       res.status(400).send({ error: e });
@@ -202,6 +205,7 @@ router
       if (commentError) {
         res.render("posts/viewPost", {
           title: "View Post",
+          userLogin: req.session.user ? false : true,
           cssFile: "/public/css/viewPost.css",
           jsFile: "/public/js/viewPost.js",
           commentError: commentError,
@@ -237,7 +241,24 @@ router
   });
 router
   .route("/reply/:id")
-  .post(async (req, res) => {})
-  .delete(async (req, res) => {});
+  .post(async (req, res) => {
+    const postId = validation.checkId(req.params.id);
+    const commentId = validation.checkId(req.body.commentId);
+    const userId = validation.checkId(req.session.user._id);
+    const comment = validation.checkCommentInput(req.body.replyCommentInput);
+    try {
+      const replyInfo = await commentData.replayToComment(userId, commentId, comment);
+      if (replyInfo) {
+        res.redirect(`/post/${postId}`);
+      }
+      else {
+        res.status(400).json({ error: "reply unsuccessful" });
+      }
+    } catch (e) {
+      res.status(400).send({ error: e });
+    }
+
+  })
+  .delete(async (req, res) => { });
 
 export default router;

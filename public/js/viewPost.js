@@ -144,7 +144,7 @@ addCommentButton.addEventListener("click", (event) => {
 });
 
 const addCommentConfirmButton = document.querySelector(
-  ".add-comment-confirm-button"
+  "#add-comment-confirm-button"
 );
 const comments = document.querySelector(".comments");
 const addCommentForm = document.querySelector("#add-comment-form");
@@ -162,14 +162,14 @@ if (addCommentForm) {
       errors = true;
     }
 
-    let clientsideCommentError = document.querySelector(
-      ".clientside-comment-error"
+    let clientsideAddCommentError = document.querySelector(
+      ".clientside-add-comment-error"
     );
-    clientsideCommentError.innerHTML = "";
+    clientsideAddCommentError.innerHTML = "";
     if (errors) {
       event.preventDefault();
       if (commentError) {
-        clientsideCommentError.innerHTML = commentError;
+        clientsideAddCommentError.innerHTML = commentError;
       }
     } else {
       let newCommentContainer = document.createElement("div");
@@ -196,13 +196,73 @@ if (addCommentForm) {
   });
 }
 
+const replyCommentButtons = document.querySelectorAll(".reply-comment-button");
+const replyCommentInputContainer = document.querySelector(
+  ".reply-comment-input-container"
+);
+
+replyCommentButtons.forEach((button) => {
+  button.addEventListener("click", (event) => {
+    event.preventDefault();
+    header.style.zIndex = 0;
+    replyCommentInputContainer.style.opacity = 1;
+    replyCommentInputContainer.style.visibility = "visible";
+    let hiddenCommentId = document.createElement("input");
+    hiddenCommentId.type = "text";
+    hiddenCommentId.hidden = true;
+    hiddenCommentId.name = "commentId";
+    hiddenCommentId.value = button.value;
+    let replyCommentForm = document.querySelector("#reply-comment-form");
+    replyCommentForm.appendChild(hiddenCommentId);
+    let replyCommentInput = document.querySelector("#reply-comment-input");
+    replyCommentInput.value = "";
+    replyCommentInput.focus();
+  });
+});
+
+const replyCommentConfirmButton = document.querySelector(
+  "#reply-comment-confirm-button"
+);
+const replyCommentForm = document.querySelector("#reply-comment-form");
+const repliesContainer = document.querySelector(".replies-container");
+const replies = document.querySelector(".replies");
+
+if (replyCommentForm) {
+  replyCommentForm.addEventListener("submit", (event) => {
+    header.style.zIndex = 10000;
+    let replyCommentInput = document.querySelector(
+      "#reply-comment-input"
+    ).value;
+    let newReply = document.createElement("p");
+    newReply.innerHTML = replyCommentInput;
+    newReply.classList.add("reply");
+    replies.appendChild(newReply);
+
+    replyCommentInputContainer.style.opacity = 0;
+    replyCommentInputContainer.style.visibility = "hidden";
+    replyCommentForm.submit();
+  });
+}
+
 const exitAddCommentButton = document.querySelector(".exit-add-comment");
 
 exitAddCommentButton.addEventListener("click", (event) => {
+  header.style.zIndex = 10000;
   addCommentInputContainer.style.opacity = 0;
   addCommentInputContainer.style.visibility = "hidden";
-  let clientsideCommentError = document.querySelector(
-    ".clientside-comment-error"
+  let clientsideAddCommentError = document.querySelector(
+    ".clientside-add-comment-error"
   );
-  clientsideCommentError.innerHTML = "";
+  clientsideAddCommentError.innerHTML = "";
+});
+
+const exitReplyCommentButton = document.querySelector(".exit-reply-comment");
+exitReplyCommentButton.addEventListener("click", (event) => {
+  header.style.zIndex = 10000;
+  replyCommentInputContainer.style.opacity = 0;
+  replyCommentInputContainer.style.visibility = "hidden";
+  let clientsideReplyCommentError = document.querySelector(
+    ".clientside-reply-comment-error"
+  );
+  clientsideReplyCommentError.innerHTML = "";
 });

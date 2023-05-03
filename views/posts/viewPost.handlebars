@@ -113,7 +113,8 @@
                     <div class="delete-post-container">
                         <form action="" method="POST">
                             <input type="text" name="_method" value="DELETE" hidden>
-                            <input type="submit" class="delete-post-button" value="Delete Post">
+                            <label for="delete-post-button"></label>
+                            <input type="submit" id="delete-post-button" value="Delete Post">
                         </form>
                     </div>
                     {{/if}}
@@ -122,37 +123,52 @@
                     <h2 class="comments-heading">Comments</h2>
                     {{#each post.comments}}
                     <div class="comment-container">
-                        <p class="comment">{{this.comment}}</p> <!-- add username: "comment"-->
+                        <div class="replies-container">
+
+                            <p class="comment">{{this.username}}: {{this.comment}}</p> <!-- add username: "comment"-->
+                            <p class="replies-heading">Replies:</p>
+                            <div class="replies">
+                                {{#each this.replies}}
+                                <!-- array of objects: replyId, postId, userId, username, reply-->
+                                <p class="reply">{{this.comment}}</p>
+                                {{/each}}
+                            </div>
+                        </div>
                         {{#if ../isOwnerOfPost}}
-                        <div class="delete-comment-container">
+                        <div class="comment-container2">
                             <form action="comment/{{../post._id}}" method="POST">
                                 <input type="text" name="_method" value="DELETE" hidden>
-                                <input type="submit" class="delete-comment-button" value="Delete Comment">
-                                <input type="text" name="commentId" value={{this._id}} hidden>
+                                <label for="delete-button"></label>
+                                <input type="submit" id="delete-button" class="delete-comment-button"
+                                    value="Delete Comment">
+                                <input type="text" id="comment-id-input" name="commentId" value={{this._id}} hidden>
                             </form>
                         </div>
-                        {{else}}
-                        {{#if this.madeByCurrentUser}}
+                        {{else if this.madeByCurrentUser}}
                         <div class="comment-container2">
-                            <button class="reply-comment-button">Reply</button>
                             <div class="delete-comment-container">
                                 <form action="comment/{{../post._id}}" method="POST">
                                     <input type="text" name="_method" value="DELETE" hidden>
-                                    <input type="submit" class="delete-comment-button" value="Delete Comment">
-                                    <input type="text" name="commentId" value={{this._id}} hidden>
+                                    <label for="delete-button"></label>
+                                    <input type="submit" id="delete-button" class="delete-comment-button"
+                                        value="Delete Comment">
+                                    <input type="text" id="comment-id-input" name="commentId" value={{this._id}} hidden>
                                 </form>
                             </div>
                         </div>
-                        {{/if}}
+                        {{else}}
+                        <div class="comment-container2">
+                            <div class="reply-comment-container">
+                                <button class="reply-comment-button" value="{{this._id}}">Reply</button>
+                            </div>
+                        </div>
                         {{/if}}
                     </div>
                     {{/each}}
                 </div>
+
                 <div class="modify-comments">
-                    {{#if isOwnerOfPost}}
-                    {{else}}
                     <button class="add-comment-button">Add Comment</button>
-                    {{/if}}
                     <!-- show only if you're the owner of the post-->
                 </div>
             </div>
@@ -160,11 +176,22 @@
     </div>
     <div class="add-comment-input-container">
         <form action="comment/{{post._id}}" id="add-comment-form" method="POST">
-            <label for="addCommentInput">Add Comment:</label>
+            <label for="add-comment-input">Add Comment:</label>
             <textarea name="addCommentInput" id="add-comment-input" cols="50" rows="15"></textarea>
-            <div class="clientside-comment-error"></div>
-            <input type="submit" class="add-comment-confirm-button" value="Confirm">
-            <img src="/public/images/x.svg" alt="" class="exit-add-comment">
+            <div class="clientside-add-comment-error"></div>
+            <label for="add-comment-confirm-button"></label>
+            <input type="submit" id="add-comment-confirm-button" value="Confirm">
+            <img src="/public/images/x.svg" alt="exit" class="exit-add-comment">
+        </form>
+    </div>
+    <div class="reply-comment-input-container">
+        <form action="reply/{{post._id}}" id="reply-comment-form" method="POST">
+            <label for="reply-comment-input">Reply to Comment:</label>
+            <textarea name="replyCommentInput" id="reply-comment-input" cols="50" rows="15"></textarea>
+            <div class="clientside-reply-comment-error"></div>
+            <label for="reply-comment-confirm-button"></label>
+            <input type="submit" id="reply-comment-confirm-button" value="Confirm">
+            <img src="/public/images/x.svg" alt="exit" class="exit-reply-comment">
         </form>
     </div>
     {{#if commentError}}

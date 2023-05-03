@@ -19,6 +19,7 @@ router
         cssFile: "/public/css/homepage.css",
         jsFile: "/public/js/homepage.js",
         userLogin: req.session.user ? false : true,
+        postHeading: "All posts"
       });
     } catch (e) {
       res.status(500).json({ error: e });
@@ -184,6 +185,8 @@ router
         cssFile: "/public/css/homepage.css",
         jsFile: "/public/js/homepage.js",
         searchText: searchText,
+        postHeading: `Search results for tags: ${tags}`,
+        userLogin: req.session.user ? false : true,
       });
     } else {
       res.render("users/homepage", {
@@ -192,6 +195,8 @@ router
         cssFile: "/public/css/homepage.css",
         jsFile: "/public/js/homepage.js",
         searchText: searchText,
+        postHeading: `Search results for: ${searchText}`,
+        userLogin: req.session.user ? false : true,
       });
     }
   });

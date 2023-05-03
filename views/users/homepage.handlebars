@@ -6,8 +6,7 @@
       <form method="POST" action="/homepage" class="search-form" id="search-form">
 
         <label for="search-bar" class="search-label">
-          <input name="searchText" type="text" placeholder="Search for an item" class="search-bar" id="search-bar"
-            value="" />
+          <input name="searchText" type="text" placeholder="Search for an item" class="search-bar" id="search-bar" />
           <button type="submit" class="search-button">Search</button>
         </label>
         <div class="filter-container">
@@ -48,15 +47,11 @@
               <input id="other" name="tagSelect" type="checkbox" value="Other" />
               <label for="other">Other</label>
             </div>
-            <div class="hightolow-container">
-              <input id="hightolow-checkbox" name="tagSelect" type="checkbox" value="Rating" />
-              <label for="hightolow-checkbox">High to Low Rating</label>
-            </div>
           </label>
         </div>
+
         <button type="submit" class="filter-button">Filter</button>
       </form>
-
     </div>
     {{#if userLogin}}
     <div class="links">
@@ -74,7 +69,7 @@
       <img src="public/images/align-justify.svg" alt="toggle button" class="toggle-button-image" />
     </div>
   </div>
-  {{#if userLogin}}
+  {{!-- {{#if userLogin}}
   <div class="dropdown-menu">
     <div class="dropdown-links">
       <a href="/login">Log In</a>
@@ -89,7 +84,7 @@
       <a href="/logout">Log Out</a>
     </div>
   </div>
-  {{/if}}
+  {{/if}} --}}
 </header>
 
 <main>
@@ -133,10 +128,6 @@
             <input id="other2" name="tagSelect" type="checkbox" value="Other" />
             <label for="other2">Other</label>
           </div>
-          <div class="hightolow-container">
-            <input id="hightolow-checkbox" name="tagSelect" type="checkbox" value="Rating" />
-            <label for="hightolow-checkbox">High to Low Rating</label>
-          </div>
         </label>
       </div>
       <button type="submit" class="search-button">Filter Tags</button>
@@ -144,24 +135,24 @@
   </form>
 
   <div class="posts-section">
-    <h2 class="posts-heading">My Posts</h2>
-    <div class="posts">
-      {{#each posts}}
-      <a href="post/{{_id}}">
-        <div class="post">
-          <p class="name">{{name}}</p>
-          <p class="description">{{description}}</p>
-          <p class="tags">{{tags}}</p>
-          <p class="location">{{location}}</p>
-          <p class="posted-date">{{postedDate}}</p>
-          {{#each comments}}
-          <p class="comments">{{this.comment}}</p>
-          {{/each}}
-          <p class="rating">{{rating}}</p>
-          <p class="claimed">{{claimed}}</p>
-        </div>
-      </a>
-      {{/each}}
-    </div>
+    <h1 class="posts-heading">{{postHeading}}</h2>
+      <div class="posts">
+        {{#each posts}}
+        <a href="post/{{_id}}">
+          <div class="post">
+            <p class="name">{{name}}</p>
+            <p class="description">{{description}}</p>
+            <p class="tags">{{tags}}</p>
+            <p class="location">{{location}}</p>
+            <p class="posted-date">{{postedDate}}</p>
+            {{#each comments}}
+            <p class="comments">{{this.comment}}</p>
+            {{/each}}
+            <p class="rating">{{rating}}</p>
+            <p class="claimed">{{claimed}}</p>
+          </div>
+        </a>
+        {{/each}}
+      </div>
   </div>
 </main>
