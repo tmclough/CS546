@@ -2,7 +2,7 @@ import { posts } from "../config/mongoCollections.js";
 import { ObjectId } from "mongodb";
 import validation from "../validation.js";
 import userData from "./users.js";
-
+// import deleteFile from "../imageUploadConfig.js";
 let exportedMethods = {
   async addPost(userId, name, description, imgUrlArray, tags, location) {
     userId = validation.checkId(userId, "userId");
