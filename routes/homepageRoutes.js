@@ -53,12 +53,12 @@ router
 
     let postArr = [];
     let tagsArr = [];
-
     if (!tags || tags.length === 0) {
       postArr = postArr;
     } else {
       for (let i = 0; i < tags.length; i++) {
         let posts = await postData.getPostsByTag(tags[i]);
+
         if (posts && posts.length > 0) {
           tagsArr.push(posts);
         }
@@ -155,24 +155,19 @@ router
     }
 
     postArr = postArr.flat(100);
-
-    for (let i = 0; i < postArr.length; i++) {
-      let post = postArr[i];
-      post._id = post._id.toString();
-    }
-    console.log(postArr);
     tagsArr = tagsArr.flat(100);
-    let finalArr = postArr;
-    if (finalArr === []) finalArr = tagsArr;
 
+    let finalArr = [];
+    if (tags && tags.length !== 0) {
+      finalArr = tagsArr;
+    } else {
+      finalArr = postArr;
+    }
     if (orderByRating) {
       let ratingArr = [];
       for (let p of finalArr) {
-        const user = await userData.getUserById(p.userId);
-
-        ratingArr.push(user.rating);
+        ratingArr.push(p.rating);
       }
-
       let resArr = [];
       for (let x = 5; x > 0; x--) {
         for (let a = 0; a < ratingArr.length; a++) {
