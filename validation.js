@@ -15,7 +15,7 @@ export const locations = [
   "Morton Hal",
   "Nicoll Environmental Laboratory",
   "North Building",
-  "Peirce Hall",
+  "Pierce Hall",
   "Rocco Technology Center",
   "Samuel C. Williams Library",
   "1 Ninth Street",
@@ -45,7 +45,7 @@ export const tags = [
   "Appliances",
   "Furniture",
   "Clothing",
-  "Sport Equipment",
+  "Sports Equipment",
   "Books",
   "School Supplies",
   "Other",
@@ -177,17 +177,17 @@ const exportedMethods = {
       arr = [arr];
     }
     arr = this.checkStringArray(arr, varName);
-    arr = arr.map((i) => {
-      return i.toLowerCase();
-    });
-    let lowerCaseTags = tags.map((i) => {
-      return i.toLowerCase();
-    });
-    for (let i = 0; i < arr.length; i++) {
-      if (!lowerCaseTags.includes(arr[i])) {
-        throw `Error: Invalid Tags ${arr[i]}`;
-      }
-    }
+    // arr = arr.map((i) => {
+    //   return i.toLowerCase();
+    // });
+    // let lowerCaseTags = tags.map((i) => {
+    //   return i.toLowerCase();
+    // });
+    // for (let i = 0; i < arr.length; i++) {
+    //   if (!lowerCaseTags.includes(arr[i])) {
+    //     throw `Error: Invalid Tags ${arr[i]}`;
+    //   }
+    // }
     return arr;
   },
 
@@ -205,6 +205,7 @@ const exportedMethods = {
     if (!urlRegex.test(url)) throw "Error: Invalid Url";
     return url;
   },
+
 
   checkCommentInput(comment, varName) {
     comment = this.checkString(comment, varName);

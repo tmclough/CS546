@@ -88,8 +88,8 @@ try {
     "64504b06225d58278b8a0938",
     "Baseball Hat",
     "2012 edition, lightly used",
-    "url",
-    ["Clothes", "Sports"],
+    ["https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/200px-Google_%22G%22_Logo.svg.png"],
+    ["Clothing", "Sport Equipment"],
     "807 Castle Point Terrace"
   );
 
@@ -97,8 +97,8 @@ try {
     "64504b06225d58278b8a0938",
     "new_textbook",
     "2012 edition, lightly used",
-    "url",
-    ["Textbook"],
+    ["url"],
+    ["Books"],
     "807 Castle Point Terrace"
   );
 
@@ -106,7 +106,7 @@ try {
     "64504b0a225d58278b8a0939",
     "Desk",
     "Brown, lightly used",
-    "url",
+    ["url"],
     ["Furniture"],
     "807 Castle Point Terrace"
   );
@@ -114,23 +114,23 @@ try {
     "64504b0a225d58278b8a0939",
     "Baseball bat",
     "Orange, extra small",
-    "url",
-    ["Sports"],
+    ["url"],
+    ["Sport Equipment"],
     "807 Castle Point Terrace"
   );
   await posts.addPost(
     "64504b0f225d58278b8a093a",
     "Lighting",
     "extra small",
-    "url",
-    ["Room Decor"],
+    ["url"],
+    ["Other"],
     "807 Castle Point Terrace"
   );
   await posts.addPost(
     "64504b0f225d58278b8a093a",
     "Mouse",
     "2 months old, lightly used",
-    "url",
+    ["url"],
     ["Electronics"],
     "807 Castle Point Terrace"
   );
@@ -138,7 +138,7 @@ try {
     "64504b1a225d58278b8a093c",
     "keyboard",
     "2 months old, lightly used",
-    "url",
+    ["url"],
     ["Electronics"],
     "807 Castle Point Terrace"
   );
