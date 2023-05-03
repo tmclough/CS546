@@ -125,7 +125,12 @@ router
 router
   .route("/:id")
   .get(async (req, res) => {
-    const id = validation.checkId(req.params.id);
+    let id;
+    try {
+      id = validation.checkId(req.params.id, "postId");
+    } catch (e) {
+      return res.status(400).render("error/errorPage", { error: e, errorCode: 400 });
+    }
 
     try {
       const post = await postData.getPostById(id);
@@ -134,9 +139,6 @@ router
       if (post.userId === userInfo._id) {
         isOwnerOfPost = true;
       }
-      console.log(post);
-      console.log(userInfo);
-      console.log(isOwnerOfPost);
 
       for (let i = 0; i < post.comments.length; i++) {
         let commentInfo = post.comments[i];
