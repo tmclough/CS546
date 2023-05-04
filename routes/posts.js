@@ -6,6 +6,7 @@ import { commentData } from "../data/index.js";
 import validation from "../validation.js";
 import { locations } from "../validation.js";
 import { uploadImages } from "../imageUploadConfig.js";
+import xss from "xss";
 
 router
   .route("/")
@@ -31,6 +32,7 @@ router
 
     let itemNameError;
     try {
+      postInfo.itemName = xss(postInfo.itemName);
       postInfo.itemName = validation.checkItemName(
         postInfo.itemName,
         "itemName"
@@ -42,6 +44,7 @@ router
 
     let descriptionError;
     try {
+      postInfo.description = xss(postInfo.description);
       postInfo.description = validation.checkDescription(
         postInfo.description,
         "description"
@@ -53,6 +56,7 @@ router
 
     let locationError;
     try {
+      postInfo.location = xss(postInfo.location);
       postInfo.location = validation.checkLocation(
         postInfo.location,
         "location"
@@ -64,6 +68,7 @@ router
 
     let tagsError;
     try {
+      postInfo.tagSelect = xss(postInfo.tagSelect);
       postInfo.tagSelect = validation.checkTags(postInfo.tagSelect, "tags");
     } catch (e) {
       hasError = true;
@@ -83,7 +88,7 @@ router
     }
 
     if (hasError) {
-      return res.render("posts/addPost", {
+      return res.status(400).render("posts/addPost", {
         title: "Add Post",
         cssFile: "/public/css/addPost.css",
         jsFile: "/public/js/addPost.js",
@@ -115,30 +120,29 @@ router
       if (post) {
         res.redirect("/homepage");
       } else {
-        res.send({ error: "something happend" });
+        res.status(400).render({ error: "Add post failed", errorCode: 400 });
       }
     } catch (e) {
-      res.status(500).send({ error: e });
+      res.status(500).render("error/errorPage", { error: "Internal Server Error", errorCode: 500 });
     }
   });
 
 router
   .route("/:id")
   .get(async (req, res) => {
-    let id;
+    let postId;
     try {
-      id = validation.checkId(req.params.id, "postId");
+      postId = validation.checkId(xss(req.params.id), "postId");
     } catch (e) {
       return res.status(400).render("error/errorPage", { error: e, errorCode: 400 });
     }
 
+    if (!req.session.user) return res.status(400).render("error/errorPage", { error: "Error: User not logged in", errorCode: 400 });
+
     try {
-      const post = await postData.getPostById(id);
-      const userInfo = await userData.getUserById(req.session.user._id);
-      let isOwnerOfPost = false;
-      if (post.userId === userInfo._id) {
-        isOwnerOfPost = true;
-      }
+      const post = await postData.getPostById(postId);
+      const userInfo = await userData.getUserById(xss(req.session.user._id));
+      let isOwnerOfPost = post.userId === userInfo._id;
 
       for (let i = 0; i < post.comments.length; i++) {
         let commentInfo = post.comments[i];
@@ -153,9 +157,6 @@ router
       for (let i = 0; i < post.comments.length; i++) {
         post.comments[i]._id = post.comments[i]._id.toString();
       }
-      console.log(post);
-
-      let currentUserInfo = req.session.user;
 
       res.render("posts/viewPost", {
         title: "View Post",
@@ -165,35 +166,49 @@ router
         userInfo: userInfo,
         userLogin: req.session.user ? false : true,
         isOwnerOfPost: isOwnerOfPost,
-        currentUserInfo: currentUserInfo,
+        currentUserInfo: req.session.user
       });
     } catch (e) {
-      res.status(400).send({ error: e });
+      res.status(500).render("error/errorPage", { error: "Internal Server Error", errorCode: 500 });
     }
   })
   .delete(async (req, res) => {
-    const id = validation.checkId(req.params.id);
+    let id;
+    try {
+      id = validation.checkId(xss(req.params.id), "postId");
+    } catch (e) {
+      return res.status(400).render("error/errorPage", { error: e, errorCode: 400 });
+    }
+
     try {
       const deletedInfo = await postData.deletePost(id);
       if (deletedInfo) {
         res.redirect("/");
       } else {
-        res.status(400).json({ error: "deletion unsuccessful" });
+        return res.status(400).render("error/errorPage", { error: "delete failed", errorCode: 400 });
       }
     } catch (e) {
-      res.status(400).json({ error: e });
+      res.status(400).render("error/errorPage", { error: e, errorCode: 400 });
     }
   });
 router
   .route("/comment/:id")
   .post(async (req, res) => {
-    const id = validation.checkId(req.params.id);
+    let postId;
     try {
-      const post = await postData.getPostById(id);
+      postId = validation.checkId(xss(req.params.id), "postId");
+    } catch (e) {
+      return res.status(400).render("error/errorPage", { error: e, errorCode: 400 });
+    }
+    if (!req.session.user._id) return res.status(400).render("error/errorPage", { error: "Error: User not logged in", errorCode: 400 });
+
+
+    try {
+      const post = await postData.getPostById(postId);
       const userInfo = await userData.getUserById(req.session.user._id);
-      let addCommentInput = req.body.addCommentInput;
+      let addCommentInput = xss(req.body.addCommentInput);
       let userId = userInfo._id.toString();
-      let postId = post._id.toString();
+      //let postId = post._id.toString();
       let commentError = undefined;
       try {
         addCommentInput = validation.checkCommentInput(
@@ -205,14 +220,13 @@ router
       }
 
       if (commentError) {
-        res.render("posts/viewPost", {
+        return res.status(400).render("posts/viewPost", {
           title: "View Post",
           userLogin: req.session.user ? false : true,
           cssFile: "/public/css/viewPost.css",
           jsFile: "/public/js/viewPost.js",
           commentError: commentError,
         });
-        return;
       }
       const postWithNewComment = await commentData.addComment(
         userId,
@@ -221,46 +235,88 @@ router
       );
       res.redirect(`/post/${postId}`);
     } catch (e) {
-      res.status(400).send({ error: e });
+      res.status(400).render("error/errorPage", { error: e, errorCode: 400 });
     }
   })
   .delete(async (req, res) => {
-    const id = validation.checkId(req.params.id);
+    let postId;
     try {
-      const post = await postData.getPostById(id);
-      const userInfo = await userData.getUserById(req.session.user._id);
-      let postId = post._id.toString();
-      let commentId = req.body.commentId.toString();
+      postId = validation.checkId(xss(req.params.id), "postId");
+    } catch (e) {
+      return res.status(400).render("error/errorPage", { error: e, errorCode: 400 });
+    }
+    try {
+      const post = await postData.getPostById(postId);
+      //const userInfo = await userData.getUserById(req.session.user._id);
+      //let postId = post._id.toString();
+      let commentId = xss(req.body.commentId.toString());
       const deletedInfo = await commentData.deleteComment(postId, commentId);
       if (deletedInfo) {
         res.redirect(`/post/${postId}`);
       } else {
-        res.status(400).json({ error: "deletion unsuccessful" });
+        res.status(400).render("error/errorPage", { error: "delete failed", errorCode: 400 });
       }
     } catch (e) {
-      res.status(400).send({ error: e });
+      res.status(400).render("error/errorPage", { error: e, errorCode: 400 });
     }
   });
 router
   .route("/reply/:id")
   .post(async (req, res) => {
-    const postId = validation.checkId(req.params.id);
-    const commentId = validation.checkId(req.body.commentId);
-    const userId = validation.checkId(req.session.user._id);
-    const comment = validation.checkCommentInput(req.body.replyCommentInput);
+    let postId;
+    try {
+      postId = validation.checkId(xss(req.params.id));
+    } catch (e) {
+      return res.status(400).render("error/errorPage", { error: e, errorCode: 400 });
+    }
+
+    if (!req.session.user) return res.status(400).render("error/errorPage", { error: "Error: User not logged in", errorCode: 400 });
+
+    let userId;
+    try {
+      userId = validation.checkId(xss(req.session.user._id));
+    } catch (e) {
+      return res.status(400).render("error/errorPage", { error: e, errorCode: 400 });
+    }
+
+
+    let commentId;
+    try {
+      commentId = validation.checkId(xss(req.body.commentId));
+    } catch (e) {
+      return res.status(400).render("error/errorPage", { error: e, errorCode: 400 });
+    }
+
+    let commentError = undefined;
+    let comment;
+    try {
+      comment = validation.checkCommentInput(xss(req.body.replyCommentInput));
+    } catch (e) {
+      commentError = e;
+    }
+
+    // if (commentError) {
+    //   return res.status(400).render("posts/viewPost", {
+    //     title: "View Post",
+    //     userLogin: req.session.user ? false : true,
+    //     cssFile: "/public/css/viewPost.css",
+    //     jsFile: "/public/js/viewPost.js",
+    //     commentError: commentError,
+    //   });
+    // }
+
     try {
       const replyInfo = await commentData.replayToComment(userId, commentId, comment);
       if (replyInfo) {
         res.redirect(`/post/${postId}`);
       }
       else {
-        res.status(400).json({ error: "reply unsuccessful" });
+        res.status(400).render("error/errorPage", { error: "reply failed", errorCode: 400 });
       }
     } catch (e) {
-      res.status(400).send({ error: e });
+      res.status(400).render("error/errorPage", { error: e, errorCode: 400 });
     }
 
-  })
-  .delete(async (req, res) => { });
+  });
 
 export default router;

@@ -75,7 +75,7 @@ let exportedMethods = {
     return userInfo;
   },
   async getUserByName(username) {
-    username = validation.checkString(username, "username");
+    username = validation.checkUsername(username, "username");
     const userCollection = await users();
     const userInfo = await userCollection.findOne({ username: username })
 
@@ -83,7 +83,7 @@ let exportedMethods = {
     userInfo._id = userInfo._id.toString();
     return userInfo;
   },
-  
+
 
 };
 

@@ -3,6 +3,7 @@ const router = Router();
 import { ObjectId } from "mongodb";
 import { postData, userData } from "../data/index.js";
 import validation from "../validation.js";
+import xss from "xss";
 let searchStr = "";
 
 router.route("/").get((req, res) => {
@@ -21,10 +22,12 @@ router
         userLogin: req.session.user ? false : true,
       });
     } catch (e) {
-      res.status(500).json({ error: e });
+      res.status(500).render("error/errorPage", { error: e, errorCode: 500 });
     }
   })
   .post(async (req, res) => {
+    //Need to do input validation
+
     let orderByRating = false;
     const postList = await postData.getAllPosts();
     let tags = req.body.tagSelect;
@@ -182,6 +185,7 @@ router
         cssFile: "/public/css/homepage.css",
         jsFile: "/public/js/homepage.js",
         searchText: searchText,
+        userLogin: req.session.user ? false : true,
       });
     } else {
       res.render("users/homepage", {
@@ -190,6 +194,7 @@ router
         cssFile: "/public/css/homepage.css",
         jsFile: "/public/js/homepage.js",
         searchText: searchText,
+        userLogin: req.session.user ? false : true,
       });
     }
   });

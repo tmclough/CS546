@@ -2,7 +2,7 @@ import { Router } from "express";
 const router = Router();
 import { userData } from "../data/index.js";
 import validation from "../validation.js";
-
+import xss from "xss";
 router
   .route("/")
   .get(async (req, res) => {
@@ -21,6 +21,7 @@ router
     let errors = false;
     let firstNameError = undefined;
     try {
+      userInfo.firstName = xss(userInfo.firstName);
       userInfo.firstName = validation.checkFirstAndLastName(
         userInfo.firstName,
         "first name"
@@ -32,6 +33,7 @@ router
 
     let lastNameError = undefined;
     try {
+      userInfo.lastName = xss(userInfo.lastName);
       userInfo.lastName = validation.checkFirstAndLastName(
         userInfo.lastName,
         "last name"
@@ -42,6 +44,7 @@ router
     }
     let emailError = undefined;
     try {
+      userInfo.email = xss(userInfo.email);
       userInfo.email = validation.checkEmail(userInfo.email, "email");
     } catch (e) {
       emailError = e;
@@ -49,6 +52,7 @@ router
     }
     let usernameError = undefined;
     try {
+      userInfo.username = xss(userInfo.username);
       userInfo.username = validation.checkUsername(
         userInfo.username,
         "username"
@@ -59,6 +63,7 @@ router
     }
     let passwordError = undefined;
     try {
+      userInfo.password = xss(userInfo.password);
       userInfo.password = validation.checkPassword(
         userInfo.password,
         "password"
@@ -110,7 +115,7 @@ router
       );
       res.redirect("/login");
     } catch (e) {
-      res.sendStatus(500).json({ error: e });
+      res.status(500).render("error/errorPage", { error: "Internal Server Error", errorCode: 500 });
     }
   });
 

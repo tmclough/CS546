@@ -9,7 +9,7 @@ let exportedMethods = {
   async addComment(userId, postId, comment) {
     postId = validation.checkId(postId, "postId");
     userId = validation.checkId(userId, "userId");
-    comment = validation.checkString(comment, "comment");
+    comment = validation.checkCommentInput(comment, "comment");
 
     const post = await postData.getPostById(postId);
     if (post.claimed) throw "Cannot comment on claimed post";
@@ -29,11 +29,12 @@ let exportedMethods = {
     const postCollection = await posts();
     const postInfo = await postCollection.findOneAndUpdate(
       { _id: new ObjectId(postId) },
-      { $push: { comments: newComment } }
+      { $push: { comments: newComment } },
+      { returnDocument: "after" }
     );
     if (postInfo.lastErrorObject.n === 0) throw "Error: Could not update post";
 
-    return await postInfo.value;
+    return postInfo.value;
   },
 
   async replayToComment(userId, commentId, comment) {
@@ -55,11 +56,12 @@ let exportedMethods = {
 
     const postInfo = await postCollection.findOneAndUpdate(
       { "comments._id": new ObjectId(commentId) },
-      { $push: { "comments.$.replies": newReply } }
+      { $push: { "comments.$.replies": newReply } },
+      { returnDocument: "after" }
     );
     if (postInfo.lastErrorObject.n === 0) throw "Error: Could not update post";
 
-    return await postInfo.value;
+    return postInfo.value;
   },
 
   async deleteComment(postId, commentId) {

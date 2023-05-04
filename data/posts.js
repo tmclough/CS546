@@ -2,7 +2,8 @@ import { posts } from "../config/mongoCollections.js";
 import { ObjectId } from "mongodb";
 import validation from "../validation.js";
 import userData from "./users.js";
-// import deleteFile from "../imageUploadConfig.js";
+import { deleteFile } from "../imageUploadConfig.js";
+
 let exportedMethods = {
   async addPost(userId, name, description, imgUrlArray, tags, location) {
     userId = validation.checkId(userId, "userId");
@@ -10,7 +11,7 @@ let exportedMethods = {
     description = validation.checkDescription(description, "description");
     location = validation.checkLocation(location, "location");
     tags = validation.checkTags(tags, "tags");
-    //imgUrl = validation.checkImgUrl(imgUrl, "imgUrl");
+    imgUrlArray = validation.checkImgUrlArray(imgUrlArray, "imgUrlArray");
 
     let date = new Date().toDateString();
     const user = await userData.getUserById(userId);
@@ -45,11 +46,11 @@ let exportedMethods = {
     });
     if (deletionInfo.lastErrorObject.n === 0)
       throw "Error: Could not delete post";
-    // if (deletionInfo.value.imgUrls) {
-    //   for (let i = 0; i < deletionInfo.value.imgUrls.length; i++) {
-    //     await deleteFile(deletionInfo.value.imgUrls[i]);
-    //   }
-    // }
+    if (deletionInfo.value.imgUrls) {
+      for (let i = 0; i < deletionInfo.value.imgUrls.length; i++) {
+        await deleteFile(deletionInfo.value.imgUrls[i]);
+      }
+    }
     return { deleted: true };
   },
 
@@ -74,12 +75,12 @@ let exportedMethods = {
 
     postList = postList.filter((p) => p.claimed === false);
 
-    //if (postList.length === 0) throw "Error: No posts in database";
-    // postList.map((element) => {
-    //     element._id = element._id.toString();
-    //     element.userId = element._userId.toString();
-    //     return element;
-    // })
+    postList = postList.map((element) => {
+      element._id = element._id.toString();
+      element.userId = element.userId.toString();
+      return element;
+    });
+
     return postList;
   },
 
@@ -106,13 +107,7 @@ let exportedMethods = {
     return post;
   },
   async getPostsByName(name) {
-    //do validation
-    // const postCollection = await posts();
-    // const post = await postCollection.find({ name: name }).toArray();
-    // if (!post) throw "Error: post not found";
-    // return post;
-    name = validation.checkString(name, "name");
-
+    name = validation.checkItemName(name, "name");
     const words = name.toLowerCase().trim().split(/\s+/);
 
     const postCollection = await posts();
@@ -125,12 +120,8 @@ let exportedMethods = {
     return post;
   },
   async getPostsByDesciption(description) {
-    //do validation
-
-    description = validation.checkString(description, "description");
-
+    description = validation.checkDescription(description, "description");
     const words = description.toLowerCase().trim().split(/\s+/);
-
     const postCollection = await posts();
     const post = await postCollection
       .find({
@@ -141,66 +132,5 @@ let exportedMethods = {
     return post;
   },
 };
-
-// async function main() {
-//     let post_id = undefined;
-//     try {
-//         const post = await exportedMethods.addPost("64409ac0c1715ff9f9ab6e12", "Chem Textbook", "brand new chem textbook", [], "Palmer Hall");
-//         post_id = post.id;
-//         console.log(post);
-//     } catch (e) {
-//         console.log(e);
-//     }
-
-//     try {
-//         const allposts = await exportedMethods.getAllPosts();
-//         console.log(allposts);
-//     } catch (e) {
-//         console.log(e);
-//     }
-
-//     try {
-//         const claim = await exportedMethods.claimPost(post_id);
-//         console.log(claim);
-//     } catch (e) {
-//         console.log(e);
-//     }
-//     try {
-//         const claim = await exportedMethods.claimPost(post_id);
-//         console.log(claim);
-//     } catch (e) {
-//         console.log(e);
-//     }
-//     try {
-//         const postbyID = await exportedMethods.getPostById(post_id);
-//         console.log(postbyID);
-//     } catch (e) {
-//         console.log(e);
-//     }
-
-//     try {
-//         const postbyuser = await exportedMethods.getPostbyUser("64409ac0c1715ff9f9ab6e12");
-//         console.log(postbyuser);
-//     } catch (e) {
-//         console.log(e);
-//     }
-
-//     try {
-//         const del = await exportedMethods.deletePost(post_id);
-//         console.log(del);
-//     } catch (e) {
-//         console.log(e);
-//     }
-
-//     try {
-//         const allposts = await exportedMethods.getAllPosts();
-//         console.log(allposts);
-//     } catch (e) {
-//         console.log(e);
-//     }
-
-// }
-
-// main();
 
 export default exportedMethods;
