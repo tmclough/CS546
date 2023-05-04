@@ -123,7 +123,7 @@ let imageUploadLabel = document.querySelector(".image-upload-label");
 let numberOfPictures = 0;
 
 addPicBtn.addEventListener("click", (event) => {
-  if (numberOfPictures < 3) {
+  if (numberOfPictures < 2) {
     let fileInput = document.createElement("input");
     fileInput.type = "file";
     fileInput.name = "images";

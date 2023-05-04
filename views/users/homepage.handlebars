@@ -152,19 +152,14 @@
           <p class="name">{{name}}</p>
           <div class="images">
             {{#each imgUrls}}
-              <div class="image">
-               <img src="{{this}}" alt="Post Image">
-              </div>
+            <img src="{{this}}" alt="Post Image" class="image">
             {{/each}}
           </div>
-          <p class="description">{{description}}</p>
-          <p class="tags">{{tags}}</p>
-          <p class="location">{{location}}</p>
-          <p class="posted-date">{{postedDate}}</p>
-          {{#each comments}}
-          <p class="comments">Comments: {{this.comment}}</p>
-          {{/each}}
-          <p class="rating">User Rating:{{rating}}</p>
+          <p class="description">Description: {{description}}</p>
+          <p class="tags">Tags: {{tags}}</p>
+          <p class="location">Location: {{location}}</p>
+          <p class="posted-date">Posted On: {{postedDate}}</p>
+          <p class="rating">User Rating: {{rating}}</p>
         </div>
       </a>
       {{/each}}

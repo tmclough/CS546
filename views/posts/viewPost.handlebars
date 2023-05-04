@@ -120,6 +120,7 @@
                     {{/if}}
                 </div>
                 <div class="comments">
+                    {{#if hasComments}}
                     <h2 class="comments-heading">Comments</h2>
                     {{#each post.comments}}
                     <div class="comment-container">
@@ -164,6 +165,9 @@
                         {{/if}}
                     </div>
                     {{/each}}
+                    {{else}}
+                    <h2 class="comments-heading">No Comments</h2>
+                    {{/if}}
                 </div>
 
                 <div class="modify-comments">
