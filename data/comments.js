@@ -45,11 +45,14 @@ let exportedMethods = {
     // const commentInfo = await this.getCommentById(commentId);
     // const post = await postData.getPostById(commentInfo.postId);
     // if (post.claimed) throw "Cannot comment on claimed post";
+    const userInfo = await userData.getUserById(userId);
+    let username = userInfo.username;
 
     let newReply = {
       _id: new ObjectId(),
       userId: new ObjectId(userId),
       comment: comment,
+      username: username,
     };
 
     const postCollection = await posts();

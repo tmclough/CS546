@@ -342,7 +342,6 @@ main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: 1px solid black;
   border-radius: 10px;
   height: 100%;
   margin-bottom: 100px;
@@ -450,9 +449,10 @@ main {
   display: flex;
   justify-content: space-between;
   margin-bottom: 30px;
-  width: 100%;
+  width: 98%;
   padding: 20px;
-  outline: 1px solid black;
+  border: 3px solid rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
   position: relative;
 }
 
