@@ -144,25 +144,26 @@
   </form>
 
   <div class="posts-section">
-    <h2 class="posts-heading">My Posts</h2>
-    <div class="posts">
-      {{#each posts}}
-      <a href="post/{{_id}}">
-        <div class="post">
-          <p class="name">{{name}}</p>
-          <div class="images">
-            {{#each imgUrls}}
-            <img src="{{this}}" alt="Post Image" class="image">
-            {{/each}}
+    <h1 class="main-heading">Stevens Curbside Pickup</h2>
+      <h2 class="posts-heading">Posts</h2>
+      <div class="posts">
+        {{#each posts}}
+        <a href="post/{{_id}}">
+          <div class="post">
+            <p class="name">{{name}}</p>
+            <div class="images">
+              {{#each imgUrls}}
+              <img src="{{this}}" alt="Post Image" class="image">
+              {{/each}}
+            </div>
+            <p class="description">Description: {{description}}</p>
+            <p class="tags">Tags: {{tags}}</p>
+            <p class="location">Location: {{location}}</p>
+            <p class="posted-date">Posted On: {{postedDate}}</p>
+            <p class="rating">User Rating: {{rating}}</p>
           </div>
-          <p class="description">Description: {{description}}</p>
-          <p class="tags">Tags: {{tags}}</p>
-          <p class="location">Location: {{location}}</p>
-          <p class="posted-date">Posted On: {{postedDate}}</p>
-          <p class="rating">User Rating: {{rating}}</p>
-        </div>
-      </a>
-      {{/each}}
-    </div>
+        </a>
+        {{/each}}
+      </div>
   </div>
 </main>
