@@ -3,7 +3,7 @@ import { ObjectId } from "mongodb";
 import validation from "../validation.js";
 import userData from "./users.js";
 import postData from "./posts.js";
-//import deleteFile from "../imageUploadConfig.js";
+import { deleteFile } from "../imageUploadConfig.js";
 
 
 let exportedMethods = {
@@ -174,11 +174,11 @@ let exportedMethods = {
 
 
     let postList = await this.getAllPosts();
-    for(let post of postList){
-      if (post.username === user.username){
-        postCollection.findOneAndUpdate( { _id: post._id},
-            { $set: { rating: user.rating } },
-            { returnNewDocument: true })
+    for (let post of postList) {
+      if (post.username === user.username) {
+        postCollection.findOneAndUpdate({ _id: post._id },
+          { $set: { rating: user.rating } },
+          { returnNewDocument: true })
       }
     }
     // const updatedPosts = postCollection.update(
@@ -205,8 +205,8 @@ let exportedMethods = {
       { $set: { rating: newRating.toString() } },
       { returnNewDocument: true }
     );
-      let res = await postData.updatePostRatingsFromUserId(id);
-     return updatedUser.value;
+    let res = await postData.updatePostRatingsFromUserId(id);
+    return updatedUser.value;
   },
 };
 
