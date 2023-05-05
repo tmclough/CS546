@@ -40,18 +40,18 @@ toggleButton.addEventListener("click", () => {
 let post = $(".post");
 let claimButton = $(".claim-button");
 //console.log("before clicked")
-claimButton.on("click", function(event) {
+claimButton.on("click", function (event) {
   event.preventDefault();
-//console.log("in claimed button client side")
+  //console.log("in claimed button client side")
   let currentLink = $(this);
   let currentId = currentLink.data("id");
 
   let requestConfig = {
     method: "POST",
-    url: "/post/claimed/" + currentId
+    url: "/post/claimed/" + currentId,
   };
 
-  $.ajax(requestConfig).then(function(responseData) {
+  $.ajax(requestConfig).then(function (responseData) {
     post.html(responseData);
   });
 });
@@ -75,17 +75,13 @@ claimButton.on("click", function(event) {
 //   $.ajax(requestConfig).then(function (responseMessage) {
 //     console.log("in ajax")
 //     let newElement = $(responseMessage);
-  
 
-    // bindEventsToPostItem(newElement);
+// bindEventsToPostItem(newElement);
 //     post.replaceWith(newElement);
 //     console.log(post)
 //   });
 //   console.log("after ajax")
 // });
-
-
-
 
 window.addEventListener("resize", () => {
   const dropdownMenu = document.querySelector(".dropdown-menu");
@@ -352,3 +348,56 @@ exitReplyCommentButton.addEventListener("click", (event) => {
   );
   clientsideReplyCommentError.innerHTML = "";
 });
+
+function checkId(id, varName) {
+  if (!id) throw `Error: You must provide a ${varName}`;
+  if (typeof id !== "string") throw `Error:${varName} must be a string`;
+  id = id.trim();
+  if (id.length === 0)
+    throw `Error: ${varName} cannot be an empty string or just spaces`;
+  if (!ObjectId.isValid(id)) throw `Error: ${varName} invalid object ID`;
+  return id;
+}
+
+const claimForm = document.querySelector("#claim-form");
+if (claimForm) {
+  claimForm.addEventListener("submit", (event) => {
+    let hasErrors = false;
+    let id = claimForm.name.toString();
+    let idError = undefined;
+    try {
+      id = checkId(id, "id");
+    } catch (e) {
+      idError = e;
+      hasErrors = true;
+    }
+
+    let ratingSelectError = undefined;
+    const ratingSelect = document.querySelector("#rating");
+    const selectedRating = ratingSelect.selectedIndex;
+    if (selectedRating === -1) {
+      ratingSelectError = "must input a rating";
+      hasErrors = true;
+    }
+
+    const clientsideClaimError = document.querySelector(
+      "clientside-claim-error"
+    );
+    clientsideClaimError.innerHTML = "";
+    if (hasErrors) {
+      event.preventDefault();
+      if (idError) {
+        let idErrorP = document.createElement("p");
+        idErrorP.innerHTML = idError;
+        clientsideClaimError.appendChild(idErrorP);
+      }
+      if (ratingSelectError) {
+        let ratingErrorP = document.createElement("p");
+        ratingErrorP.innerHTML = ratingSelectError;
+        clientsideClaimError.appendChild(ratingErrorP);
+      }
+    } else {
+      claimForm.submit();
+    }
+  });
+}

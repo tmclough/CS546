@@ -20,7 +20,7 @@ const db = await dbConnection();
 //   "tmcloughlin11",
 //   "123456789!Tara",
 //   "tara",
-//   "mcloughlin", 
+//   "mcloughlin",
 // );
 // const patrick1 = await users.addUser(
 //   "ellen@gmail.com",
@@ -35,7 +35,7 @@ const db = await dbConnection();
 //   "adriel",
 //   "123456789!Tara",
 //   "Adriel",
-//   "Pupo", 
+//   "Pupo",
 // );
 // const patrick2 = await users.addUser(
 //   "daniel@gmail.com",
@@ -50,7 +50,7 @@ const db = await dbConnection();
 //   "andy11",
 //   "123456789!Tara",
 //   "andy",
-//   "kim", 
+//   "kim",
 // );
 // const patrick3 = await users.addUser(
 //   "karina@gmail.com",
@@ -65,7 +65,7 @@ const db = await dbConnection();
 //   "adamM",
 //   "123456789!Tara",
 //   "adam",
-//   "moskowitz", 
+//   "moskowitz",
 // );
 // const patrick4 = await users.addUser(
 //   "pauline@gmail.com",
@@ -80,7 +80,7 @@ const db = await dbConnection();
 //   "yolo11",
 //   "123456789!Tara",
 //   "yolo",
-//   "mcloughlin", 
+//   "mcloughlin",
 // );
 
 try {
@@ -88,7 +88,9 @@ try {
     "64546345f0170da94279895a",
     "Baseball Hat",
     "2012 edition, lightly used",
-    ["https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/200px-Google_%22G%22_Logo.svg.png"],
+    [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/200px-Google_%22G%22_Logo.svg.png",
+    ],
     ["Clothing", "Sport Equipment"],
     "807 Castle Point Terrace"
   );
@@ -96,7 +98,9 @@ try {
     "64546345f0170da94279895a",
     "Full size bed",
     "phat",
-    ["https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/200px-Google_%22G%22_Logo.svg.png"],
+    [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/200px-Google_%22G%22_Logo.svg.png",
+    ],
     ["Furniture"],
     "807 Castle Point Terrace"
   );
