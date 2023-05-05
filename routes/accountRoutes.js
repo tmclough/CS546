@@ -5,7 +5,7 @@ import { postData } from "../data/index.js";
 import validation from "../validation.js";
 import xss from "xss";
 
-router
+
     .route("/")
     .get(async (req, res) => {
         if (!req.session.user) {
@@ -25,6 +25,12 @@ router
         } catch (e) {
             res.status(500).render("error/errorPage", { error: e, errorCode: 500 });
         }
+
     });
+  } catch (e) {
+    res.sendStatus(500).json({ error: e });
+  }
+});
+
 
 export default router;

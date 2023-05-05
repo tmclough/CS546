@@ -149,9 +149,11 @@ router
       });
 
     try {
+
       const post = await postData.getPostById(postId);
       const userInfo = await userData.getUserById(xss(req.session.user._id));
       let isOwnerOfPost = post.userId === userInfo._id;
+
 
       for (let i = 0; i < post.comments.length; i++) {
         let commentInfo = post.comments[i];
@@ -166,10 +168,15 @@ router
       for (let i = 0; i < post.comments.length; i++) {
         post.comments[i]._id = post.comments[i]._id.toString();
       }
+
+
+      let currentUserInfo = req.session.user;
+
       let hasComments = true;
       if (post.comments.length === 0) {
         hasComments = false;
       }
+
 
       res.render("posts/viewPost", {
         title: "View Post",
@@ -293,8 +300,11 @@ router
       res.status(400).render("error/errorPage", { error: e, errorCode: 400 });
     }
   });
-router.route("/reply/:id").post(async (req, res) => {
-  let postId;
+
+router
+  .route("/reply/:id")
+  .post(async (req, res) => {
+    let postId;
   try {
     postId = validation.checkId(xss(req.params.id));
   } catch (e) {
@@ -302,13 +312,7 @@ router.route("/reply/:id").post(async (req, res) => {
       .status(400)
       .render("error/errorPage", { error: e, errorCode: 400 });
   }
-
-  if (!req.session.user)
-    return res.status(400).render("error/errorPage", {
-      error: "Error: User not logged in",
-      errorCode: 400,
-    });
-
+  
   let userId;
   try {
     userId = validation.checkId(xss(req.session.user._id));
@@ -334,18 +338,7 @@ router.route("/reply/:id").post(async (req, res) => {
   } catch (e) {
     commentError = e;
   }
-
-  // if (commentError) {
-  //   return res.status(400).render("posts/viewPost", {
-  //     title: "View Post",
-  //     userLogin: req.session.user ? false : true,
-  //     cssFile: "/public/css/viewPost.css",
-  //     jsFile: "/public/js/viewPost.js",
-  //     commentError: commentError,
-  //   });
-  // }
-
-  try {
+try {
     const replyInfo = await commentData.replayToComment(
       userId,
       commentId,
@@ -360,7 +353,36 @@ router.route("/reply/:id").post(async (req, res) => {
     }
   } catch (e) {
     res.status(400).render("error/errorPage", { error: e, errorCode: 400 });
+      }
+});
+
+//AJAX ROUTES
+router.route("/claimed/:id").post(async (req, res) => {
+  try {
+    const id = validation.checkId(req.params.id);
+    const updatedPost = await postData.claimPost(id);
+    res.render("partials/post.handlebars", {
+      post: updatedPost,
+      jsFile: "/public/js/viewPost.js",
+    });
+    // res.render("partials/post", { layout: null, post: updatedData});
+  } catch (error) {
+    res.status(400).send({ error: error });
   }
 });
+router.route("/rating/:id").post(async (req, res) => {
+  try {
+    const postId = validation.checkId(req.params.id);
+    const rating = validation.checkRating(req.body.rating);
+    const post = await postData.getPostById(postId);
+    const userId = validation.checkId(post.userId);
+    //  const user = await userData.getUserById(userId);
+    const updatedUser = await postData.updateRating(userId, rating);
+    res.redirect(`/homepage`);
+  } catch (e) {
+    res.status(500).json({ error: e });
+ });
+
+
 
 export default router;

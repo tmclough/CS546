@@ -1,0 +1,19 @@
+<div class="post" >
+  <div class="col-sm-12 col-md-8">
+    <p>{{post.name}}: Claimed</p>
+    <form action="/post/rating/{{post._id}}" method="POST">
+      <label for="rating">Rating:</label>
+      <select name="rating" id="rating">
+        <option name="ratingValue" value="1">1 star</option>
+        <option name="ratingValue" value="2">2 stars</option>
+        <option name="ratingValue" value="3">3 stars</option>
+        <option name="ratingValue" value="4">4 stars</option>
+        <option name="ratingValue" value="5">5 stars</option>
+      </select>
+      <br>
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
