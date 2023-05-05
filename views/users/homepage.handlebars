@@ -148,19 +148,21 @@
       <h2 class="posts-heading">Posts</h2>
       <div class="posts">
         {{#each posts}}
-        <a href="post/{{_id}}">
-          <div class="post">
-            <p class="name">{{name}}</p>
+        <a href="post/{{_id}}" class="post">
+          <p class="name">{{name}}</p>
+          <div class="pictures-information-container">
             <div class="images">
               {{#each imgUrls}}
               <img src="{{this}}" alt="Post Image" class="image">
               {{/each}}
             </div>
-            <p class="description">Description: {{description}}</p>
-            <p class="tags">Tags: {{tags}}</p>
-            <p class="location">Location: {{location}}</p>
-            <p class="posted-date">Posted On: {{postedDate}}</p>
-            <p class="rating">User Rating: {{rating}}</p>
+            <div class="information-container">
+              <p class="description">Description: {{description}}</p>
+              <p class="tags">Tags: {{tags}}</p>
+              <p class="location">Location: {{location}}</p>
+              <p class="posted-date">Posted On: {{postedDate}}</p>
+              <p class="rating">User Rating: {{rating}}</p>
+            </div>
           </div>
         </a>
         {{/each}}
