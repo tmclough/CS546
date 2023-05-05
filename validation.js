@@ -219,13 +219,15 @@ const exportedMethods = {
 
     return comment;
   },
-  checkRating(rating, varName){
-    if(rating && typeof rating === "string" || typeof rating === "number"){
+  checkRating(rating, varName) {
+    if (rating && typeof rating === "string" || typeof rating === "number") {
       return rating
-    }else{
+    } else {
       throw `${varName} invalid`
     }
   }
 };
+
+console.log(exportedMethods.checkTags(["Hello", "twi", "Dadada"]));
 
 export default exportedMethods;

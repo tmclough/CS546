@@ -20,6 +20,7 @@ router
     });
   })
   .post(uploadImages, async (req, res) => {
+
     let postInfo = req.body;
     let filesInfo = req.files;
     let hasError = false;
@@ -68,7 +69,10 @@ router
 
     let tagsError;
     try {
-      postInfo.tagSelect = xss(postInfo.tagSelect);
+      postInfo.tagSelect = postInfo.tagSelect.map((i) => {
+        return xss(i);
+      })
+      postInfo.tagSelect = postInfo.tagSelect;
       postInfo.tagSelect = validation.checkTags(postInfo.tagSelect, "tags");
     } catch (e) {
       hasError = true;
