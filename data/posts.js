@@ -3,7 +3,7 @@ import { ObjectId } from "mongodb";
 import validation from "../validation.js";
 import userData from "./users.js";
 import postData from "./posts.js";
-import deleteFile from "../imageUploadConfig.js";
+//import deleteFile from "../imageUploadConfig.js";
 
 
 let exportedMethods = {

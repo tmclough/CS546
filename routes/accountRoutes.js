@@ -6,7 +6,7 @@ import validation from "../validation.js";
 import xss from "xss";
 
 
-    .route("/")
+   router.route("/")
     .get(async (req, res) => {
         if (!req.session.user) {
             res.status(400).render("error/errorPage", { error: "Error: user not signed in", errorCode: 400 });
@@ -27,10 +27,8 @@ import xss from "xss";
         }
 
     });
-  } catch (e) {
-    res.sendStatus(500).json({ error: e });
-  }
-});
+
+
 
 
 export default router;

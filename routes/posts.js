@@ -381,6 +381,7 @@ router.route("/rating/:id").post(async (req, res) => {
     res.redirect(`/homepage`);
   } catch (e) {
     res.status(500).json({ error: e });
+  }
  });
 
 
