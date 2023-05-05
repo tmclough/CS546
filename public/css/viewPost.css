@@ -618,3 +618,36 @@ main {
   display: flex;
   justify-content: center;
 }
+
+.claimed-message {
+  font-size: 30px;
+  margin-bottom: 15px;
+}
+
+.item {
+  color: rgb(39, 89, 226);
+}
+
+#rating {
+  border-radius: 5px;
+  width: 100px;
+  height: 23px;
+  margin-bottom: 10px;
+}
+
+.submit-button {
+  border-radius: 6px;
+  padding: 4px 20px;
+  cursor: pointer;
+  transition: 0.15s;
+  background-color: rgb(48, 129, 236);
+  font-size: 20px;
+}
+
+.submit-button:hover {
+  opacity: 0.8;
+}
+
+.submit-button:active {
+  opacity: 0.6;
+}

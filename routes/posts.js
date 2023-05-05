@@ -149,11 +149,9 @@ router
       });
 
     try {
-
       const post = await postData.getPostById(postId);
       const userInfo = await userData.getUserById(xss(req.session.user._id));
       let isOwnerOfPost = post.userId === userInfo._id;
-
 
       for (let i = 0; i < post.comments.length; i++) {
         let commentInfo = post.comments[i];
@@ -169,14 +167,12 @@ router
         post.comments[i]._id = post.comments[i]._id.toString();
       }
 
-
       let currentUserInfo = req.session.user;
 
       let hasComments = true;
       if (post.comments.length === 0) {
         hasComments = false;
       }
-
 
       res.render("posts/viewPost", {
         title: "View Post",
@@ -301,10 +297,8 @@ router
     }
   });
 
-router
-  .route("/reply/:id")
-  .post(async (req, res) => {
-    let postId;
+router.route("/reply/:id").post(async (req, res) => {
+  let postId;
   try {
     postId = validation.checkId(xss(req.params.id));
   } catch (e) {
@@ -312,7 +306,7 @@ router
       .status(400)
       .render("error/errorPage", { error: e, errorCode: 400 });
   }
-  
+
   let userId;
   try {
     userId = validation.checkId(xss(req.session.user._id));
@@ -338,7 +332,7 @@ router
   } catch (e) {
     commentError = e;
   }
-try {
+  try {
     const replyInfo = await commentData.replayToComment(
       userId,
       commentId,
@@ -353,7 +347,7 @@ try {
     }
   } catch (e) {
     res.status(400).render("error/errorPage", { error: e, errorCode: 400 });
-      }
+  }
 });
 
 //AJAX ROUTES
@@ -364,6 +358,7 @@ router.route("/claimed/:id").post(async (req, res) => {
     res.render("partials/post.handlebars", {
       post: updatedPost,
       jsFile: "/public/js/viewPost.js",
+      cssFile: "/public/js/viewPost.css",
     });
     // res.render("partials/post", { layout: null, post: updatedData});
   } catch (error) {
@@ -382,8 +377,6 @@ router.route("/rating/:id").post(async (req, res) => {
   } catch (e) {
     res.status(500).json({ error: e });
   }
- });
-
-
+});
 
 export default router;
