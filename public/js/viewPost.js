@@ -123,32 +123,6 @@ document.addEventListener("click", (event) => {
 //   }
 // });
 
-const filterToggleButton = document.querySelector(".filter-toggle-button");
-const filterLabel = document.querySelector(".filter-label");
-const filterToggleButtonImage = document.querySelector(
-  ".filter-toggle-button-image"
-);
-filterToggleButton.addEventListener("mouseenter", () => {
-  filterLabel.style.opacity = 1;
-  filterLabel.style.visibility = "visible";
-  filterToggleButtonImage.src = "/public/images/chevron-up.svg";
-});
-filterToggleButton.addEventListener("mouseleave", () => {
-  filterLabel.style.opacity = 0;
-  filterLabel.style.visibility = "hidden";
-  filterToggleButtonImage.src = "/public/images/chevron-down.svg";
-});
-filterLabel.addEventListener("mouseenter", () => {
-  filterLabel.style.opacity = 1;
-  filterLabel.style.visibility = "visible";
-  filterToggleButtonImage.src = "/public/images/chevron-up.svg";
-});
-filterLabel.addEventListener("mouseleave", () => {
-  filterLabel.style.opacity = 0;
-  filterLabel.style.visibility = "hidden";
-  filterToggleButtonImage.src = "/public/images/chevron-down.svg";
-});
-
 function checkString(strVal, varName) {
   if (!strVal) throw `Error: You must supply a ${varName}!`;
   if (typeof strVal !== "string") throw `Error: ${varName} must be a string!`;
