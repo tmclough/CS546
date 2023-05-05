@@ -38,7 +38,7 @@ let exportedMethods = {
     password = validation.checkPassword(password, "password");
     firstName = validation.checkFirstAndLastName(firstName, "firstName");
     lastName = validation.checkFirstAndLastName(lastName, "lastName");
-    let rating = 1;
+    // let rating = 0;
 
 
     const userCollection = await users();
@@ -55,7 +55,8 @@ let exportedMethods = {
       password: hash,
       firstName: firstName,
       lastName: lastName,
-      rating: rating,
+      rating: 0,
+      countClaimed: 0,
     }
 
     const insertedInfo = await userCollection.insertOne(newUser);
@@ -83,8 +84,24 @@ let exportedMethods = {
     userInfo._id = userInfo._id.toString();
     return userInfo;
   },
+  // async updateUserRatings(userId, rating) {
+  //   if (!userId) throw "You must provide a user ID";
+  //   if (!rating) throw "You must provide a rating";
   
-
+  //   const userCollection = await users();
+  //   const updatedInfo = await userCollection.updateOne(
+  //     { _id: userId },
+  //     { $push: { ratings: rating } }
+  //   );
+  
+  //   if (updatedInfo.modifiedCount === 0) {
+  //     throw "Could not update user's ratings successfully";
+  //   }
+  
+  //   return true;
+  // }
+  
+  
 };
 
 export default exportedMethods;

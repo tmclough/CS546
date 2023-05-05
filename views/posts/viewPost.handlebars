@@ -90,7 +90,9 @@
 </header>
 <main>
     <div id="post-container">
+
         <div class="post">
+          
             <div class="pictures-container">
                 {{#each post.imgUrls}}
                 <img src={{this}} alt="" class="picture">
@@ -107,8 +109,11 @@
                     </ul>
                     <p class="location">{{post.location}}</p>
                     <p class="posted-date">{{post.postedDate}}</p>
-                    <p class="rating">Raiting: {{post.rating}}</p>
-                    <button type="submit" class="claim-button">Claim!</button>
+                    <p class="rating">Rating: {{post.rating}}</p>
+                    <p id="post" value="{{post.claimed}}"></p>
+                    <button id="claim-button" type="submit" class="claim-button" data-id="{{post._id}}">Claim!</button>
+                   
+                    
                     {{#if isOwnerOfPost}}
                     <div class="delete-post-container">
                         <form action="" method="POST">
@@ -198,3 +203,5 @@
     <div class="serverside-comment-error">{{commentError}}</div>
     {{/if}}
 </main>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+

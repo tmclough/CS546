@@ -85,16 +85,23 @@ const db = await dbConnection();
 
 try {
   await posts.addPost(
-    "64504b06225d58278b8a0938",
+    "64546345f0170da94279895a",
     "Baseball Hat",
     "2012 edition, lightly used",
     ["https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/200px-Google_%22G%22_Logo.svg.png"],
     ["Clothing", "Sport Equipment"],
     "807 Castle Point Terrace"
   );
-
   await posts.addPost(
-    "64504b06225d58278b8a0938",
+    "64546345f0170da94279895a",
+    "Full size bed",
+    "phat",
+    ["https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/200px-Google_%22G%22_Logo.svg.png"],
+    ["Furniture"],
+    "807 Castle Point Terrace"
+  );
+  await posts.addPost(
+    "64546345f0170da94279895a",
     "new_textbook",
     "2012 edition, lightly used",
     ["url"],
@@ -103,7 +110,7 @@ try {
   );
 
   await posts.addPost(
-    "64504b0a225d58278b8a0939",
+    "6454634af0170da94279895b",
     "Desk",
     "Brown, lightly used",
     ["url"],
@@ -111,7 +118,7 @@ try {
     "807 Castle Point Terrace"
   );
   await posts.addPost(
-    "64504b0a225d58278b8a0939",
+    "6454634af0170da94279895b",
     "Baseball bat",
     "Orange, extra small",
     ["url"],
@@ -119,7 +126,7 @@ try {
     "807 Castle Point Terrace"
   );
   await posts.addPost(
-    "64504b0f225d58278b8a093a",
+    "6454634ff0170da94279895c",
     "Lighting",
     "extra small",
     ["url"],
@@ -127,7 +134,7 @@ try {
     "807 Castle Point Terrace"
   );
   await posts.addPost(
-    "64504b0f225d58278b8a093a",
+    "6454634ff0170da94279895c",
     "Mouse",
     "2 months old, lightly used",
     ["url"],
@@ -135,7 +142,7 @@ try {
     "807 Castle Point Terrace"
   );
   await posts.addPost(
-    "64504b1a225d58278b8a093c",
+    "64546354f0170da94279895d",
     "keyboard",
     "2 months old, lightly used",
     ["url"],
@@ -146,7 +153,7 @@ try {
   console.log(e);
 }
 // await posts.addPost(
-//   "6440a8f03e8eb999ca9a8cdf",
+//   "64544b6f00a0b3641c28e621",
 //   "new textbook",
 //   "2012 edition, lightly used",
 //   [],
@@ -154,7 +161,7 @@ try {
 // );
 
 // await posts.addPost(
-//   "6440a8f03e8eb999ca9a8cdf",
+//   "64544b7400a0b3641c28e622",
 //   "new textbook",
 //   "2012 edition, lightly used",
 //   [],
@@ -162,7 +169,7 @@ try {
 // );
 
 // await posts.addPost(
-//   "6440a8f03e8eb999ca9a8cdf",
+//   "64544b7400a0b3641c28e622",
 //   "new textbook",
 //   "2012 edition, lightly used",
 //   [],
@@ -170,7 +177,7 @@ try {
 // );
 
 // await posts.addPost(
-//   "6440a8f03e8eb999ca9a8cdf",
+//   "64544b7800a0b3641c28e623",
 //   "new textbook",
 //   "2012 edition, lightly used",
 //   [],
@@ -178,7 +185,7 @@ try {
 // );
 
 // await posts.addPost(
-//   "6440a8f03e8eb999ca9a8cdf",
+//   "64544b7800a0b3641c28e623",
 //   "new textbook",
 //   "2012 edition, lightly used",
 //   [],
@@ -186,7 +193,7 @@ try {
 // );
 
 // await posts.addPost(
-//   "6440a8f03e8eb999ca9a8cdf",
+//   "64544b7e00a0b3641c28e624",
 //   "new textbook",
 //   "2012 edition, lightly used",
 //   [],

@@ -216,5 +216,12 @@ const exportedMethods = {
 
     return comment;
   },
+  checkRating(rating, varName){
+    if(rating && typeof rating === "string" || typeof rating === "number"){
+      return rating
+    }else{
+      throw `${varName} invalid`
+    }
+  }
 };
 export default exportedMethods;

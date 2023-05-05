@@ -22,6 +22,71 @@ toggleButton.addEventListener("click", () => {
   // }
 });
 
+// const claimButton = document.querySelector(".claim-button");
+// claimButton.addEventListener("click", async (event) => {
+//   event.preventDefault();
+//   const { post } = JSON.parse(event.target.getAttribute("data-post"));
+//   const response = await fetch(`/posts/${post._id}/claim`, {
+//     method: "POST",
+//   });
+//   if (response.ok) {
+//     const updatedPost = await response.json();
+//     console.log("Updated post:", updatedPost);
+//     // Update the post information on the client-side
+//   } else {
+//     console.error("Unable to update post:", response.statusText);
+//   }
+// });
+let post = $(".post");
+let claimButton = $(".claim-button");
+//console.log("before clicked")
+claimButton.on("click", function(event) {
+  event.preventDefault();
+//console.log("in claimed button client side")
+  let currentLink = $(this);
+  let currentId = currentLink.data("id");
+
+  let requestConfig = {
+    method: "POST",
+    url: "/post/claimed/" + currentId
+  };
+
+  $.ajax(requestConfig).then(function(responseData) {
+    post.html(responseData);
+  });
+});
+
+// console.log("here1")
+// let post = document.querySelector(".post");
+// console.log(post)
+// let claimButton = document.querySelector(".claim-button");
+
+// claimButton.addEventListener("click", function (event) {
+//   console.log("here")
+//   event.preventDefault();
+//   let currentLink = this;
+//   let currentId = currentLink.getAttribute("data-id");
+
+//   let requestConfig = {
+//     method: "POST",
+//     url: "/post/claimed/" + currentId,
+//   };
+//   console.log("getting here")
+//   $.ajax(requestConfig).then(function (responseMessage) {
+//     console.log("in ajax")
+//     let newElement = $(responseMessage);
+  
+
+    // bindEventsToPostItem(newElement);
+//     post.replaceWith(newElement);
+//     console.log(post)
+//   });
+//   console.log("after ajax")
+// });
+
+
+
+
 window.addEventListener("resize", () => {
   const dropdownMenu = document.querySelector(".dropdown-menu");
   const toggleButtonImage = document.querySelector(".toggle-button-image");

@@ -1,7 +1,8 @@
-import { posts } from "../config/mongoCollections.js";
+import { posts, users } from "../config/mongoCollections.js";
 import { ObjectId } from "mongodb";
 import validation from "../validation.js";
 import userData from "./users.js";
+import postData from "./posts.js";
 // import deleteFile from "../imageUploadConfig.js";
 let exportedMethods = {
   async addPost(userId, name, description, imgUrlArray, tags, location) {
@@ -53,20 +54,20 @@ let exportedMethods = {
     return { deleted: true };
   },
 
-  async claimPost(id) {
-    id = validation.checkId(id, "id");
+  // async claimPost(id) {
+  //   id = validation.checkId(id, "id");
 
-    const post = await this.getPostById(id);
-    if (post.claimed) throw "Error: Post already claimed";
+  //   const post = await this.getPostById(id);
+  //   if (post.claimed) throw "Error: Post already claimed";
 
-    const postCollection = await posts();
-    const updateInfo = await postCollection.updateOne(
-      { _id: new ObjectId(id) },
-      { $set: { claimed: true } }
-    );
-    if (!updateInfo.acknowledged) throw "Error: Update failed";
-    return { updated: true };
-  },
+  //   const postCollection = await posts();
+  //   const updateInfo = await postCollection.updateOne(
+  //     { _id: new ObjectId(id) },
+  //     { $set: { claimed: true } }
+  //   );
+  //   if (!updateInfo.acknowledged) throw "Error: Update failed";
+  //   return { updated: true };
+  // },
 
   async getAllPosts() {
     const postCollection = await posts();
@@ -139,6 +140,81 @@ let exportedMethods = {
       .toArray();
     if (!post) throw "Error: post not found";
     return post;
+  },
+
+  // async getPost(id) {
+  //   console.log("in getPost")
+  //   const postCollection = await posts();
+  //   const post = await postCollection.findOne({
+  //     description: { _id: id },
+  //   });
+  //   console.log(post)
+  //   if (!post) throw "No such post exists";
+  //   return post;
+  // },
+  async claimPost(id) {
+    let post = await postData.getPostById(id);
+    // let user = await userData.getUserById(post.userId);
+
+    const postCollection = await posts();
+
+    id = validation.checkId(id, "id");
+    const userCollection = await users();
+    let updatedUser = await userCollection.findOneAndUpdate(
+      { _id: new ObjectId(post.userId) },
+      { $inc: { countClaimed: 1 } },
+      { returnNewDocument: true }
+    );
+    let updatedPost = await postCollection.findOneAndUpdate(
+      { _id: new ObjectId(id) },
+      { $set: { claimed: true } },
+      { returnNewDocument: true }
+    );
+    // console.log("after updating post")
+    // console.log(updatedPost)
+
+    return updatedPost.value;
+  },
+  async updatePostRatingsFromUserId(id) {
+    id = validation.checkId(id, "id");
+    let user = await userData.getUserById(id);
+    const postCollection = await posts();
+
+
+    let postList = await this.getAllPosts();
+    for(let post of postList){
+      if (post.username === user.username){
+        postCollection.findOneAndUpdate( { _id: post._id},
+            { $set: { rating: user.rating } },
+            { returnNewDocument: true })
+      }
+    }
+    // const updatedPosts = postCollection.update(
+    //   { username: user.username },
+    //   { $set: { rating: user.rating } },
+    //   { returnNewDocument: true }
+    // );
+    return postList;
+  },
+  async updateRating(id, inputRating) {
+    id = validation.checkId(id, "id");
+    let user = await userData.getUserById(id);
+    const userCollection = await users();
+    inputRating = parseInt(inputRating);
+    let newRating = inputRating;
+    if (user.rating !== 0) {
+      newRating = (
+        (user.rating * (user.countClaimed - 1) + inputRating) /
+        user.countClaimed
+      ).toFixed(1);
+    }
+    let updatedUser = await userCollection.findOneAndUpdate(
+      { _id: new ObjectId(id) },
+      { $set: { rating: newRating.toString() } },
+      { returnNewDocument: true }
+    );
+      let res = await postData.updatePostRatingsFromUserId(id);
+     return updatedUser.value;
   },
 };
 

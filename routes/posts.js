@@ -129,13 +129,16 @@ router
     try {
       id = validation.checkId(req.params.id, "postId");
     } catch (e) {
-      return res.status(400).render("error/errorPage", { error: e, errorCode: 400 });
+      return res
+        .status(400)
+        .render("error/errorPage", { error: e, errorCode: 400 });
     }
 
     try {
       const post = await postData.getPostById(id);
       const userInfo = await userData.getUserById(req.session.user._id);
       let isOwnerOfPost = false;
+
       if (post.userId === userInfo._id) {
         isOwnerOfPost = true;
       }
@@ -153,7 +156,6 @@ router
       for (let i = 0; i < post.comments.length; i++) {
         post.comments[i]._id = post.comments[i]._id.toString();
       }
-      console.log(post);
 
       let currentUserInfo = req.session.user;
 
@@ -249,18 +251,48 @@ router
     const userId = validation.checkId(req.session.user._id);
     const comment = validation.checkCommentInput(req.body.replyCommentInput);
     try {
-      const replyInfo = await commentData.replayToComment(userId, commentId, comment);
+      const replyInfo = await commentData.replayToComment(
+        userId,
+        commentId,
+        comment
+      );
       if (replyInfo) {
         res.redirect(`/post/${postId}`);
-      }
-      else {
+      } else {
         res.status(400).json({ error: "reply unsuccessful" });
       }
     } catch (e) {
       res.status(400).send({ error: e });
     }
-
   })
-  .delete(async (req, res) => { });
+  .delete(async (req, res) => {});
+
+//AJAX ROUTES
+router.route("/claimed/:id").post(async (req, res) => {
+  try {
+    const id = validation.checkId(req.params.id);
+    const updatedPost = await postData.claimPost(id);
+    res.render("partials/post.handlebars", {
+      post: updatedPost,
+      jsFile: "/public/js/viewPost.js",
+    });
+    // res.render("partials/post", { layout: null, post: updatedData});
+  } catch (error) {
+    res.status(400).send({ error: error });
+  }
+});
+router.route("/rating/:id").post(async (req, res) => {
+  try {
+    const postId = validation.checkId(req.params.id);
+    const rating = validation.checkRating(req.body.rating);
+    const post = await postData.getPostById(postId);
+    const userId = validation.checkId(post.userId);
+    //  const user = await userData.getUserById(userId);
+    const updatedUser = await postData.updateRating(userId, rating);
+    res.redirect(`/homepage`);
+  } catch (e) {
+    res.status(500).json({ error: e });
+  }
+});
 
 export default router;
