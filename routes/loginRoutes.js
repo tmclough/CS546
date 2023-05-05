@@ -1,9 +1,9 @@
 //Import express and express router as shown in lecture code and worked in previous labs
-
 import { Router } from "express";
 const router = Router();
 import { userData } from "../data/index.js";
 import validation from "../validation.js";
+import xss from "xss";
 router
   .route("/")
   .get(async (req, res) => {
@@ -18,7 +18,9 @@ router
     }
   })
   .post(async (req, res) => {
-    let { username, password } = req.body;
+    let username = xss(req.body.username);
+    let password = xss(req.body.password);
+
     let usernameError = undefined;
     let passwordError = undefined;
     try {
@@ -46,8 +48,7 @@ router
     try {
       let user = await userData.getUserByUsernamePassword(username, password);
       if (!user) {
-        res.status(500).send("Internal Server Error");
-        return;
+        return res.status(500).render("error/errorPage", { error: "Internal Server Error", errorCode: 500 });
       }
       req.session.user = user;
       res.redirect("/homepage");

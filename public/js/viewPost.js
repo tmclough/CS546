@@ -298,14 +298,35 @@ if (replyCommentForm) {
     let replyCommentInput = document.querySelector(
       "#reply-comment-input"
     ).value;
-    let newReply = document.createElement("p");
-    newReply.innerHTML = replyCommentInput;
-    newReply.classList.add("reply");
-    replies.appendChild(newReply);
+    let replyError;
+    let errors = false;
 
-    replyCommentInputContainer.style.opacity = 0;
-    replyCommentInputContainer.style.visibility = "hidden";
-    replyCommentForm.submit();
+    try {
+      replyCommentInput = checkCommentInput(replyCommentInput, "comment");
+    } catch (e) {
+      replyError = e;
+      errors = true;
+    }
+    let clientsideReplyCommentError = document.querySelector(
+      ".clientside-reply-comment-error"
+    );
+    clientsideReplyCommentError.innerHTML = "";
+
+    if (errors) {
+      event.preventDefault();
+      if (replyError) {
+        clientsideReplyCommentError.innerHTML = replyError;
+      }
+    } else {
+      let newReply = document.createElement("p");
+      newReply.innerHTML = replyCommentInput;
+      newReply.classList.add("reply");
+      replies.appendChild(newReply);
+
+      replyCommentInputContainer.style.opacity = 0;
+      replyCommentInputContainer.style.visibility = "hidden";
+      replyCommentForm.submit();
+    }
   });
 }
 

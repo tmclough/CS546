@@ -191,19 +191,22 @@ const exportedMethods = {
     return arr;
   },
 
-  checkImgUrl(url, varName) {
-    url = this.checkString(url, varName);
+  checkImgUrlArray(urlArr, varName) {
+    urlArr = this.checkStringArray(urlArr, varName);
+    if (urlArr.length > 4) throw "Error: maximum of 4 images per post";
     let urlRegex = new RegExp(
       "^(https?:\\/\\/)?" + // validate protocol
-        "((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|" + // validate domain name
-        "((\\d{1,3}\\.){3}\\d{1,3}))" + // validate OR ip (v4) address
-        "(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*" + // validate port and path
-        "(\\?[;&a-z\\d%_.~+=-]*)?" + // validate query string
-        "(\\#[-a-z\\d_]*)?$",
+      "((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|" + // validate domain name
+      "((\\d{1,3}\\.){3}\\d{1,3}))" + // validate OR ip (v4) address
+      "(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*" + // validate port and path
+      "(\\?[;&a-z\\d%_.~+=-]*)?" + // validate query string
+      "(\\#[-a-z\\d_]*)?$",
       "i"
     ); // validate fragment locator)
-    if (!urlRegex.test(url)) throw "Error: Invalid Url";
-    return url;
+    for (let i = 0; i < urlArr.length; i++)
+      if (!urlRegex.test(urlArr[i])) throw `Error: Invalid Url ${urlArr[i]}`;
+
+    return urlArr;
   },
 
 
@@ -224,4 +227,5 @@ const exportedMethods = {
     }
   }
 };
+
 export default exportedMethods;

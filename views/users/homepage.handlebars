@@ -144,30 +144,28 @@
   </form>
 
   <div class="posts-section">
-    <h2 class="posts-heading">My Posts</h2>
-    <div class="posts">
-      {{#each posts}}
-      <a href="post/{{_id}}">
-        <div class="post">
+    <h1 class="main-heading">Stevens Curbside Pickup</h2>
+      <h2 class="posts-heading">Posts</h2>
+      <div class="posts">
+        {{#each posts}}
+        <a href="post/{{_id}}" class="post">
           <p class="name">{{name}}</p>
-          <div class="images">
-            {{#each imgUrls}}
-              <div class="image">
-               <img src="{{this}}" alt="Post Image">
-              </div>
-            {{/each}}
+          <div class="pictures-information-container">
+            <div class="images">
+              {{#each imgUrls}}
+              <img src="{{this}}" alt="Post Image" class="image">
+              {{/each}}
+            </div>
+            <div class="information-container">
+              <p class="description">Description: {{description}}</p>
+              <p class="tags">Tags: {{tags}}</p>
+              <p class="location">Location: {{location}}</p>
+              <p class="posted-date">Posted On: {{postedDate}}</p>
+              <p class="rating">User Rating: {{rating}}</p>
+            </div>
           </div>
-          <p class="description">{{description}}</p>
-          <p class="tags">{{tags}}</p>
-          <p class="location">{{location}}</p>
-          <p class="posted-date">{{postedDate}}</p>
-          {{#each comments}}
-          <p class="comments">Comments: {{this.comment}}</p>
-          {{/each}}
-          <p class="rating">User Rating:{{rating}}</p>
-        </div>
-      </a>
-      {{/each}}
-    </div>
+        </a>
+        {{/each}}
+      </div>
   </div>
 </main>

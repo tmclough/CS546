@@ -76,7 +76,7 @@ let exportedMethods = {
     return userInfo;
   },
   async getUserByName(username) {
-    username = validation.checkString(username, "username");
+    username = validation.checkUsername(username, "username");
     const userCollection = await users();
     const userInfo = await userCollection.findOne({ username: username })
 
@@ -84,24 +84,7 @@ let exportedMethods = {
     userInfo._id = userInfo._id.toString();
     return userInfo;
   },
-  // async updateUserRatings(userId, rating) {
-  //   if (!userId) throw "You must provide a user ID";
-  //   if (!rating) throw "You must provide a rating";
-  
-  //   const userCollection = await users();
-  //   const updatedInfo = await userCollection.updateOne(
-  //     { _id: userId },
-  //     { $push: { ratings: rating } }
-  //   );
-  
-  //   if (updatedInfo.modifiedCount === 0) {
-  //     throw "Could not update user's ratings successfully";
-  //   }
-  
-  //   return true;
-  // }
-  
-  
+
 };
 
 export default exportedMethods;

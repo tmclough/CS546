@@ -58,19 +58,41 @@ app.use("/logout", async (req, res, next) => {
   next();
 });
 
-// app.use("/post/:id", async (req, res, next) => {
-//   if (req.fakeActionMethod && req.fakeActionMethod === "delete") {
-//     req.method = "DELETE";
-//   }
-//   next();
-// });
+app.use("/post", async (req, res, next) => {
+  if (!req.session.user) {
+    return res.redirect("/login");
+  }
+  next();
+});
 
-// app.use("/post", async (req, res, next) => {
-//   if (!req.session.user && req.method === "GET") {
-//     return res.redirect("/homepage");
-//   }
-//   next();
-// });
+app.use("/post/:id", async (req, res, next) => {
+  if (!req.session.user) {
+    return res.redirect("/login");
+  }
+  next();
+});
+
+app.use("/comment/:id", async (req, res, next) => {
+  if (!req.session.user) {
+    return res.redirect("/login");
+  }
+  next();
+});
+
+app.use("/reply/:id", async (req, res, next) => {
+  if (!req.session.user) {
+    return res.redirect("/login");
+  }
+  next();
+});
+
+app.use("/account", async (req, res, next) => {
+  if (!req.session.user) {
+    return res.redirect("/login");
+  }
+  next();
+});
+
 
 app.engine("handlebars", exphbs.engine({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");

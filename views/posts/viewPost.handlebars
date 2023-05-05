@@ -110,10 +110,10 @@
                     <p class="location">{{post.location}}</p>
                     <p class="posted-date">{{post.postedDate}}</p>
                     <p class="rating">Rating: {{post.rating}}</p>
+
                     <p id="post" value="{{post.claimed}}"></p>
                     <button id="claim-button" type="submit" class="claim-button" data-id="{{post._id}}">Claim!</button>
-                   
-                    
+
                     {{#if isOwnerOfPost}}
                     <div class="delete-post-container">
                         <form action="" method="POST">
@@ -125,17 +125,17 @@
                     {{/if}}
                 </div>
                 <div class="comments">
+                    {{#if hasComments}}
                     <h2 class="comments-heading">Comments</h2>
                     {{#each post.comments}}
                     <div class="comment-container">
                         <div class="replies-container">
-
                             <p class="comment">{{this.username}}: {{this.comment}}</p> <!-- add username: "comment"-->
                             <p class="replies-heading">Replies:</p>
                             <div class="replies">
                                 {{#each this.replies}}
                                 <!-- array of objects: replyId, postId, userId, username, reply-->
-                                <p class="reply">{{this.comment}}</p>
+                                <p class="reply">{{this.username}}: {{this.comment}}</p>
                                 {{/each}}
                             </div>
                         </div>
@@ -170,6 +170,9 @@
                         {{/if}}
                     </div>
                     {{/each}}
+                    {{else}}
+                    <h2 class="comments-heading">No Comments</h2>
+                    {{/if}}
                 </div>
 
                 <div class="modify-comments">

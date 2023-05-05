@@ -303,6 +303,11 @@ main {
   margin-bottom: 30px;
 }
 
+.user-info p {
+  margin-bottom: 12px;
+  color: rgb(73, 72, 72);
+}
+
 .user-info-heading {
   margin-bottom: 12px;
 }
