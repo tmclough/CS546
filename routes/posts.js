@@ -68,8 +68,8 @@ router
 
     let tagsError;
     try {
-      postInfo.tagSelect = xss(postInfo.tagSelect);
-      postInfo.tagSelect = validation.checkTags(postInfo.tagSelect, "tags");
+      postInfo.tagSelect = xss(postInfo.tagSelect2);
+      postInfo.tagSelect = validation.checkTags(postInfo.tagSelect2, "tags");
     } catch (e) {
       hasError = true;
       tagsError = e;

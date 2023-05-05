@@ -89,7 +89,7 @@ filterLabel.addEventListener("mouseleave", () => {
 });
 
 function checkString(strVal, varName) {
-  if (!strVal) throw `Error: You must supply a ${varName}!`;
+  if (!strVal) throw `you must supply a ${varName}!`;
   if (typeof strVal !== "string") throw `Error: ${varName} must be a string!`;
   strVal = strVal.trim();
   if (strVal.length === 0)
@@ -123,7 +123,7 @@ let imageUploadLabel = document.querySelector(".image-upload-label");
 let numberOfPictures = 0;
 
 addPicBtn.addEventListener("click", (event) => {
-  if (numberOfPictures < 2) {
+  if (numberOfPictures < 3) {
     let fileInput = document.createElement("input");
     fileInput.type = "file";
     fileInput.name = "images";
@@ -140,10 +140,13 @@ if (addPostForm) {
     let errors = false;
     let itemNameInput = document.querySelector("#itemName").value;
     let descriptionInput = document.querySelector("#description").value;
+    let locationInput = document.querySelector("#location");
+    let tagInputs = document.querySelectorAll("input[name='tagSelect2']");
+    let imageInput = document.querySelector(".imageUpload");
 
     let itemNameInputError = undefined;
     try {
-      itemNameInput = checkItemName(itemNameInput, "Item name");
+      itemNameInput = checkItemName(itemNameInput, "item name");
     } catch (e) {
       errors = true;
       itemNameInputError = e;
@@ -151,10 +154,30 @@ if (addPostForm) {
 
     let descriptionInputError = undefined;
     try {
-      itemNameInput = checkDescription(descriptionInput, "Description");
+      itemNameInput = checkDescription(descriptionInput, "description");
     } catch (e) {
       errors = true;
       descriptionInputError = e;
+    }
+
+    let locationInputError = undefined;
+    if (locationInput.selectedIndex === -1) {
+      locationInputError = "must input a location";
+      errors = true;
+    }
+
+    let checkedTagSelectInputs = Array.from(tagInputs).filter(
+      (input) => input.checked
+    );
+    let tagInputError = undefined;
+    if (checkedTagSelectInputs.length === 0) {
+      tagInputError = "must input at least one tag";
+      errors = true;
+    }
+
+    let imageInputError = undefined;
+    if (imageInput.files.length === 0) {
+      imageInputError = "must input at least one image";
     }
 
     let clientsideItemNameError = document.querySelector(
@@ -163,9 +186,19 @@ if (addPostForm) {
     let clientsideDescriptionError = document.querySelector(
       ".clientside-description-error"
     );
+    let clientsideLocationError = document.querySelector(
+      ".clientside-location-error"
+    );
+    let clientsideTagsError = document.querySelector(".clientside-tags-error");
+    let clientsideImageError = document.querySelector(
+      ".clientside-image-error"
+    );
 
     clientsideItemNameError.innerHTML = "";
     clientsideDescriptionError.innerHTML = "";
+    clientsideLocationError.innerHTML = "";
+    clientsideTagsError.innerHTML = "";
+    clientsideImageError.innerHTML = "";
 
     if (errors) {
       event.preventDefault();
@@ -174,6 +207,15 @@ if (addPostForm) {
       }
       if (descriptionInputError) {
         clientsideDescriptionError.innerHTML = descriptionInputError;
+      }
+      if (locationInputError) {
+        clientsideLocationError.innerHTML = locationInputError;
+      }
+      if (tagInputError) {
+        clientsideTagsError.innerHTML = tagInputError;
+      }
+      if (imageInputError) {
+        clientsideImageError.innerHTML = imageInputError;
       }
     } else {
       addPostForm.submit();

@@ -92,7 +92,7 @@
     <div id="post-container">
 
         <div class="post">
-          
+
             <div class="pictures-container">
                 {{#each post.imgUrls}}
                 <img src={{this}} alt="" class="picture">
@@ -101,14 +101,15 @@
             <div class="post-container2">
                 <div class="post-information">
                     <p class="name">{{post.name}}</p>
-                    <p class="description">{{post.description}}</p>
+                    <p class="description">Description: {{post.description}}</p>
                     <ul class="tags">
+                        Tags:
                         {{#each post.tags}}
                         <li>{{this}}</li>
                         {{/each}}
                     </ul>
-                    <p class="location">{{post.location}}</p>
-                    <p class="posted-date">{{post.postedDate}}</p>
+                    <p class="location">Location: {{post.location}}</p>
+                    <p class="posted-date">Posted Date: {{post.postedDate}}</p>
                     <p class="rating">Rating: {{post.rating}}</p>
 
                     <p id="post" value="{{post.claimed}}"></p>
@@ -207,4 +208,3 @@
     {{/if}}
 </main>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
