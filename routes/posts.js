@@ -68,7 +68,10 @@ router
 
     let tagsError;
     try {
-      postInfo.tagSelect = xss(postInfo.tagSelect2);
+      postInfo.tagSelect = postInfo.tagSelect.map((i) => {
+        return xss(i);
+      });
+      postInfo.tagSelect = postInfo.tagSelect2;
       postInfo.tagSelect = validation.checkTags(postInfo.tagSelect2, "tags");
     } catch (e) {
       hasError = true;
