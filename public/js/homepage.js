@@ -200,3 +200,12 @@ function checkString(strVal, varName) {
   //     throw `Error: ${strVal} is not a valid value for ${varName} as it only contains digits`;
   return strVal;
 }
+
+const searchForm = document.querySelector("#search-form");
+
+if (searchForm) {
+  searchForm.addEventListener("submit", (event) => {
+    let searchInput = document.querySelector("#search-bar");
+    let tagInputs = document.querySelectorAll("input[name=tagSelect]:checked");
+  });
+}

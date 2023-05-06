@@ -178,7 +178,7 @@ header {
 .signup-link,
 .logout-link {
   margin-left: 24px;
-  color: rgb(238, 50, 50);
+  color: #9d0000;
   border: 2px solid rgb(238, 50, 50);
   padding: 10px 40px;
   border-radius: 15px;
@@ -187,7 +187,7 @@ header {
 
 .userpage-link,
 .addpost-link {
-  color: rgb(71, 71, 238);
+  color: #9d0000;
 }
 
 .signup-link:hover,
@@ -276,7 +276,7 @@ header {
   text-decoration: none;
   cursor: pointer;
   transition: 0.15s;
-  color: white;
+  color: #353535;
   transition: 0.15s;
 }
 

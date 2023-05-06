@@ -38,22 +38,20 @@
 </header>
 <main>
     <div id="post-container">
-
         <div class="post">
-
             <div class="pictures-container">
                 {{#each post.imgUrls}}
-                <img src={{this}} alt="" class="picture">
+                <img src={{this}} alt="Post Image" class="picture">
                 {{/each}}
             </div>
             <div class="post-container2">
                 <div class="post-information">
-                    <p class="name">{{post.name}}</p>
+                    <h1 class="name">{{post.name}}</h1>
                     <p class="description">Description: {{post.description}}</p>
+                    <p class="tags-heading">Tags:</p>
                     <ul class="tags">
-                        Tags:
                         {{#each post.tags}}
-                        <li>{{this}}</li>
+                        <li class="tag">{{this}}</li>
                         {{/each}}
                     </ul>
                     <p class="location">Location: {{post.location}}</p>

@@ -185,7 +185,7 @@ header {
 .signup-link,
 .logout-link {
   margin-left: 24px;
-  color: rgb(238, 50, 50);
+  color: #9d0000;
   border: 2px solid rgb(238, 50, 50);
   padding: 10px 40px;
   border-radius: 15px;
@@ -194,7 +194,7 @@ header {
 
 .userpage-link,
 .addpost-link {
-  color: rgb(71, 71, 238);
+  color: #9d0000;
 }
 
 .signup-link:hover,
@@ -283,7 +283,7 @@ header {
   text-decoration: none;
   cursor: pointer;
   transition: 0.15s;
-  color: white;
+  color: #353535;
   transition: 0.15s;
 }
 
@@ -371,14 +371,20 @@ main {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  padding: 20px;
 }
 
 .information-container p {
   margin-bottom: 30px;
 }
 
-.name {
+.username {
+  font-size: 20px;
   margin-bottom: 30px;
+}
+
+.name {
+  margin-bottom: 10px;
   font-size: 26px;
   font-weight: 700;
 }

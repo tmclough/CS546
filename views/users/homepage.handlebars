@@ -148,7 +148,6 @@
       <div class="posts">
         {{#each posts}}
         <a href="post/{{_id}}" class="post">
-          <p class="username">{{username}}</p>
           <p class="name">{{name}}</p>
           <div class="pictures-information-container">
             <div class="images">
@@ -157,6 +156,7 @@
               {{/each}}
             </div>
             <div class="information-container">
+              <p class="username">Owner: {{username}}</p>
               <p class="description">Description: {{description}}</p>
               <p class="tags">Tags: {{tags}}</p>
               <p class="location">Location: {{location}}</p>
