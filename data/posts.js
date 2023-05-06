@@ -75,7 +75,7 @@ let exportedMethods = {
     const postCollection = await posts();
     let postList = await postCollection.find({}).toArray();
 
-    postList = postList.filter((p) => p.claimed === false);
+    //postList = postList.filter((p) => p.claimed === false);
 
     postList = postList.map((element) => {
       element._id = element._id.toString();
@@ -160,6 +160,29 @@ let exportedMethods = {
     let updatedPost = await postCollection.findOneAndUpdate(
       { _id: new ObjectId(id) },
       { $set: { claimed: true } },
+      { returnNewDocument: true }
+    );
+    // console.log("after updating post")
+    // console.log(updatedPost)
+
+    return updatedPost.value;
+  },
+  async unclaimPost(id) {
+    let post = await postData.getPostById(id);
+    // let user = await userData.getUserById(post.userId);
+
+    const postCollection = await posts();
+
+    id = validation.checkId(id, "id");
+    const userCollection = await users();
+    let updatedUser = await userCollection.findOneAndUpdate(
+      { _id: new ObjectId(post.userId) },
+      { $inc: { countClaimed: -1 } },
+      { returnNewDocument: true }
+    );
+    let updatedPost = await postCollection.findOneAndUpdate(
+      { _id: new ObjectId(id) },
+      { $set: { claimed: false } },
       { returnNewDocument: true }
     );
     // console.log("after updating post")

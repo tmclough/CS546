@@ -148,6 +148,7 @@
       <div class="posts">
         {{#each posts}}
         <a href="post/{{_id}}" class="post">
+          <p class="username">{{username}}</p>
           <p class="name">{{name}}</p>
           <div class="pictures-information-container">
             <div class="images">
@@ -161,6 +162,13 @@
               <p class="location">Location: {{location}}</p>
               <p class="posted-date">Posted On: {{postedDate}}</p>
               <p class="rating">User Rating: {{rating}}</p>
+              <p class="claimed">
+                {{#if claimed}}
+                Status: Post claimed by another user
+                {{else}}
+                Status: Post unclaimed
+                {{/if}}
+              </p>
             </div>
           </div>
         </a>

@@ -228,6 +228,6 @@ const exportedMethods = {
   }
 };
 
-console.log(exportedMethods.checkTags(["Hello", "twi", "Dadada"]));
+
 
 export default exportedMethods;

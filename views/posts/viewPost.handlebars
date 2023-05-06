@@ -60,7 +60,7 @@
                     <p class="posted-date">Posted Date: {{post.postedDate}}</p>
                     <p class="rating">Rating: {{post.rating}}</p>
 
-                    <p id="post" value="{{post.claimed}}"></p>
+                    <p id="post" value="{{post.claimed}}" hidden></p>
                     <button id="claim-button" type="submit" class="claim-button" data-id="{{post._id}}">Claim!</button>
 
                     {{#if isOwnerOfPost}}
