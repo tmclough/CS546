@@ -205,7 +205,25 @@ const searchForm = document.querySelector("#search-form");
 
 if (searchForm) {
   searchForm.addEventListener("submit", (event) => {
-    let searchInput = document.querySelector("#search-bar");
-    let tagInputs = document.querySelectorAll("input[name=tagSelect]:checked");
+    let searchInput = document.querySelector("#search-bar").value;
+    let hasErrors = false;
+
+    let searchError = undefined;
+    try {
+      searchInput = checkString(searchInput, "search");
+    } catch (e) {
+      hasErrors = true;
+      searchError = e;
+    }
+    let searchBar = document.querySelector("#search-bar");
+
+    if (hasErrors) {
+      event.preventDefault();
+      searchBar.placeholder = "";
+      searchBar.placeholder = searchError;
+    } else {
+      searchBar.placeholder = "Search for an item";
+      searchForm.submit();
+    }
   });
 }
