@@ -3,7 +3,6 @@ import { postData } from "./index.js";
 import { userData } from "./index.js";
 import { ObjectId } from "mongodb";
 import validation from "../validation.js";
-import { dbConnection, closeConnection } from "../config/mongoConnection.js";
 
 let exportedMethods = {
   async addComment(userId, postId, comment) {
@@ -40,7 +39,7 @@ let exportedMethods = {
   async replayToComment(userId, commentId, comment) {
     commentId = validation.checkId(commentId, "commentId");
     userId = validation.checkId(userId, "userId");
-    comment = validation.checkString(comment, "comment");
+    comment = validation.checkCommentInput(comment, "comment");
 
     // const commentInfo = await this.getCommentById(commentId);
     // const post = await postData.getPostById(commentInfo.postId);

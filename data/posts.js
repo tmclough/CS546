@@ -2,8 +2,8 @@ import { posts, users } from "../config/mongoCollections.js";
 import { ObjectId } from "mongodb";
 import validation from "../validation.js";
 import userData from "./users.js";
-import postData from "./posts.js";
-import { deleteFile } from "../imageUploadConfig.js";
+//import postData from "./posts.js";
+//import { deleteFile } from "../imageUploadConfig.js";
 
 let exportedMethods = {
   async addPost(userId, name, description, imgUrlArray, tags, location) {
@@ -47,11 +47,11 @@ let exportedMethods = {
     });
     if (deletionInfo.lastErrorObject.n === 0)
       throw "Error: Could not delete post";
-    if (deletionInfo.value.imgUrls) {
-      for (let i = 0; i < deletionInfo.value.imgUrls.length; i++) {
-        await deleteFile(deletionInfo.value.imgUrls[i]);
-      }
-    }
+    // if (deletionInfo.value.imgUrls) {
+    //   for (let i = 0; i < deletionInfo.value.imgUrls.length; i++) {
+    //     await deleteFile(deletionInfo.value.imgUrls[i]);
+    //   }
+    // }
     return { deleted: true };
   },
 
@@ -155,7 +155,7 @@ let exportedMethods = {
   //   return post;
   // },
   async claimPost(id) {
-    let post = await postData.getPostById(id);
+    let post = await this.getPostById(id);
     // let user = await userData.getUserById(post.userId);
 
     const postCollection = await posts();
@@ -178,7 +178,7 @@ let exportedMethods = {
     return updatedPost.value;
   },
   async unclaimPost(id) {
-    let post = await postData.getPostById(id);
+    let post = await this.getPostById(id);
     // let user = await userData.getUserById(post.userId);
 
     const postCollection = await posts();
@@ -244,7 +244,7 @@ let exportedMethods = {
       { returnNewDocument: true }
     );
 
-    let res = await postData.updatePostRatingsFromUserId(id);
+    let res = await this.updatePostRatingsFromUserId(id);
     return updatedUser.value;
   },
 };

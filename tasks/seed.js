@@ -3,219 +3,282 @@ import { dbConnection, closeConnection } from "../config/mongoConnection.js";
 
 import posts from "../data/posts.js";
 import users from "../data/users.js";
+import { commentData } from "../data/index.js"
 
-const db = await dbConnection();
-// await db.dropDatabase();
+async function main() {
 
-// const patrick = await users.addUser(
-//   "tara@gmail.com",
-//   "tmcloughlin",
-//   "123456789!Tara",
-//   "tara",
-//   "MAC"
-// );
+  console.log("Seeding database (it might take a minute due to hashing)...")
 
-// const tara = await users.addUser(
-//   "taramac@gmail.com",
-//   "tmcloughlin11",
-//   "123456789!Tara",
-//   "tara",
-//   "mcloughlin"
-// );
-// const patrick1 = await users.addUser(
-//   "ellen@gmail.com",
-//   "ean",
-//   "123456789!Tara",
-//   "Ellen",
-//   "An"
-// );
+  const db = await dbConnection();
+  await db.dropDatabase();
 
-// const tara1 = await users.addUser(
-//   "adriel@gmail.com",
-//   "adriel",
-//   "123456789!Tara",
-//   "Adriel",
-//   "Pupo"
-// );
-// const patrick2 = await users.addUser(
-//   "daniel@gmail.com",
-//   "dmart",
-//   "123456789!Tara",
-//   "daniel",
-//   "martinez"
-// );
+  //adding users
 
-// const tara2 = await users.addUser(
-//   "andy@gmail.com",
-//   "andy11",
-//   "123456789!Tara",
-//   "andy",
-//   "kim"
-// );
-// const patrick3 = await users.addUser(
-//   "karina@gmail.com",
-//   "kberb",
-//   "123456789!Tara",
-//   "karina",
-//   "berbarian"
-// );
+  let tara
+  try {
+    tara = await users.addUser(
+      "taramac@gmail.com",
+      "tmcloughlin11",
+      "Tara2023#",
+      "tara",
+      "mcloughlin"
+    );
+  } catch (e) {
+    console.log(e);
+  }
 
-// const tara3 = await users.addUser(
-//   "adam1@gmail.com",
-//   "adamM",
-//   "123456789!Tara",
-//   "adam",
-//   "moskowitz"
-// );
-// const patrick4 = await users.addUser(
-//   "pauline@gmail.com",
-//   "pseagul",
-//   "123456789!Tara",
-//   "pauline",
-//   "seagul"
-// );
+  let daniel;
 
-// const tara4 = await users.addUser(
-//   "yolo@gmail.com",
-//   "yolo11",
-//   "123456789!Tara",
-//   "yolo",
-//   "mcloughlin"
-// );
+  try {
+    daniel = await users.addUser(
+      "dmartin7@stevens.edu",
+      "danymz",
+      "Daniel2023#",
+      "Daniel",
+      "Martinez"
+    )
+  } catch (e) {
+    console.log(e);
+  }
 
-try {
-  await posts.addPost(
-    "64546345f0170da94279895a",
-    "Baseball Hat",
-    "2012 edition, lightly used",
-    [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/200px-Google_%22G%22_Logo.svg.png",
-    ],
-    ["Clothing", "Sport Equipment"],
-    "807 Castle Point Terrace"
-  );
-  await posts.addPost(
-    "64546345f0170da94279895a",
-    "Full size bed",
-    "large bed",
-    [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/200px-Google_%22G%22_Logo.svg.png",
-    ],
-    ["Furniture"],
-    "807 Castle Point Terrace"
-  );
-  await posts.addPost(
-    "6454634af0170da94279895b",
-    "new_textbook",
-    "2012 edition, lightly used",
-    [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/200px-Google_%22G%22_Logo.svg.png",
-    ],
-    ["Books"],
-    "807 Castle Point Terrace"
-  );
+  let andrew;
+  try {
+    andrew = await users.addUser(
+      "andy@gmail.com",
+      "andy11",
+      "Andy2023#",
+      "andy",
+      "kim"
+    )
+  } catch (e) {
+    console.log(e);
+  }
 
-  await posts.addPost(
-    "6454634af0170da94279895b",
-    "Desk",
-    "Brown, lightly used",
-    [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/200px-Google_%22G%22_Logo.svg.png",
-    ],
-    ["Furniture"],
-    "807 Castle Point Terrace"
-  );
-  await posts.addPost(
-    "6454634ff0170da94279895c",
-    "Baseball bat",
-    "Orange, extra small",
-    [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/200px-Google_%22G%22_Logo.svg.png",
-    ],
-    ["Sport Equipment"],
-    "807 Castle Point Terrace"
-  );
-  await posts.addPost(
-    "6454634ff0170da94279895c",
-    "Lighting",
-    "extra small",
-    [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/200px-Google_%22G%22_Logo.svg.png",
-    ],
-    ["Other"],
-    "807 Castle Point Terrace"
-  );
-  await posts.addPost(
-    "64546354f0170da94279895d",
-    "Mouse",
-    "2 months old, lightly used",
-    [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/200px-Google_%22G%22_Logo.svg.png",
-    ],
-    ["Electronics"],
-    "807 Castle Point Terrace"
-  );
-  await posts.addPost(
-    "64546354f0170da94279895d",
-    "keyboard",
-    "2 months old, lightly used",
-    [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/200px-Google_%22G%22_Logo.svg.png",
-    ],
-    ["Electronics"],
-    "807 Castle Point Terrace"
-  );
-} catch (e) {
-  console.log(e);
-}
-// await posts.addPost(
-//   "6456f47f18637253b381fb49",
-//   "new textbook",
-//   "2012 edition, lightly used",
-//   [],
-//   "807 Castle Point Terrace"
-// );
 
-// await posts.addPost(
-//   "6456f47f18637253b381fb49",
-//   "new textbook",
-//   "2012 edition, lightly used",
-//   [],
-//   "807 Castle Point Terrace"
-// );
+  let ellen;
+  try {
+    ellen = await users.addUser(
+      "ellen@gmail.com",
+      "ean",
+      "Ellen2023#",
+      "Ellen",
+      "An"
+    );
+  } catch (e) {
+    console.log(e);
+  }
 
-// await posts.addPost(
-//   "6456f48318637253b381fb4a",
-//   "new textbook",
-//   "2012 edition, lightly used",
-//   [],
-//   "807 Castle Point Terrace"
-// );
 
-// await posts.addPost(
-//   "6456f48318637253b381fb4a",
-//   "new textbook",
-//   "2012 edition, lightly used",
-//   [],
-//   "807 Castle Point Terrace"
-// );
+  let karina;
+  try {
+    karina = await users.addUser(
+      "karina@gmail.com",
+      "kberb",
+      "Karina2023#",
+      "karina",
+      "berbarian"
+    );
+  } catch (e) {
+    console.log(e);
+  }
 
-// await posts.addPost(
-//   "6456f48618637253b381fb4b",
-//   "new textbook",
-//   "2012 edition, lightly used",
-//   [],
-//   "807 Castle Point Terrace"
-// );
+  let pauline;
+  try {
+    pauline = await users.addUser(
+      "pauline@gmail.com",
+      "pseagul",
+      "Pauline2023#",
+      "pauline",
+      "seagul"
+    );
+  } catch (e) {
+    console.log(e);
+  }
 
-// await posts.addPost(
-//   "6456f48618637253b381fb4b",
-//   "new textbook",
-//   "2012 edition, lightly used",
-//   [],
-//   "807 Castle Point Terrace"
-// );
 
-console.log("Done seeding database");
+  //Adding posts
 
-await closeConnection();
+  let danielPost1;
+  try {
+    danielPost1 = await posts.addPost(
+      daniel._id,
+      "Microwave",
+      "Slightly Used Microwave, works fine",
+      ["https://cs546project.s3.us-east-2.amazonaws.com/microwave_1.jpg",
+        "https://cs546project.s3.us-east-2.amazonaws.com/microwave_2.jpg"],
+      ["Electronics", "Appliances"],
+      "Davis Hall")
+  } catch (e) {
+    console.log(e);
+  }
+
+  let danielPost2;
+  try {
+    danielPost2 = await posts.addPost(
+      daniel._id,
+      "Night Table",
+      "Free night table, it's gotta a few scratches but it looks good.",
+      ["https://cs546project.s3.us-east-2.amazonaws.com/nightTable.jpg"],
+      ["Furniture"],
+      "Palmer Hall")
+  } catch (e) {
+    console.log(e);
+  }
+
+
+  let taraPost1;
+  try {
+    taraPost1 = await posts.addPost(
+      tara._id,
+      "Baseball Hat",
+      "New York Yankees baseball hat",
+      [
+        "https://cs546project.s3.us-east-2.amazonaws.com/baseball_hat_1.jpg",
+        "https://cs546project.s3.us-east-2.amazonaws.com/baseball_hat_2.jpg"
+      ],
+      ["Clothing", "Sport Equipment"],
+      "807 Castle Point Terrace");
+  } catch (e) {
+    console.log(e);
+  }
+
+  let andrewPost1;
+  try {
+    andrewPost1 = await posts.addPost(
+      andrew._id,
+      "Twin mattress",
+      "Memory foam twin matress, used but new. clean",
+      [
+        "https://cs546project.s3.us-east-2.amazonaws.com/mattress_1.jpg",
+        "https://cs546project.s3.us-east-2.amazonaws.com/mattress_2.jpg",
+        "https://cs546project.s3.us-east-2.amazonaws.com/mattress_3.jpg"
+      ],
+      ["Furniture", "Other"],
+      "Pierce Hall");
+  } catch (e) {
+    console.log(e);
+  }
+
+
+  let andrewPost2;
+  try {
+    andrewPost2 = await posts.addPost(
+      andrew._id,
+      "Chemistry Textbook ",
+      "Chemistry 9th edition, by Zumdahl",
+      [
+        "https://cs546project.s3.us-east-2.amazonaws.com/chem_textbook.jpg",
+
+      ],
+      ["Books", "School Supplies"],
+      "Wesley J. Howe Center");
+  } catch (e) {
+    console.log(e);
+  }
+
+  let ellenPost1;
+  try {
+    ellenPost1 = await posts.addPost(
+      ellen._id,
+      "Mouse",
+      "Logitech mouse, almot new",
+      [
+        "https://cs546project.s3.us-east-2.amazonaws.com/mouse.jpg",
+
+      ],
+      ["Electronics"],
+      "Wesley J. Howe Center");
+  } catch (e) {
+    console.log(e);
+  }
+
+
+  let ellenPost2;
+  try {
+    ellenPost2 = await posts.addPost(
+      ellen._id,
+      "Keyboard",
+      "Logitech keyboard, almot new",
+      [
+        "https://cs546project.s3.us-east-2.amazonaws.com/keyboard.jpg",
+
+      ],
+      ["Electronics"],
+      "Wesley J. Howe Center");
+  } catch (e) {
+    console.log(e);
+  }
+
+  let ellenPost3;
+  try {
+    ellenPost3 = await posts.addPost(
+      ellen._id,
+      "Desk",
+      "Brown, lightly used",
+      [
+        "https://cs546project.s3.us-east-2.amazonaws.com/desk_1.jpg",
+        "https://cs546project.s3.us-east-2.amazonaws.com/desk_2.jpg",
+
+      ],
+      ["Furniture"],
+      "South Tower");
+  } catch (e) {
+    console.log(e);
+  }
+
+  let karinaPost1;
+  try {
+    karinaPost1 = await posts.addPost(
+      karina._id,
+      "CS textbook",
+      "CS 101 textbook, good conditions",
+      [
+        "https://cs546project.s3.us-east-2.amazonaws.com/cs_textbook.jpg",
+      ],
+      ["Books"],
+      "River Terrace");
+  } catch (e) {
+    console.log(e);
+  }
+
+  let paulinePost1;
+  try {
+    paulinePost1 = await posts.addPost(
+      pauline._id,
+      "CS textbook (Data Structures and Algorithms)",
+      "CS textbook, data structures and algorithms, in good conditions",
+      [
+        "https://cs546project.s3.us-east-2.amazonaws.com/cs_textbook_2.jpg",
+      ],
+      ["Books"],
+      "Wesley J. Howe Center");
+  } catch (e) {
+    console.log(e);
+  }
+
+  //Adding comment and replies
+  let commentOnDanielPost1;
+  try {
+    commentOnDanielPost1 = await commentData.addComment(
+      tara._id,
+      danielPost1.id,
+      "When can I pick it up?");
+  } catch (e) {
+    console.log(e);
+  }
+  // let replyOnDanielPost1;
+  // try {
+  //   replyOnDanielPost1 = await commentData.replayToComment(
+  //     daniel._id,
+  //     commentOnDanielPost1._id.toString(),
+  //     "I'll be here today from 12 to 6 and tomorrow all day.");
+  // } catch (e) {
+  //   console.log(e);
+  // }
+
+
+  console.log("Done seeding database");
+  await closeConnection();
+};
+
+main();
