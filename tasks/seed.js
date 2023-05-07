@@ -85,7 +85,7 @@ const db = await dbConnection();
 
 try {
   await posts.addPost(
-    "6456f47118637253b381fb45",
+    "64546345f0170da94279895a",
     "Baseball Hat",
     "2012 edition, lightly used",
     [
@@ -95,7 +95,7 @@ try {
     "807 Castle Point Terrace"
   );
   await posts.addPost(
-    "6456f47118637253b381fb45",
+    "64546345f0170da94279895a",
     "Full size bed",
     "large bed",
     [
@@ -105,7 +105,7 @@ try {
     "807 Castle Point Terrace"
   );
   await posts.addPost(
-    "6456f47418637253b381fb46",
+    "6454634af0170da94279895b",
     "new_textbook",
     "2012 edition, lightly used",
     [
@@ -116,7 +116,7 @@ try {
   );
 
   await posts.addPost(
-    "6456f47418637253b381fb46",
+    "6454634af0170da94279895b",
     "Desk",
     "Brown, lightly used",
     [
@@ -126,7 +126,7 @@ try {
     "807 Castle Point Terrace"
   );
   await posts.addPost(
-    "6456f47818637253b381fb47",
+    "6454634ff0170da94279895c",
     "Baseball bat",
     "Orange, extra small",
     [
@@ -136,7 +136,7 @@ try {
     "807 Castle Point Terrace"
   );
   await posts.addPost(
-    "6456f47818637253b381fb47",
+    "6454634ff0170da94279895c",
     "Lighting",
     "extra small",
     [
@@ -146,7 +146,7 @@ try {
     "807 Castle Point Terrace"
   );
   await posts.addPost(
-    "6456f47c18637253b381fb48",
+    "64546354f0170da94279895d",
     "Mouse",
     "2 months old, lightly used",
     [
@@ -156,7 +156,7 @@ try {
     "807 Castle Point Terrace"
   );
   await posts.addPost(
-    "6456f47c18637253b381fb48",
+    "64546354f0170da94279895d",
     "keyboard",
     "2 months old, lightly used",
     [

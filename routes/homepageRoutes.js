@@ -95,8 +95,6 @@ router
       // console.log("gets in this!!!");
 
       if (posts && posts.length > 0) {
-        // console.log("gets in this");
-        console.log("shoudlnt be here");
         if (postArr2.length > 0) {
           let postUpdated = posts.filter((post) => {
             let matchingPost = postArr2.find(
@@ -114,20 +112,15 @@ router
         postArr = postArr;
       }
     } else {
-      console.log("shouldnt be here2");
       if (postArr.length === 0) {
         postArr = postList;
       }
     }
     //by description
     if (searchText && searchText.trim() !== "") {
-      console.log("in search by description");
-      console.log(searchText);
       let posts = await postData.getPostsByDesciption(searchText.trim());
-      console.log(posts);
-      console.log("after getting the posts");
+
       if (posts && posts.length > 0) {
-        console.log("should be in this");
         if (postArr2.length > 0) {
           let postUpdated = posts.filter((post) => {
             let matchingPost = postArr2.find(
@@ -139,14 +132,11 @@ router
           postArr.push(postUpdated);
         } else {
           postArr.push(posts);
-          console.log("postarr after pushing posts by description:");
-          console.log(postArr);
         }
       } else {
         postArr = postArr;
       }
     } else {
-      console.log("shouldnt");
       if (postArr.length === 0) {
         postArr = postList;
       }
@@ -158,7 +148,6 @@ router
         const posts = await postData.getPostbyUser(user._id.toString());
 
         if (posts && posts.length > 0) {
-          console.log("shouldnt for lightly");
           if (postArr2.length > 0) {
             let postUpdated = posts.filter((post) => {
               let matchingPost = postArr2.find(
@@ -180,7 +169,6 @@ router
         }
       }
     } else {
-      console.log("shouldnt");
       if (postArr.length === 0) {
         postArr = postList;
       }
@@ -198,46 +186,33 @@ router
     // }
 
     postArr = postArr.flat(100);
-    console.log("postArr");
-    console.log(postArr);
+
     tagsArr = tagsArr.flat(100);
 
     let finalArr = [];
     if (tags && tags.length !== 0) {
       finalArr = tagsArr;
     } else {
-      console.log("where i should be");
       finalArr = postArr;
-      console.log(finalArr);
     }
     if (orderByRating) {
-      console.log("in order by raitn");
       let ratingArr = [];
       for (let p of finalArr) {
         ratingArr.push(p.rating);
       }
-      console.log(`ratingArr: ${ratingArr}`);
+
       let resArr = [];
       for (let x = 5.0; x >= 0; x -= 0.1) {
         for (let a = 0; a < ratingArr.length; a++) {
-          console.log("-------");
-          console.log(parseFloat(ratingArr[a]).toFixed(1));
-          console.log(x.toFixed(1));
-          console.log("-------");
-
           if (
             parseFloat(ratingArr[a]).toFixed(1) === parseFloat(x).toFixed(1)
           ) {
-            console.log("getting in this push");
             resArr.push(finalArr[a]);
           }
         }
       }
 
-      console.log("resarr:");
-      console.log(resArr);
       finalArr = resArr;
-      console.log(`final ARr: ${finalArr}`);
     }
 
     if (tags) {
