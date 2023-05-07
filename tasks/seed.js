@@ -266,15 +266,16 @@ async function main() {
   } catch (e) {
     console.log(e);
   }
-  // let replyOnDanielPost1;
-  // try {
-  //   replyOnDanielPost1 = await commentData.replayToComment(
-  //     daniel._id,
-  //     commentOnDanielPost1._id.toString(),
-  //     "I'll be here today from 12 to 6 and tomorrow all day.");
-  // } catch (e) {
-  //   console.log(e);
-  // }
+
+  let replyOnDanielPost1;
+  try {
+    replyOnDanielPost1 = await commentData.replayToComment(
+      daniel._id,
+      commentOnDanielPost1._id.toString(),
+      "I'll be here today from 12 to 6 and tomorrow all day.");
+  } catch (e) {
+    console.log(e);
+  }
 
 
   console.log("Done seeding database");

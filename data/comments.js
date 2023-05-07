@@ -33,7 +33,7 @@ let exportedMethods = {
     );
     if (postInfo.lastErrorObject.n === 0) throw "Error: Could not update post";
 
-    return postInfo.value;
+    return postInfo.value.comments[postInfo.value.comments.length - 1];
   },
 
   async replayToComment(userId, commentId, comment) {
