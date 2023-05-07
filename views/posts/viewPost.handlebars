@@ -88,18 +88,21 @@
                         </div>
                         {{#if ../isOwnerOfPost}}
                         <div class="comment-container2">
-                            <form action="comment/{{../post._id}}" method="POST">
+                            <form action="comment/{{../post._id}}" method="POST" id="delete-comment-form">
                                 <input type="text" name="_method" value="DELETE" hidden>
                                 <label for="delete-button"></label>
                                 <input type="submit" id="delete-button" class="delete-comment-button"
                                     value="Delete Comment">
                                 <input type="text" id="comment-id-input" name="commentId" value={{this._id}} hidden>
                             </form>
+                            <div class="reply-comment-container">
+                                <button class="reply-comment-button" value="{{this._id}}">Reply</button>
+                            </div>
                         </div>
                         {{else if this.madeByCurrentUser}}
                         <div class="comment-container2">
                             <div class="delete-comment-container">
-                                <form action="comment/{{../post._id}}" method="POST">
+                                <form action="comment/{{../post._id}}" method="POST" id="delete-comment-form">
                                     <input type="text" name="_method" value="DELETE" hidden>
                                     <label for="delete-button"></label>
                                     <input type="submit" id="delete-button" class="delete-comment-button"
