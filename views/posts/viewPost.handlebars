@@ -47,6 +47,7 @@
             <div class="post-container2">
                 <div class="post-information">
                     <h1 class="name">{{post.name}}</h1>
+                    <p class="owner">Owner: {{post.username}}</p>
                     <p class="description">Description: {{post.description}}</p>
                     <p class="tags-heading">Tags:</p>
                     <ul class="tags">
@@ -56,7 +57,7 @@
                     </ul>
                     <p class="location">Location: {{post.location}}</p>
                     <p class="posted-date">Posted Date: {{post.postedDate}}</p>
-                    <p class="rating">Rating: {{post.rating}}</p>
+                    <p class="rating">User rating: {{post.rating}}</p>
 
                     <p id="post" value="{{post.claimed}}" hidden></p>
                     <button id="claim-button" type="submit" class="claim-button" data-id="{{post._id}}">Claim!</button>
