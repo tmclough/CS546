@@ -46,22 +46,11 @@
         <p>Email Address: {{userInfo.email}}</p>
     </div>
     <div class="posts-section">
-        <h2 class="posts-heading">My Posts</h2>
+        {{#if posts}}
+        <h2 class="posts-heading">Posts</h2>
         <div class="posts">
             {{#each posts}}
-            {{#if claimed}}
-            <div class="accept-reject-btns">
-                <form action="account/accept/claim/{{_id}}">
-                    <button type="submit" id="accept-claim-btn">Accept Claim</button>
-                </form>
-                <form action="account/reject/claim/{{_id}}">
-                    <button type="submit" id="reject-claim-btn">Reject Claim</button>
-                </form>
-
-            </div>
-            {{/if}}
             <a href="post/{{_id}}" class="post">
-                <p class="username">Username: {{username}}</p>
                 <p class="name">{{name}}</p>
                 <div class="pictures-information-container">
                     <div class="images">
@@ -70,6 +59,7 @@
                         {{/each}}
                     </div>
                     <div class="information-container">
+                        <p class="username">Owner: {{username}}</p>
                         <p class="description">Description: {{description}}</p>
                         <p class="tags">Tags: {{tags}}</p>
                         <p class="location">Location: {{location}}</p>
@@ -84,8 +74,21 @@
                         </p>
                     </div>
                 </div>
+                {{#if claimed}}
+                <div class="accept-reject-btns">
+                    <form action="account/accept/claim/{{_id}}">
+                        <button type="submit" id="accept-claim-btn">Accept Claim</button>
+                    </form>
+                    <form action="account/reject/claim/{{_id}}">
+                        <button type="submit" id="reject-claim-btn">Reject Claim</button>
+                    </form>
+                </div>
+                {{/if}}
             </a>
             {{/each}}
         </div>
+        {{else}}
+        <h2 class="posts-heading">No Posts Found</h2>
+        {{/if}}
     </div>
 </main>
