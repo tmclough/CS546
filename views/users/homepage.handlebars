@@ -144,6 +144,7 @@
 
   <div class="posts-section">
     <h1 class="main-heading">Stevens Curbside Pickup</h2>
+      {{#if posts}}
       <h2 class="posts-heading">Posts</h2>
       <div class="posts">
         {{#each posts}}
@@ -174,5 +175,8 @@
         </a>
         {{/each}}
       </div>
+      {{else}}
+      <h2 class="posts-heading">No Posts Found</h2>
+      {{/if}}
   </div>
 </main>
