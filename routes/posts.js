@@ -176,6 +176,11 @@ router
         hasComments = false;
       }
 
+      let isClaimed = false;
+      if (post.claimed === true) {
+        isClaimed = true;
+      }
+
       res.render("posts/viewPost", {
         title: "View Post",
         cssFile: "/public/css/viewPost.css",
@@ -186,6 +191,7 @@ router
         isOwnerOfPost: isOwnerOfPost,
         currentUserInfo: req.session.user,
         hasComments: hasComments,
+        isClaimed: isClaimed,
       });
     } catch (e) {
       res.status(500).render("error/errorPage", {
@@ -357,6 +363,7 @@ router.route("/claimed/:id").post(async (req, res) => {
   try {
     const id = validation.checkId(req.params.id);
     const updatedPost = await postData.claimPost(id);
+
     res.render("partials/post.handlebars", {
       post: updatedPost,
       jsFile: "/public/js/viewPost.js",

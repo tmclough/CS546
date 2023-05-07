@@ -60,8 +60,11 @@
                     <p class="rating">User rating: {{post.rating}}</p>
 
                     <p id="post" value="{{post.claimed}}" hidden></p>
+                    {{#if isClaimed}}
+                    {{else if isOwnerOfPost}}
+                    {{else}}
                     <button id="claim-button" type="submit" class="claim-button" data-id="{{post._id}}">Claim!</button>
-
+                    {{/if}}
                     {{#if isOwnerOfPost}}
                     <div class="delete-post-container">
                         <form action="" method="POST">
