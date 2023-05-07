@@ -112,7 +112,7 @@ const exportedMethods = {
   },
 
   checkUsername(strVal, varName) {
-    strVal = this.checkString(strVal, varName);
+    strVal = this.checkString(strVal, varName).toLowerCase();
     if (strVal.includes(" ")) throw `${varName} should not contain spaces`;
     if (strVal.length < 2)
       throw `${varName} should be at least 2 characters long`;
@@ -207,11 +207,11 @@ const exportedMethods = {
     if (urlArr.length > 4) throw "Error: maximum of 4 images per post";
     let urlRegex = new RegExp(
       "^(https?:\\/\\/)?" + // validate protocol
-        "((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|" + // validate domain name
-        "((\\d{1,3}\\.){3}\\d{1,3}))" + // validate OR ip (v4) address
-        "(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*" + // validate port and path
-        "(\\?[;&a-z\\d%_.~+=-]*)?" + // validate query string
-        "(\\#[-a-z\\d_]*)?$",
+      "((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|" + // validate domain name
+      "((\\d{1,3}\\.){3}\\d{1,3}))" + // validate OR ip (v4) address
+      "(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*" + // validate port and path
+      "(\\?[;&a-z\\d%_.~+=-]*)?" + // validate query string
+      "(\\#[-a-z\\d_]*)?$",
       "i"
     ); // validate fragment locator)
     for (let i = 0; i < urlArr.length; i++)
