@@ -5,7 +5,6 @@ import userData from "./users.js";
 import postData from "./posts.js";
 import { deleteFile } from "../imageUploadConfig.js";
 
-
 let exportedMethods = {
   async addPost(userId, name, description, imgUrlArray, tags, location) {
     userId = validation.checkId(userId, "userId");
@@ -109,27 +108,43 @@ let exportedMethods = {
     return post;
   },
   async getPostsByName(name) {
+    console.log("in getpostbyname");
     name = validation.checkItemName(name, "name");
     const words = name.toLowerCase().trim().split(/\s+/);
+    console.log("in getpostbyname");
 
     const postCollection = await posts();
-    const post = await postCollection
-      .find({
-        name: { $regex: words.join("|"), $options: "i" },
-      })
-      .toArray();
+    console.log("in getpostbyname");
+    function escapeRegExp(string) {
+      return string.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    }
+
+    const escapedWords = words.map((word) => escapeRegExp(word));
+    console.log(escapedWords);
+    const regex = new RegExp(escapedWords.join("|"), "i");
+    console.log(regex);
+    const post = await postCollection.find({ name: regex }).toArray();
+
+    console.log("in getpostbyname");
+
     if (!post) throw "Error: post not found";
     return post;
   },
   async getPostsByDesciption(description) {
+    console.log("in get post by decrip func");
     description = validation.checkDescription(description, "description");
     const words = description.toLowerCase().trim().split(/\s+/);
     const postCollection = await posts();
-    const post = await postCollection
-      .find({
-        description: { $regex: words.join("|"), $options: "i" },
-      })
-      .toArray();
+    function escapeRegExp(string) {
+      return string.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    }
+
+    const escapedWords = words.map((word) => escapeRegExp(word));
+    // console.log(escapedWords);
+    const regex = new RegExp(escapedWords.join("|"), "i");
+    console.log(regex);
+    const post = await postCollection.find({ description: regex }).toArray();
+    console.log(post);
     if (!post) throw "Error: post not found";
     return post;
   },
@@ -191,19 +206,27 @@ let exportedMethods = {
     return updatedPost.value;
   },
   async updatePostRatingsFromUserId(id) {
+    console.log("in update post raitngs func");
     id = validation.checkId(id, "id");
     let user = await userData.getUserById(id);
     const postCollection = await posts();
 
-
     let postList = await this.getAllPosts();
     for (let post of postList) {
+      // console.log("about to update the posts");
+
       if (post.username === user.username) {
-        postCollection.findOneAndUpdate({ _id: post._id },
-          { $set: { rating: user.rating } },
-          { returnNewDocument: true })
+        console.log("about to update the posts");
+        console.log(user.rating);
+
+        postCollection.findOneAndUpdate(
+          { _id: new ObjectId(post._id) },
+          { $set: { rating: user.rating.toString() } },
+          { returnNewDocument: true }
+        );
       }
     }
+
     // const updatedPosts = postCollection.update(
     //   { username: user.username },
     //   { $set: { rating: user.rating } },
@@ -212,6 +235,7 @@ let exportedMethods = {
     return postList;
   },
   async updateRating(id, inputRating) {
+    console.log("in the rataing func");
     id = validation.checkId(id, "id");
     let user = await userData.getUserById(id);
     const userCollection = await users();
@@ -223,11 +247,13 @@ let exportedMethods = {
         user.countClaimed
       ).toFixed(1);
     }
+    console.log("about to update rating");
     let updatedUser = await userCollection.findOneAndUpdate(
       { _id: new ObjectId(id) },
       { $set: { rating: newRating.toString() } },
       { returnNewDocument: true }
     );
+    console.log("about to update post raings");
     let res = await postData.updatePostRatingsFromUserId(id);
     return updatedUser.value;
   },

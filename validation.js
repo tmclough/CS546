@@ -72,6 +72,17 @@ const exportedMethods = {
     //     throw `Error: ${strVal} is not a valid value for ${varName} as it only contains digits`;
     return strVal;
   },
+  checkSearchText(searchText, varName) {
+    // if (!searchText) throw `Error: You must supply a ${varName}!`;
+    if (typeof searchText !== "string")
+      throw `Error: ${varName} must be a string!`;
+    searchText = searchText.trim();
+    // if (strVal.length === 0)
+    // throw `Error: ${varName} cannot be an empty string or string with just spaces`;
+    // //if (!isNaN(strVal))
+    //     throw `Error: ${strVal} is not a valid value for ${varName} as it only contains digits`;
+    return searchText;
+  },
 
   checkStringArray(arr, varName) {
     //We will allow an empty array for this,
@@ -196,11 +207,11 @@ const exportedMethods = {
     if (urlArr.length > 4) throw "Error: maximum of 4 images per post";
     let urlRegex = new RegExp(
       "^(https?:\\/\\/)?" + // validate protocol
-      "((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|" + // validate domain name
-      "((\\d{1,3}\\.){3}\\d{1,3}))" + // validate OR ip (v4) address
-      "(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*" + // validate port and path
-      "(\\?[;&a-z\\d%_.~+=-]*)?" + // validate query string
-      "(\\#[-a-z\\d_]*)?$",
+        "((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|" + // validate domain name
+        "((\\d{1,3}\\.){3}\\d{1,3}))" + // validate OR ip (v4) address
+        "(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*" + // validate port and path
+        "(\\?[;&a-z\\d%_.~+=-]*)?" + // validate query string
+        "(\\#[-a-z\\d_]*)?$",
       "i"
     ); // validate fragment locator)
     for (let i = 0; i < urlArr.length; i++)
@@ -208,7 +219,6 @@ const exportedMethods = {
 
     return urlArr;
   },
-
 
   checkCommentInput(comment, varName) {
     comment = this.checkString(comment, varName);
@@ -220,14 +230,12 @@ const exportedMethods = {
     return comment;
   },
   checkRating(rating, varName) {
-    if (rating && typeof rating === "string" || typeof rating === "number") {
-      return rating
+    if ((rating && typeof rating === "string") || typeof rating === "number") {
+      return rating;
     } else {
-      throw `${varName} invalid`
+      throw `${varName} invalid`;
     }
-  }
+  },
 };
-
-
 
 export default exportedMethods;
