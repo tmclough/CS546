@@ -234,15 +234,23 @@ router
   })
   .patch(async (req, res) => {
     let id;
+    let postName;
+    let postDesc;
     try {
       id = validation.checkId(xss(req.params.id), "postId");
+      postName = validation.checkItemName(
+        xss(req.body.newPostName),
+        "Post Name"
+      );
+      postDesc = validation.checkDescription(
+        xss(req.body.newPostDesc),
+        "Description"
+      );
     } catch (e) {
       return res
         .status(400)
         .render("error/errorPage", { error: e, errorCode: 400 });
     }
-    let postName = xss(req.body.newPostName);
-    let postDesc = xss(req.body.newPostDesc);
 
     try {
       const updatedInfo = await postData.updatePostNameAndDescription(
@@ -251,7 +259,7 @@ router
         postDesc
       );
       if (updatedInfo) {
-        res.redirect("/");
+        res.redirect(`/post/${id}`);
       } else {
         return res.status(400).render("error/errorPage", {
           error: "update failed",
