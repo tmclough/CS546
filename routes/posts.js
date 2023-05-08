@@ -133,6 +133,32 @@ router
     }
   });
 
+router.route("/account/:id").get(async (req, res) => {
+  if (!req.session.user) {
+    res.status(400).render("error/errorPage", {
+      error: "Error: user not signed in",
+      errorCode: 400,
+    });
+  }
+
+  try {
+    let id = validation.checkId(req.params.id, "id");
+    // let post = postData.getPostById(req.params.id);
+    const posts = await postData.getPostbyUser(id);
+    const userInfo = await userData.getUserById(id);
+    res.render("users/account", {
+      title: "Account",
+      userLogin: req.session.user ? false : true,
+      cssFile: "/public/css/account.css",
+      jsFile: "/public/js/account.js",
+      posts,
+      userInfo,
+      //jsFile: "/public/js/signUp.js",
+    });
+  } catch (e) {
+    res.status(500).render("error/errorPage", { error: e, errorCode: 500 });
+  }
+});
 router
   .route("/:id")
   .get(async (req, res) => {

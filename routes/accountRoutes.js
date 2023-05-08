@@ -7,12 +7,10 @@ import xss from "xss";
 
 router.route("/").get(async (req, res) => {
   if (!req.session.user) {
-    res
-      .status(400)
-      .render("error/errorPage", {
-        error: "Error: user not signed in",
-        errorCode: 400,
-      });
+    res.status(400).render("error/errorPage", {
+      error: "Error: user not signed in",
+      errorCode: 400,
+    });
   }
   try {
     const posts = await postData.getPostbyUser(xss(req.session.user._id));
@@ -30,14 +28,13 @@ router.route("/").get(async (req, res) => {
     res.status(500).render("error/errorPage", { error: e, errorCode: 500 });
   }
 });
+
 router.route("/accept/claim/:id").get(async (req, res) => {
   if (!req.session.user) {
-    res
-      .status(400)
-      .render("error/errorPage", {
-        error: "Error: user not signed in",
-        errorCode: 400,
-      });
+    res.status(400).render("error/errorPage", {
+      error: "Error: user not signed in",
+      errorCode: 400,
+    });
   }
   let id;
   try {
@@ -50,12 +47,10 @@ router.route("/accept/claim/:id").get(async (req, res) => {
   try {
     const postInfo = await postData.getPostById(id);
     if (!postInfo.claimed)
-      res
-        .status(400)
-        .render("error/errorPage", {
-          error: "Error: post hasn't been claimed",
-          errorCode: 400,
-        });
+      res.status(400).render("error/errorPage", {
+        error: "Error: post hasn't been claimed",
+        errorCode: 400,
+      });
     const deletedInfo = await postData.deletePost(id);
     if (deletedInfo) {
       res.redirect("/account");
@@ -71,12 +66,10 @@ router.route("/accept/claim/:id").get(async (req, res) => {
 });
 router.route("/reject/claim/:id").get(async (req, res) => {
   if (!req.session.user) {
-    res
-      .status(400)
-      .render("error/errorPage", {
-        error: "Error: user not signed in",
-        errorCode: 400,
-      });
+    res.status(400).render("error/errorPage", {
+      error: "Error: user not signed in",
+      errorCode: 400,
+    });
   }
   let id;
   try {
@@ -90,12 +83,10 @@ router.route("/reject/claim/:id").get(async (req, res) => {
   try {
     const postInfo = await postData.getPostById(id);
     if (!postInfo.claimed)
-      res
-        .status(400)
-        .render("error/errorPage", {
-          error: "Error: post hasn't been claimed",
-          errorCode: 400,
-        });
+      res.status(400).render("error/errorPage", {
+        error: "Error: post hasn't been claimed",
+        errorCode: 400,
+      });
     const unclaimedInfo = await postData.unclaimPost(id);
     if (unclaimedInfo) {
       res.redirect("/account");
