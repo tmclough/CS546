@@ -123,9 +123,9 @@
 
       <div id="imageUpload-container">
         <p>Select Images (Up to 4):</p>
-        <label for="imageUpload" class="image-upload-label">
-          <input type="file" name="images" class="imageUpload" />
-        </label>
+        <label for="imageUpload" class="image-upload-label"></label>
+        <input type="file" name="images" class="imageUpload" id="imageUpload" />
+
         {{#if imageError}} <!-- this is for server-side errors -->
         <div class="invalid-image-error">{{imageError}}</div>
         {{else}} <!-- this is for clientside errors -->

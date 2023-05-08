@@ -102,6 +102,7 @@ addPicBtn.addEventListener("click", (event) => {
     fileInput.type = "file";
     fileInput.name = "images";
     fileInput.classList.add("imageUpload");
+    fileInput.id = "imageUpload";
     imageUploadLabel.appendChild(fileInput);
     numberOfPictures++;
   }
