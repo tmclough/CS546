@@ -702,13 +702,4 @@ main {
     align-items: center;
     flex-direction: column;
   }
-  .pictures-container {
-    display: flex;
-    flex-direction: row;
-    max-width: 1500px;
-  }
-
-  .picture {
-    margin-right: 40px;
-  }
 }
