@@ -41,7 +41,7 @@ router
     }
     searchText = validation.checkSearchText(searchText, "searchText");
     if (tags && tags.length > 0) {
-       tags = [tags];
+      tags = [tags];
       let index = tags.indexOf("Rating");
       if (index > -1) {
         orderByRating = true;
@@ -59,6 +59,7 @@ router
 
     let postArr = [];
     let tagsArr = [];
+    tags = tags.flat(100);
     if (!tags || tags.length === 0) {
       postArr = postArr;
     } else {
