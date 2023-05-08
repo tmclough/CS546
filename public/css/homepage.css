@@ -422,3 +422,43 @@ main {
   margin-bottom: 12px;
   color: rgb(236, 57, 57);
 }
+
+/* .alert {
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 10px;
+  border: 1px solid #f5c6cb;
+  border-radius: 4px;
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  
+} */
+.alertHidden{
+  display: none;
+
+}
+.alertShowing{
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 10px;
+  border: 1px solid #f5c6cb;
+  border-radius: 4px;
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+
+}
+.close {
+  float: right;
+  cursor: pointer;
+}
+
+#alertMessage {
+  margin: 0;
+}
+

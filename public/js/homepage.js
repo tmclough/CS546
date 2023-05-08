@@ -43,7 +43,14 @@ document.addEventListener("click", (event) => {
     toggleButtonImage.classList.remove("rotate");
   }
 });
+function showCustomAlert(message) {
+  document.getElementById("alertMessage").textContent = message;
+  document.getElementById("customAlert").style.display = "block";
+}
 
+function closeAlert() {
+  document.getElementById("customAlert").style.display = "none";
+}
 // const searchForm = document.getElementById("search-form");
 // console.log("here too");
 
@@ -150,6 +157,13 @@ document.addEventListener("click", (event) => {
 //   }
 // });
 
+// function showCustomAlert(message) {
+//   document.getElementById("alertMessage").textContent = message;
+//   document.getElementById("customAlert").style.display = "block";
+// }
+// function closeAlert() {
+//   document.getElementById("customAlert").style.display = "none";
+// }
 function clickPostFunction(postId) {
   fetch(`/post/${postId}`, { method: "GET" })
     .then((response) => response.text())

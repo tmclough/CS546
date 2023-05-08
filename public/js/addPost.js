@@ -92,6 +92,14 @@ function checkDescription(strVal, varName) {
   return strVal;
 }
 
+// function showCustomAlert(message) {
+//   document.getElementById("alertMessage").textContent = message;
+//   document.getElementById("customAlert").style.display = "block";
+// }
+
+// function closeAlert() {
+//   document.getElementById("customAlert").style.display = "none";
+// }
 const addPicBtn = document.getElementById("add-image-button");
 let imageUploadLabel = document.querySelector(".image-upload-label");
 let numberOfPictures = 0;
@@ -194,6 +202,8 @@ if (addPostForm) {
       }
     } else {
       addPostForm.submit();
+      //this.showCustomAlert("Your item has been posted!");
+      // alert("New Post Created");
     }
   });
 }
