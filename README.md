@@ -1,5 +1,6 @@
 # CS546
 CS546 Web App
+Stevens Curbside Pickup
 
 Instructions:
 Download node from https://nodejs.org/en/download/ (this only has to be done once)

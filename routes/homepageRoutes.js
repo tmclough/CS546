@@ -14,13 +14,28 @@ router
   .get(async (req, res) => {
     try {
       const postList = await postData.getAllPosts();
-      res.render("users/homepage", {
-        divClass: "hidden-filter",
-        posts: postList,
-        cssFile: "/public/css/homepage.css",
-        jsFile: "/public/js/homepage.js",
-        userLogin: req.session.user ? false : true,
-      });
+      if (req.session.fromAddPost === true) {
+        req.session.fromAddPost = false;
+        res.render("users/homepage", {
+          alertClass: "alertShowing",
+          divClass: "hidden-filter",
+          posts: postList,
+          cssFile: "/public/css/homepage.css",
+          jsFile: "/public/js/homepage.js",
+          userLogin: req.session.user ? false : true,
+        });
+      } else {
+        req.session.fromAddPost = false;
+
+        res.render("users/homepage", {
+          alertClass: "alertHidden",
+          divClass: "hidden-filter",
+          posts: postList,
+          cssFile: "/public/css/homepage.css",
+          jsFile: "/public/js/homepage.js",
+          userLogin: req.session.user ? false : true,
+        });
+      }
     } catch (e) {
       res.status(500).render("error/errorPage", { error: e, errorCode: 500 });
     }
@@ -236,6 +251,7 @@ router
 
     if (tags) {
       res.render("users/homepage", {
+        alertClass: "alertHidden",
         divClass: "hidden-filter",
         posts: uniqueArr,
         cssFile: "/public/css/homepage.css",
@@ -245,6 +261,7 @@ router
       });
     } else {
       res.render("users/homepage", {
+        alertClass: "alertHidden",
         divClass: "search-label",
         posts: uniqueArr,
         cssFile: "/public/css/homepage.css",

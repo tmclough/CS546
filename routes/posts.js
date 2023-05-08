@@ -120,6 +120,7 @@ router
         postInfo.location
       );
       if (post) {
+        req.session.fromAddPost = true;
         res.redirect("/homepage");
       } else {
         res.status(400).render({ error: "Add post failed", errorCode: 400 });
