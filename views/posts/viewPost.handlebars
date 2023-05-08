@@ -47,7 +47,7 @@
             <div class="post-container2">
                 <div class="post-information">
                     <h1 class="name">{{post.name}}</h1>
-                    <p class="owner">Owner: {{post.username}}</p>
+                    <p class="owner">Owner: <span class="owner-name">{{post.username}}</span></p>
                     <p class="description">Description: {{post.description}}</p>
                     <p class="tags-heading">Tags:</p>
                     <ul class="tags">
@@ -84,10 +84,14 @@
                             <p class="comment">{{this.username}}: {{this.comment}}</p> <!-- add username: "comment"-->
                             <p class="replies-heading">Replies:</p>
                             <div class="replies">
+                                {{#if this.replies}}
                                 {{#each this.replies}}
                                 <!-- array of objects: replyId, postId, userId, username, reply-->
                                 <p class="reply">{{this.username}}: {{this.comment}}</p>
                                 {{/each}}
+                                {{else}}
+                                <p class="reply">No Replies</p>
+                                {{/if}}
                             </div>
                         </div>
                         {{#if ../isOwnerOfPost}}
@@ -136,7 +140,13 @@
                     <button class="add-comment-button">Add Comment</button>
                     <!-- show only if you're the owner of the post-->
                 </div>
+                <div class="google-map-container">
+                    {{#if googleLocation}}
+                    {{{googleLocation}}}
+                    {{/if}}
+                </div>
             </div>
+
         </div>
     </div>
     <div class="add-comment-input-container">

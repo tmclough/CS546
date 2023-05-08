@@ -194,7 +194,7 @@ header {
 
 .userpage-link,
 .addpost-link {
-  color: #9d0000;
+  color: #005900;
 }
 
 .signup-link:hover,
@@ -330,8 +330,17 @@ main {
 
 .picture {
   overflow: hidden;
-  height: 300px;
-  width: 300px;
+  height: 390px;
+  width: 390px;
+  object-fit: cover;
+  margin-bottom: 75px;
+  border-radius: 10px;
+}
+
+.google-map {
+  overflow: hidden;
+  height: 500px;
+  width: 800px;
   object-fit: cover;
   margin-bottom: 75px;
   border-radius: 10px;
@@ -360,8 +369,16 @@ main {
 }
 
 .name {
-  font-size: 24px;
+  font-size: 30px;
   margin-bottom: 18px;
+}
+
+.owner {
+  margin-bottom: 10px;
+}
+
+.owner-name {
+  color: #3274da;
 }
 
 .description {
@@ -484,6 +501,7 @@ main {
 .replies-heading {
   margin-left: 12px;
   margin-bottom: 12px;
+  color: #767676;
 }
 
 .replies {
@@ -507,6 +525,7 @@ main {
   padding: 10px;
   width: 100%;
   margin-top: -75px;
+  margin-bottom: 75px;
 }
 
 .add-comment-button {
@@ -523,6 +542,12 @@ main {
   background-color: powderblue;
 }
 
+.delete-comment-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
 .delete-comment-button {
   font-size: 12px;
   padding: 5px 12px;
@@ -534,13 +559,17 @@ main {
   margin-top: 20px;
 }
 
+.reply-comment-container {
+  margin-right: -14px;
+}
+
 .reply-comment-button {
   font-size: 12px;
   padding: 5px 5px;
   border-radius: 5px;
   cursor: pointer;
   transition: 0.15s;
-  background-color: grey;
+  background-color: #767676;
   color: white;
   margin-top: 20px;
   margin-right: 15px;

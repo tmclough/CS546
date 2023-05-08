@@ -3,7 +3,7 @@ const router = Router();
 import { postData } from "../data/index.js";
 import { userData } from "../data/index.js";
 import { commentData } from "../data/index.js";
-import validation from "../validation.js";
+import validation, { googleLocations } from "../validation.js";
 import { locations } from "../validation.js";
 import { uploadImages } from "../imageUploadConfig.js";
 import xss from "xss";
@@ -163,6 +163,12 @@ router
           commentInfo["madeByCurrentUser"] = false;
         }
       }
+      let googleLocation;
+      for (let i = 0; i < locations.length; i++) {
+        if (post.location === locations[i]) {
+          googleLocation = googleLocations[i];
+        }
+      }
 
       post._id = post._id.toString();
       for (let i = 0; i < post.comments.length; i++) {
@@ -190,6 +196,7 @@ router
         userLogin: req.session.user ? false : true,
         isOwnerOfPost: isOwnerOfPost,
         currentUserInfo: req.session.user,
+        googleLocation: googleLocation,
         hasComments: hasComments,
         isClaimed: isClaimed,
       });
