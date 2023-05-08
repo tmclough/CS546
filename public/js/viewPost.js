@@ -56,7 +56,6 @@ claimButton.on("click", function (event) {
   });
 });
 
-
 window.addEventListener("resize", () => {
   const dropdownMenu = document.querySelector(".dropdown-menu");
   const toggleButtonImage = document.querySelector(".toggle-button-image");
@@ -78,8 +77,6 @@ document.addEventListener("click", (event) => {
     toggleButtonImage.classList.remove("rotate");
   }
 });
-
-
 
 function checkString(strVal, varName) {
   if (!strVal) throw `Error: You must supply a ${varName}!`;
@@ -258,8 +255,18 @@ if (replyCommentForm) {
   });
 }
 
-const exitAddCommentButton = document.querySelector(".exit-add-comment");
+function checkItemName(strVal, varName) {
+  strVal = this.checkString(strVal, varName);
+  //if (strVal.includes(" ")) throw `${varName} should not contain spaces`;
+  if (strVal.length < 2)
+    throw `${varName} should be at least 2 characters long`;
+  else if (strVal.length > 60)
+    throw `${varName} can only be at max 60 characters long`;
 
+  return strVal;
+}
+
+const exitAddCommentButton = document.querySelector(".exit-add-comment");
 exitAddCommentButton.addEventListener("click", (event) => {
   header.style.zIndex = 10000;
   addCommentInputContainer.style.opacity = 0;
@@ -279,6 +286,65 @@ exitReplyCommentButton.addEventListener("click", (event) => {
     ".clientside-reply-comment-error"
   );
   clientsideReplyCommentError.innerHTML = "";
+});
+
+const editPostButton = document.querySelector(".edit-post-button");
+const editPostInputContainer = document.querySelector(
+  ".edit-post-input-container"
+);
+
+editPostButton.addEventListener("click", (event) => {
+  event.preventDefault();
+  header.style.zIndex = 0;
+  editPostInputContainer.style.opacity = 1;
+  editPostInputContainer.style.visibility = "visible";
+  let newPostName = document.querySelector("#edit-post-name-input");
+  newPostName.value = "";
+  newPostName.focus();
+});
+
+const editPostConfirmButton = document.querySelector(
+  "#edit-post-confirm-button"
+);
+const editPostForm = document.querySelector("#edit-post-form");
+
+if (editPostForm) {
+  editPostForm.addEventListener("submit", (event) => {
+    header.style.zIndex = 10000;
+    let newPostName = document.querySelector("#edit-post-name-input").value;
+    let postNameError;
+    let errors = false;
+    try {
+      newPostName = checkItemName(newPostName, "comment");
+    } catch (e) {
+      postNameError = e;
+      errors = true;
+    }
+
+    let clientsideEditPostError = document.querySelector(
+      ".clientside-edit-post-error"
+    );
+    clientsideEditPostError.innerHTML = "";
+    if (errors) {
+      event.preventDefault();
+      if (postNameError) {
+        clientsideEditPostError.innerHTML = postNameError;
+      }
+    } else {
+      editPostForm.submit();
+    }
+  });
+}
+
+const exitEditPostButton = document.querySelector(".exit-edit-post");
+exitEditPostButton.addEventListener("click", (event) => {
+  header.style.zIndex = 10000;
+  editPostInputContainer.style.opacity = 0;
+  editPostInputContainer.style.visibility = "hidden";
+  let clientsideEditPostError = document.querySelector(
+    ".clientside-edit-post-error"
+  );
+  clientsideEditPostError.innerHTML = "";
 });
 
 function checkId(id, varName) {

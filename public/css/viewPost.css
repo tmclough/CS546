@@ -431,10 +431,13 @@ main {
   opacity: 0.75;
 }
 
-.delete-post-container {
+.delete-edit-post-container {
   position: absolute;
   right: 20px;
   top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 }
 
 #delete-post-button {
@@ -445,6 +448,18 @@ main {
   transition: 0.15s;
   cursor: pointer;
   width: 150px;
+  color: white;
+  margin-bottom: 10px;
+}
+
+.edit-post-button {
+  padding: 5px 12px;
+  border-radius: 8px;
+  font-size: 20px;
+  background-color: #353535;
+  transition: 0.15s;
+  cursor: pointer;
+  width: 120px;
   color: white;
 }
 
@@ -586,7 +601,8 @@ main {
 }
 
 .add-comment-input-container,
-.reply-comment-input-container {
+.reply-comment-input-container,
+.edit-post-input-container {
   opacity: 0;
   visibility: hidden;
   /* display: none; */
@@ -605,8 +621,13 @@ main {
   border-radius: 12px;
 }
 
+.edit-post-input-container {
+  align-items: flex-start;
+}
+
 #add-comment-form,
-#reply-comment-form {
+#reply-comment-form,
+#edit-post-form {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -614,28 +635,36 @@ main {
   position: relative;
 }
 
+#edit-post-form {
+  margin-top: 20px;
+}
+
 #add-comment-form label,
-#reply-comment-form label {
+#reply-comment-form label,
+#edit-post-form label {
   margin-bottom: 25px;
   font-size: 24px;
 }
 
 #add-comment-input,
-#reply-comment-input {
+#reply-comment-input,
+#edit-post-name-input {
   padding: 20px;
   margin-bottom: 12px;
 }
 
 .exit-add-comment,
-.exit-reply-comment {
+.exit-reply-comment,
+.exit-edit-post {
   position: absolute;
-  right: -20px;
-  top: -20px;
+  right: 15px;
+  top: 15px;
   cursor: pointer;
 }
 
 #add-comment-confirm-button,
-#reply-comment-confirm-button {
+#reply-comment-confirm-button,
+#edit-post-confirm-button {
   font-size: 20px;
   padding: 5px 12px;
   border-radius: 5px;
@@ -646,12 +675,14 @@ main {
 }
 
 #add-comment-confirm-button:hover,
-#reply-comment-confirm-button:hover {
+#reply-comment-confirm-button:hover,
+#edit-post-confirm-button:hover {
   background-color: rgb(48, 129, 236);
 }
 
 .clientside-add-comment-error,
-.clientside-reply-comment-error {
+.clientside-reply-comment-error,
+.clientside-edit-post-error {
   color: red;
   height: 20px;
   font-size: 15px;

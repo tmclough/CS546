@@ -230,6 +230,31 @@ router
     } catch (e) {
       res.status(400).render("error/errorPage", { error: e, errorCode: 400 });
     }
+  })
+  .patch(async (req, res) => {
+    let id;
+    try {
+      id = validation.checkId(xss(req.params.id), "postId");
+    } catch (e) {
+      return res
+        .status(400)
+        .render("error/errorPage", { error: e, errorCode: 400 });
+    }
+    let postName = xss(req.body.newPostName);
+
+    try {
+      const updatedInfo = await postData.updatePostName(id, postName);
+      if (updatedInfo) {
+        res.redirect("/");
+      } else {
+        return res.status(400).render("error/errorPage", {
+          error: "delete failed",
+          errorCode: 400,
+        });
+      }
+    } catch (e) {
+      res.status(400).render("error/errorPage", { error: e, errorCode: 400 });
+    }
   });
 router
   .route("/comment/:id")

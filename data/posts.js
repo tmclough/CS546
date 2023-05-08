@@ -55,6 +55,20 @@ let exportedMethods = {
     return { deleted: true };
   },
 
+  async updatePostName(id, postName) {
+    id = validation.checkId(id, "id");
+    const postCollection = await posts();
+    let newPost = await postCollection.findOneAndUpdate(
+      { _id: new ObjectId(id) },
+      { $set: { name: postName } },
+      { returnNewDocument: true }
+    );
+    if (newPost.lastErrorObject.n === 0)
+      throw [404, `Could not update the post with id ${id}`];
+
+    return newPost.value;
+  },
+
   // async claimPost(id) {
   //   id = validation.checkId(id, "id");
 

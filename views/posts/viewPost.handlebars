@@ -66,12 +66,13 @@
                     <button id="claim-button" type="submit" class="claim-button" data-id="{{post._id}}">Claim!</button>
                     {{/if}}
                     {{#if isOwnerOfPost}}
-                    <div class="delete-post-container">
+                    <div class="delete-edit-post-container">
                         <form action="" method="POST">
                             <input type="text" name="_method" value="DELETE" hidden>
                             <label for="delete-post-button"></label>
                             <input type="submit" id="delete-post-button" value="Delete Post">
                         </form>
+                        <button class="edit-post-button">Edit Post</button>
                     </div>
                     {{/if}}
                 </div>
@@ -156,8 +157,8 @@
             <div class="clientside-add-comment-error"></div>
             <label for="add-comment-confirm-button"></label>
             <input type="submit" id="add-comment-confirm-button" value="Confirm">
-            <img src="/public/images/x.svg" alt="exit" class="exit-add-comment">
         </form>
+        <img src="/public/images/x.svg" alt="exit" class="exit-add-comment">
     </div>
     <div class="reply-comment-input-container">
         <form action="reply/{{post._id}}" id="reply-comment-form" method="POST">
@@ -166,8 +167,21 @@
             <div class="clientside-reply-comment-error"></div>
             <label for="reply-comment-confirm-button"></label>
             <input type="submit" id="reply-comment-confirm-button" value="Confirm">
-            <img src="/public/images/x.svg" alt="exit" class="exit-reply-comment">
         </form>
+        <img src="/public/images/x.svg" alt="exit" class="exit-reply-comment">
+    </div>
+    <div class="edit-post-input-container">
+        <form action="" method="POST" id="edit-post-form">
+            <input type="text" name="_method" value="PATCH" hidden>
+            <label for="edit-post-name-input">Edit Post:</label>
+            <input type="text" name="newPostName" id="edit-post-name-input" placeholder="Edit new post name">
+            {{!-- <textarea name="editPostInput" id="edit-post-name-input" cols="50" rows="15"
+                placeholder="Edit new post name"></textarea> --}}
+            <div class="clientside-edit-post-error"></div>
+            <label for="edit-post-confirm-button"></label>
+            <input type="submit" id="edit-post-confirm-button" value="Edit Post">
+        </form>
+        <img src="/public/images/x.svg" alt="exit" class="exit-edit-post">
     </div>
     {{#if commentError}}
     <div class="serverside-comment-error">{{commentError}}</div>
