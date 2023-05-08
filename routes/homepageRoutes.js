@@ -31,25 +31,35 @@ router
     let orderByRating = false;
     const postList = await postData.getAllPosts();
     let tags = req.body.tagSelect;
+
     //tags = validation.checkTags(tags, "tags");
     let tagsFilter = req.body.tagFilter;
     // tagsFilter = validation.checkTags(tagsFilter, "tagsFilter");
-    let searchText = req.body.searchText;
+    let searchText = xss(req.body.searchText);
 
     if (!searchText) {
       searchText = searchStr;
     }
     searchText = validation.checkSearchText(searchText, "searchText");
+
     if (tags && tags.length > 0) {
-      tags = [tags];
+      if (typeof tags === "string") {
+        tags = [tags];
+      }
+      tags = tags.map((i) => {
+        return xss(i);
+      });
       let index = tags.indexOf("Rating");
       if (index > -1) {
         orderByRating = true;
         tags.splice(index, 1);
       }
     }
-    if (typeof tagsFilter === "string") {
+    if (typeof tagsFilter === "string" && tagsFilter.length > 0) {
       tagsFilter = [tagsFilter];
+      tagsFilter = tagsFilter.map((i) => {
+        return xss(i);
+      });
       let index = tagsFilter.indexOf("Rating");
       if (index > -1) {
         orderByRating = true;
@@ -59,7 +69,7 @@ router
 
     let postArr = [];
     let tagsArr = [];
-   
+
     if (!tags || tags.length === 0) {
       postArr = postArr;
     } else {

@@ -56,32 +56,6 @@ claimButton.on("click", function (event) {
   });
 });
 
-// console.log("here1")
-// let post = document.querySelector(".post");
-// console.log(post)
-// let claimButton = document.querySelector(".claim-button");
-
-// claimButton.addEventListener("click", function (event) {
-//   console.log("here")
-//   event.preventDefault();
-//   let currentLink = this;
-//   let currentId = currentLink.getAttribute("data-id");
-
-//   let requestConfig = {
-//     method: "POST",
-//     url: "/post/claimed/" + currentId,
-//   };
-//   console.log("getting here")
-//   $.ajax(requestConfig).then(function (responseMessage) {
-//     console.log("in ajax")
-//     let newElement = $(responseMessage);
-
-// bindEventsToPostItem(newElement);
-//     post.replaceWith(newElement);
-//     console.log(post)
-//   });
-//   console.log("after ajax")
-// });
 
 window.addEventListener("resize", () => {
   const dropdownMenu = document.querySelector(".dropdown-menu");
@@ -105,23 +79,7 @@ document.addEventListener("click", (event) => {
   }
 });
 
-// const searchForm = document.getElementById("search-form");
 
-// searchForm.addEventListener("submit", async (event) => {
-//   event.preventDefault();
-//   const selectedTag = document.getElementById("tag-select").value;
-//   const response = await fetch(`/homepage?tag=${selectedTag}`);
-//   const responseData = await response.text();
-//   const posts = JSON.parse(responseData);
-//   const postElements = document.querySelectorAll(".post");
-//   for (let i = 0; i < postElements.length; i++) {
-//     postElements[i].style.display = "none";
-//     const postTags = postElements[i].getAttribute("data-tags").split(",");
-//     if (selectedTag === "" || postTags.includes(selectedTag)) {
-//       postElements[i].style.display = "block";
-//     }
-//   }
-// });
 
 function checkString(strVal, varName) {
   if (!strVal) throw `Error: You must supply a ${varName}!`;
