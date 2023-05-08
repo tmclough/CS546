@@ -21,7 +21,6 @@ header {
 }
 
 .navbar {
-  background-color: rgb(130, 196, 235);
   opacity: 1;
   height: 100px;
   width: 100%;
@@ -30,6 +29,7 @@ header {
   align-items: center;
   margin-bottom: -100px;
   z-index: 999;
+  border-bottom: 2px solid black;
 }
 
 .home-bar {
