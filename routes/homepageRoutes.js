@@ -40,16 +40,14 @@ router
       searchText = searchStr;
     }
     searchText = validation.checkSearchText(searchText, "searchText");
-
-    if (typeof tags === "string") {
-      tags = [tags];
+    if (tags && tags.length > 0) {
+      // tags = [tags];
       let index = tags.indexOf("Rating");
       if (index > -1) {
         orderByRating = true;
         tags.splice(index, 1);
       }
     }
-
     if (typeof tagsFilter === "string") {
       tagsFilter = [tagsFilter];
       let index = tagsFilter.indexOf("Rating");
@@ -88,65 +86,16 @@ router
 
     let postUpdated = [];
     postArr2 = postArr2.flat(100);
-    //by name
-    if (searchText && searchText.trim() !== "") {
-      searchStr = searchText;
-      // console.log("before post by name");
-      const posts = await postData.getPostsByName(searchText.trim());
-      // console.log("gets in this!!!");
 
-      if (posts && posts.length > 0) {
-        if (postArr2.length > 0) {
-          let postUpdated = posts.filter((post) => {
-            let matchingPost = postArr2.find(
-              (pst) => pst._id.toString() === post._id.toString()
-            );
-            return matchingPost ? true : false;
-          });
-          // console.log("gets in this");
-
-          postArr.push(postUpdated);
-        } else {
-          postArr.push(posts);
-        }
-      } else {
-        postArr = postArr;
-      }
-    } else {
-      if (postArr.length === 0) {
-        postArr = postList;
-      }
-    }
-    //by description
-    if (searchText && searchText.trim() !== "") {
-      let posts = await postData.getPostsByDesciption(searchText.trim());
-
-      if (posts && posts.length > 0) {
-        if (postArr2.length > 0) {
-          let postUpdated = posts.filter((post) => {
-            let matchingPost = postArr2.find(
-              (pst) => pst._id.toString() === post._id.toString()
-            );
-            return matchingPost ? true : false;
-          });
-
-          postArr.push(postUpdated);
-        } else {
-          postArr.push(posts);
-        }
-      } else {
-        postArr = postArr;
-      }
-    } else {
-      if (postArr.length === 0) {
-        postArr = postList;
-      }
-    }
-    //by name
-    if (searchText && searchText.trim() !== "") {
-      try {
-        const user = await userData.getUserByName(searchText.trim());
-        const posts = await postData.getPostbyUser(user._id.toString());
+    if (!tags) {
+      //by name
+      if (
+        searchText &&
+        searchText.trim() !== "" &&
+        searchText.trim().length > 1
+      ) {
+        searchStr = searchText;
+        const posts = await postData.getPostsByName(searchText.trim());
 
         if (posts && posts.length > 0) {
           if (postArr2.length > 0) {
@@ -164,27 +113,73 @@ router
         } else {
           postArr = postArr;
         }
-      } catch (e) {
+      } else {
         if (postArr.length === 0) {
           postArr = postArr;
         }
       }
-    } else {
-      if (postArr.length === 0) {
-        postArr = postList;
+      //by description
+      if (searchText && searchText.trim() !== "") {
+        let posts = await postData.getPostsByDesciption(searchText.trim());
+
+        if (posts && posts.length > 0) {
+          if (postArr2.length > 0) {
+            let postUpdated = posts.filter((post) => {
+              let matchingPost = postArr2.find(
+                (pst) => pst._id.toString() === post._id.toString()
+              );
+              return matchingPost ? true : false;
+            });
+
+            postArr.push(postUpdated);
+          } else {
+            postArr.push(posts);
+          }
+        } else {
+          postArr = postArr;
+        }
+      } else {
+        if (postArr.length === 0) {
+          postArr = postArr;
+        }
+      }
+      //by username
+      if (
+        searchText &&
+        searchText.trim() !== "" &&
+        searchText.trim().length > 1
+      ) {
+        try {
+          const user = await userData.getUserByName(searchText.trim());
+          const posts = await postData.getPostbyUser(user._id.toString());
+
+          if (posts && posts.length > 0) {
+            if (postArr2.length > 0) {
+              let postUpdated = posts.filter((post) => {
+                let matchingPost = postArr2.find(
+                  (pst) => pst._id.toString() === post._id.toString()
+                );
+                return matchingPost ? true : false;
+              });
+
+              postArr.push(postUpdated);
+            } else {
+              postArr.push(posts);
+            }
+          } else {
+            postArr = postArr;
+          }
+        } catch (e) {
+          if (postArr.length === 0) {
+            postArr = postArr;
+          }
+        }
+      } else {
+        if (postArr.length === 0) {
+          postArr = postArr;
+        }
       }
     }
-
-    // {
-    //   if (postArr.length === 0) {
-    //     postArr = postList;
-    //   }
-
-    // if (e === "Error: user not found") {
-    //   postArr = postArr;
-    // }
-    //   }
-    // }
 
     postArr = postArr.flat(100);
 
@@ -195,14 +190,16 @@ router
       finalArr = tagsArr;
     } else {
       finalArr = postArr;
-      //console.log(finalArr)
     }
     if (orderByRating) {
+      if (finalArr.length === 0) {
+        finalArr = postList;
+      }
+
       let ratingArr = [];
       for (let p of finalArr) {
         ratingArr.push(p.rating);
       }
-
       let resArr = [];
       for (let x = 5.0; x >= 0; x -= 0.1) {
         for (let a = 0; a < ratingArr.length; a++) {
@@ -216,10 +213,19 @@ router
 
       finalArr = resArr;
     }
+    let uniqueArr = [];
+    let uniquePosts = {};
+    for (let x in finalArr) {
+      uniquePosts[finalArr[x]._id] = finalArr[x];
+    }
+    for (let i in uniquePosts) {
+      uniqueArr.push(uniquePosts[i]);
+    }
+
     if (tags) {
       res.render("users/homepage", {
         divClass: "hidden-filter",
-        posts: finalArr,
+        posts: uniqueArr,
         cssFile: "/public/css/homepage.css",
         jsFile: "/public/js/homepage.js",
         searchText: searchText,
@@ -228,7 +234,7 @@ router
     } else {
       res.render("users/homepage", {
         divClass: "search-label",
-        posts: finalArr,
+        posts: uniqueArr,
         cssFile: "/public/css/homepage.css",
         jsFile: "/public/js/homepage.js",
         searchText: searchText,
