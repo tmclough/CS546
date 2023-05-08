@@ -55,12 +55,14 @@ let exportedMethods = {
     return { deleted: true };
   },
 
-  async updatePostName(id, postName) {
+  async updatePostNameAndDescription(id, postName, description) {
     id = validation.checkId(id, "id");
+    postName = validation.checkItemName(postName, "post name");
+    description = validation.checkDescription(description, "post description");
     const postCollection = await posts();
     let newPost = await postCollection.findOneAndUpdate(
       { _id: new ObjectId(id) },
-      { $set: { name: postName } },
+      { $set: { name: postName, description: description } },
       { returnNewDocument: true }
     );
     if (newPost.lastErrorObject.n === 0)

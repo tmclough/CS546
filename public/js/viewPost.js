@@ -266,6 +266,15 @@ function checkItemName(strVal, varName) {
   return strVal;
 }
 
+function checkDescription(strVal, varName) {
+  strVal = this.checkString(strVal, varName);
+  //if (strVal.includes(" ")) throw `${varName} should not contain spaces`;
+  if (strVal.length > 200)
+    throw `${varName} can only be at max 200 characters long`;
+
+  return strVal;
+}
+
 const exitAddCommentButton = document.querySelector(".exit-add-comment");
 exitAddCommentButton.addEventListener("click", (event) => {
   header.style.zIndex = 10000;
@@ -315,20 +324,37 @@ if (editPostForm) {
     let postNameError;
     let errors = false;
     try {
-      newPostName = checkItemName(newPostName, "comment");
+      newPostName = checkItemName(newPostName, "name");
     } catch (e) {
       postNameError = e;
       errors = true;
     }
 
-    let clientsideEditPostError = document.querySelector(
-      ".clientside-edit-post-error"
+    let newPostDesc = document.querySelector("#edit-post-desc-input").value;
+    let postDescError;
+
+    try {
+      newPostDesc = checkDescription(newPostDesc, "description");
+    } catch (e) {
+      postDescError = e;
+      errors = true;
+    }
+
+    let clientsideEditPostNameError = document.querySelector(
+      ".clientside-edit-post-name-error"
     );
-    clientsideEditPostError.innerHTML = "";
+    let clientsideEditPostDescError = document.querySelector(
+      ".clientside-edit-post-desc-error"
+    );
+    clientsideEditPostNameError.innerHTML = "";
+    clientsideEditPostDescError.innerHTML = "";
     if (errors) {
       event.preventDefault();
       if (postNameError) {
-        clientsideEditPostError.innerHTML = postNameError;
+        clientsideEditPostNameError.innerHTML = postNameError;
+      }
+      if (postDescError) {
+        clientsideEditPostDescError.innerHTML = postDescError;
       }
     } else {
       editPostForm.submit();
@@ -341,10 +367,14 @@ exitEditPostButton.addEventListener("click", (event) => {
   header.style.zIndex = 10000;
   editPostInputContainer.style.opacity = 0;
   editPostInputContainer.style.visibility = "hidden";
-  let clientsideEditPostError = document.querySelector(
-    ".clientside-edit-post-error"
+  let clientsideEditPostNameError = document.querySelector(
+    ".clientside-edit-post-name-error"
   );
-  clientsideEditPostError.innerHTML = "";
+  let clientsideEditPostDescError = document.querySelector(
+    ".clientside-edit-post-desc-error"
+  );
+  clientsideEditPostNameError.innerHTML = "";
+  clientsideEditPostDescError.innerHTML = "";
 });
 
 function checkId(id, varName) {

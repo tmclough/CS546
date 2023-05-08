@@ -242,14 +242,19 @@ router
         .render("error/errorPage", { error: e, errorCode: 400 });
     }
     let postName = xss(req.body.newPostName);
+    let postDesc = xss(req.body.newPostDesc);
 
     try {
-      const updatedInfo = await postData.updatePostName(id, postName);
+      const updatedInfo = await postData.updatePostNameAndDescription(
+        id,
+        postName,
+        postDesc
+      );
       if (updatedInfo) {
         res.redirect("/");
       } else {
         return res.status(400).render("error/errorPage", {
-          error: "delete failed",
+          error: "update failed",
           errorCode: 400,
         });
       }

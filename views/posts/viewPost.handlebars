@@ -175,9 +175,11 @@
             <input type="text" name="_method" value="PATCH" hidden>
             <label for="edit-post-name-input">Edit Post:</label>
             <input type="text" name="newPostName" id="edit-post-name-input" placeholder="Edit new post name">
-            {{!-- <textarea name="editPostInput" id="edit-post-name-input" cols="50" rows="15"
-                placeholder="Edit new post name"></textarea> --}}
-            <div class="clientside-edit-post-error"></div>
+            <div class="clientside-edit-post-name-error"></div>
+            <label for="edit-post-desc-input"></label>
+            <textarea name="newPostDesc" id="edit-post-desc-input" cols="50" rows="11"
+                placeholder="Edit new post description"></textarea>
+            <div class="clientside-edit-post-desc-error"></div>
             <label for="edit-post-confirm-button"></label>
             <input type="submit" id="edit-post-confirm-button" value="Edit Post">
         </form>

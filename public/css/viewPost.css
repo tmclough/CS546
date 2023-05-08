@@ -648,9 +648,15 @@ main {
 
 #add-comment-input,
 #reply-comment-input,
-#edit-post-name-input {
+#edit-post-name-input,
+#edit-post-desc-input {
   padding: 20px;
   margin-bottom: 12px;
+}
+
+#edit-post-name-input {
+  padding: 10px;
+  margin-bottom: 4px;
 }
 
 .exit-add-comment,
@@ -682,7 +688,8 @@ main {
 
 .clientside-add-comment-error,
 .clientside-reply-comment-error,
-.clientside-edit-post-error {
+.clientside-edit-post-name-error,
+.clientside-edit-post-desc-error {
   color: red;
   height: 20px;
   font-size: 15px;
