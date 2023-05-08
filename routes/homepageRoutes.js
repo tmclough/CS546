@@ -35,6 +35,7 @@ router
     let tagsFilter = req.body.tagFilter;
     // tagsFilter = validation.checkTags(tagsFilter, "tagsFilter");
     let searchText = req.body.searchText;
+
     if (!searchText) {
       searchText = searchStr;
     }
@@ -54,7 +55,7 @@ router
       let index = tagsFilter.indexOf("Rating");
       if (index > -1) {
         orderByRating = true;
-        tags.splice(index, 1);
+        tagsFilter.splice(index, 1);
       }
     }
 
@@ -194,6 +195,7 @@ router
       finalArr = tagsArr;
     } else {
       finalArr = postArr;
+      //console.log(finalArr)
     }
     if (orderByRating) {
       let ratingArr = [];
@@ -214,7 +216,6 @@ router
 
       finalArr = resArr;
     }
-
     if (tags) {
       res.render("users/homepage", {
         divClass: "hidden-filter",
