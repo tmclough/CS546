@@ -694,3 +694,12 @@ main {
 .submit-button:active {
   opacity: 0.6;
 }
+
+@media (max-width: 1383px) {
+  .post {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+}
