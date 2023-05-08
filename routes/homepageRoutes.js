@@ -59,10 +59,11 @@ router
 
     let postArr = [];
     let tagsArr = [];
-    tags = tags.flat(100);
+   
     if (!tags || tags.length === 0) {
       postArr = postArr;
     } else {
+      tags = tags.flat(100);
       tags = validation.checkTags(tags, "tags");
       for (let i = 0; i < tags.length; i++) {
         let posts = await postData.getPostsByTag(tags[i]);
