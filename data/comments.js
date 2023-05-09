@@ -36,7 +36,7 @@ let exportedMethods = {
     return postInfo.value.comments[postInfo.value.comments.length - 1];
   },
 
-  async replyToComment(userId, commentId, comment) {
+  async replayToComment(userId, commentId, comment) {
     commentId = validation.checkId(commentId, "commentId");
     userId = validation.checkId(userId, "userId");
     comment = validation.checkCommentInput(comment, "comment");

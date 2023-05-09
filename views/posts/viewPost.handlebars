@@ -16,7 +16,7 @@
         </div>
         {{/if}}
         <div class="toggle-button">
-            <img src="/public/images/align-justify.svg" alt="toggle button" class="toggle-button-image" />
+            <img src="/public/images/align-justify.svg" alt="toggle button" class="toggle-button-image">
         </div>
     </div>
     {{#if userLogin}}
@@ -58,7 +58,6 @@
                     <p class="location">Location: {{post.location}}</p>
                     <p class="posted-date">Posted Date: {{post.postedDate}}</p>
                     <p class="rating">User rating: {{post.rating}}</p>
-                    <p id="post" value="{{post.claimed}}" hidden></p>
                     {{#if isClaimed}}
                     {{else if isOwnerOfPost}}
                     {{else}}
@@ -66,7 +65,7 @@
                     {{/if}}
                     {{#if isOwnerOfPost}}
                     <div class="delete-edit-post-container">
-                        <form action="" method="POST">
+                        <form action="{{../post._id}}" method="POST">
                             <input type="text" name="_method" value="DELETE" hidden>
                             <label for="delete-post-button"></label>
                             <input type="submit" id="delete-post-button" value="Delete Post">
@@ -110,12 +109,13 @@
                         {{else if this.madeByCurrentUser}}
                         <div class="comment-container2">
                             <div class="delete-comment-container">
-                                <form action="comment/{{../post._id}}" method="POST" id="delete-comment-form">
+                                <form action="comment/{{../post._id}}" method="POST" id="delete-comment-form2">
                                     <input type="text" name="_method" value="DELETE" hidden>
                                     <label for="delete-button"></label>
-                                    <input type="submit" id="delete-button" class="delete-comment-button"
+                                    <input type="submit" id="delete-button2" class="delete-comment-button"
                                         value="Delete Comment">
-                                    <input type="text" id="comment-id-input" name="commentId" value={{this._id}} hidden>
+                                    <input type="text" id="comment-id-input2" name="commentId" value={{this._id}}
+                                        hidden>
                                 </form>
                                 <div class="reply-comment-container">
                                     <button class="reply-comment-button" value="{{this._id}}">Reply</button>
@@ -170,7 +170,7 @@
         <img src="/public/images/x.svg" alt="exit" class="exit-reply-comment">
     </div>
     <div class="edit-post-input-container">
-        <form action="" method="POST" id="edit-post-form">
+        <form action="{{post._id}}" method="POST" id="edit-post-form">
             <input type="text" name="_method" value="PATCH" hidden>
             <label for="edit-post-name-input">Edit Post:</label>
             <input type="text" name="newPostName" id="edit-post-name-input" placeholder="Edit new post name">
