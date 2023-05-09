@@ -147,40 +147,40 @@
   </form>
 
   <div class="posts-section">
-    <h1 class="main-heading">Stevens Curbside Pickup</h2>
-      {{#if posts}}
-      <h2 class="posts-heading">Posts</h2>
-      <div class="posts">
-        {{#each posts}}
-        <a href="post/{{_id}}" class="post">
-          <p class="name">{{name}}</p>
-          <div class="pictures-information-container">
-            <div class="images">
-              {{#each imgUrls}}
-              <img src="{{this}}" alt="Post Image" class="image">
-              {{/each}}
-            </div>
-            <div class="information-container"> 
-              <p class="username">Owner: {{username}}</p>
-              <p class="description">Description: {{description}}</p>
-              <p class="tags">Tags: {{tags}}</p>
-              <p class="location">Location: {{location}}</p>
-              <p class="posted-date">Posted On: {{postedDate}}</p>
-              <p class="rating">User Rating: {{rating}}</p>
-              <p class="claimed">      
-                {{#if claimed}}
-                Status: Post Pending Claim
-                {{else}}
-                Status: Post Unclaimed
-                {{/if}}    
-              </p>
-            </div>
+    <h1 class="main-heading">Stevens Curbside Pickup</h1>
+    {{#if posts}}
+    <h2 class="posts-heading">Posts</h2>
+    <div class="posts">
+      {{#each posts}}
+      <a href="post/{{_id}}" class="post">
+        <p class="name">{{name}}</p>
+        <div class="pictures-information-container">
+          <div class="images">
+            {{#each imgUrls}}
+            <img src="{{this}}" alt="Post Image" class="image">
+            {{/each}}
           </div>
-        </a>
-        {{/each}}
-      </div>
-      {{else}}
-      <h2 class="posts-heading">No Posts Found</h2>
-      {{/if}}
+          <div class="information-container">
+            <p class="username">Owner: {{username}}</p>
+            <p class="description">Description: {{description}}</p>
+            <p class="tags">Tags: {{tags}}</p>
+            <p class="location">Location: {{location}}</p>
+            <p class="posted-date">Posted On: {{postedDate}}</p>
+            <p class="rating">User Rating: {{rating}}</p>
+            <p class="claimed">
+              {{#if claimed}}
+              Status: Post Pending Claim
+              {{else}}
+              Status: Post Unclaimed
+              {{/if}}
+            </p>
+          </div>
+        </div>
+      </a>
+      {{/each}}
+    </div>
+    {{else}}
+    <h2 class="posts-heading">No Posts Found</h2>
+    {{/if}}
   </div>
 </main>
