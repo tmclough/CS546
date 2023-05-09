@@ -431,7 +431,7 @@ router.route("/reply/:id").post(async (req, res) => {
     commentError = e;
   }
   try {
-    const replyInfo = await commentData.replayToComment(
+    const replyInfo = await commentData.replyToComment(
       userId,
       commentId,
       comment

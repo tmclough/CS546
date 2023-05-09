@@ -36,7 +36,7 @@ let exportedMethods = {
     return postInfo.value.comments[postInfo.value.comments.length - 1];
   },
 
-  async replayToComment(userId, commentId, comment) {
+  async replyToComment(userId, commentId, comment) {
     commentId = validation.checkId(commentId, "commentId");
     userId = validation.checkId(userId, "userId");
     comment = validation.checkCommentInput(comment, "comment");
@@ -94,8 +94,7 @@ let exportedMethods = {
       { projection: { _id: 0, "comments.$": 1 } }
     );
     return foundComment.comments[0];
-  }
+  },
 };
-
 
 export default exportedMethods;
