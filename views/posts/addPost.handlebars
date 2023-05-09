@@ -16,7 +16,7 @@
     </div>
     {{/if}}
     <div class="toggle-button">
-      <img src="public/images/align-justify.svg" alt="toggle button" class="toggle-button-image" />
+      <img src="public/images/align-justify.svg" alt="toggle button" class="toggle-button-image">
     </div>
   </div>
   {{#if userLogin}}
@@ -38,7 +38,6 @@
 </header>
 
 <main>
-   
   <div class="form-container">
     <form action="/post" method="POST" enctype="multipart/form-data" id="add-post-form">
       <p class="add-post-title">Add a New Post</p>
@@ -50,7 +49,7 @@
       {{/if}}
 
       <label for="itemName">Item Name:</label>
-      <input type="text" id="itemName" name="itemName" placeholder="Item name" value="{{body.itemName}}" />
+      <input type="text" id="itemName" name="itemName" placeholder="Item name" value="{{body.itemName}}">
 
       {{#if itemNameError}} <!-- this is for server-side errors -->
       <div class="invalid-item-name-error">{{itemNameError}}</div>
@@ -59,7 +58,7 @@
       {{/if}}
 
       <label for="description">Description:</label>
-      <textarea name="description" id="description" cols="30" rows="10" value="{{body.description}}"
+      <textarea name="description" id="description" cols="30" rows="10"
         placeholder="Enter a description of your item"></textarea>
       {{#if descriptionError}}
       <div class="invalid-description-error">{{descriptionError}}</div>
@@ -82,40 +81,40 @@
       {{/if}}
 
       <p class="tags-title">Tags:</p>
-      <label for="tags" class="tags-container">
+      <div class="tags-container">
         <div>
-          <input id="electronics2" name="tagSelect" type="checkbox" value="Electronics" />
+          <input id="electronics2" name="tagSelect" type="checkbox" value="Electronics">
           <label for="electronics2">Electronics</label>
         </div>
         <div>
-          <input id="appliances2" name="tagSelect" type="checkbox" value="Appliances" />
+          <input id="appliances2" name="tagSelect" type="checkbox" value="Appliances">
           <label for="appliances2">Appliances</label>
         </div>
         <div>
-          <input id="furniture2" name="tagSelect" type="checkbox" value="Furniture" />
+          <input id="furniture2" name="tagSelect" type="checkbox" value="Furniture">
           <label for="furniture2">Furniture</label>
         </div>
         <div>
-          <input id="clothing2" name="tagSelect" type="checkbox" value="Clothing" />
+          <input id="clothing2" name="tagSelect" type="checkbox" value="Clothing">
           <label for="clothing2">Clothing</label>
         </div>
         <div>
-          <input id="sport-equipment2" name="tagSelect" type="checkbox" value="Sport Equipment" />
+          <input id="sport-equipment2" name="tagSelect" type="checkbox" value="Sport Equipment">
           <label for="sport-equipment2">Sport Equipment</label>
         </div>
         <div>
-          <input id="books2" name="tagSelect" type="checkbox" value="Books" />
+          <input id="books2" name="tagSelect" type="checkbox" value="Books">
           <label for="books2">Books</label>
         </div>
         <div>
-          <input id="school-supplies2" name="tagSelect" type="checkbox" value="School Supplies" />
+          <input id="school-supplies2" name="tagSelect" type="checkbox" value="School Supplies">
           <label for="school-supplies2">School Supplies</label>
         </div>
         <div>
-          <input id="other2" name="tagSelect" type="checkbox" value="Other" />
+          <input id="other2" name="tagSelect" type="checkbox" value="Other">
           <label for="other2">Other</label>
         </div>
-      </label>
+      </div>
       {{#if tagsError}} <!-- this is for server-side errors -->
       <div class="invalid-tags-error">{{tagsError}}</div>
       {{else}} <!-- this is for clientside errors -->
@@ -125,7 +124,7 @@
       <div id="imageUpload-container">
         <p>Select Images (Up to 4):</p>
         <label for="imageUpload" class="image-upload-label"></label>
-        <input type="file" name="images" class="imageUpload" id="imageUpload" />
+        <input type="file" name="images" class="imageUpload" id="imageUpload">
 
         {{#if imageError}} <!-- this is for server-side errors -->
         <div class="invalid-image-error">{{imageError}}</div>
@@ -142,7 +141,7 @@
       <label for="add-image-button"></label>
       <input type="button" id="add-image-button" name="addImage" value="Add Image">
       <label for="add-post-button"></label>
-      <input type="submit" id="add-post-button" name="addPostButton" value="Add Post" />
+      <input type="submit" id="add-post-button" name="addPostButton" value="Add Post">
     </form>
   </div>
 </main>
