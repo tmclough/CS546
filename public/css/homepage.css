@@ -306,7 +306,7 @@ header {
   color: rgb(127, 225, 255);
 }
 
-@media (max-width: 1270px) {
+@media (max-width: 1290px) {
   .navbar .links {
     display: none;
   }

@@ -43,6 +43,7 @@ document.addEventListener("click", (event) => {
     toggleButtonImage.classList.remove("rotate");
   }
 });
+
 function showCustomAlert(message) {
   document.getElementById("alertMessage").textContent = message;
   document.getElementById("customAlert").style.display = "block";
@@ -241,5 +242,3 @@ if (searchForm) {
     }
   });
 }
-
-

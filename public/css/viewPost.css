@@ -372,6 +372,8 @@ main {
 .name {
   font-size: 30px;
   margin-bottom: 18px;
+  max-width: 400px;
+  text-align: center;
 }
 
 .owner {
