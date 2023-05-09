@@ -149,7 +149,7 @@ router.route("/account/:id").get(async (req, res) => {
     // let divClass = "hiddenDiv";
     if (posts[0].userId === req.session.user._id) {
       // divClass = "accept-reject-btns"
-      console.log("using showing");
+
       res.render("users/account", {
         title: "Account",
         userLogin: req.session.user ? false : true,
@@ -161,8 +161,6 @@ router.route("/account/:id").get(async (req, res) => {
         //jsFile: "/public/js/signUp.js",
       });
     } else {
-      console.log("using hidden");
-   
       //let divClass = "hiddenDiv";
       res.render("users/account", {
         title: "Account",
@@ -174,7 +172,6 @@ router.route("/account/:id").get(async (req, res) => {
         divClass: "hiddenDiv",
         //jsFile: "/public/js/signUp.js",
       });
-      
     }
   } catch (e) {
     res.status(500).render("error/errorPage", { error: e, errorCode: 500 });

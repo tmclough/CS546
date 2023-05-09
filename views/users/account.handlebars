@@ -74,17 +74,18 @@
                         </p>
                     </div>
                 </div>
-      
+
                 {{#if claimed}}
-                    <div class={{../divClass}} >
-                        <form action="account/accept/claim/{{_id}}">
-                            <button type="submit" id="accept-claim-btn">Accept Claim</button>
-                        </form>
-                        <form action="account/reject/claim/{{_id}}">
-                            <button type="submit" id="reject-claim-btn">Reject Claim</button>
-                        </form>
-                    </div>
-                
+                <div class={{../divClass}}>
+                    <form action="account/accept/claim/{{_id}}">
+                        <label for="accept-claim-btn"></label>
+                        <button type="submit" id="accept-claim-btn">Accept Claim</button>
+                    </form>
+                    <form action="account/reject/claim/{{_id}}">
+                        <label for="reject-claim-btn"></label>
+                        <button type="submit" id="reject-claim-btn">Reject Claim</button>
+                    </form>
+                </div>
                 {{/if}}
             </a>
             {{/each}}
