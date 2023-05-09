@@ -1,6 +1,6 @@
 import { posts } from "../config/mongoCollections.js";
-import { postData } from "./index.js";
-import { userData } from "./index.js";
+import postData from "./posts.js";
+import userData from "./users.js";
 import { ObjectId } from "mongodb";
 import validation from "../validation.js";
 
@@ -10,8 +10,8 @@ let exportedMethods = {
     userId = validation.checkId(userId, "userId");
     comment = validation.checkCommentInput(comment, "comment");
 
-    const post = await postData.getPostById(postId);
-    if (post.claimed) throw "Cannot comment on claimed post";
+    // const post = await postData.getPostById(postId);
+    // if (post.claimed) throw "Cannot comment on claimed post";
 
     const userInfo = await userData.getUserById(userId);
     let username = userInfo.username;
@@ -42,8 +42,8 @@ let exportedMethods = {
     comment = validation.checkCommentInput(comment, "comment");
 
     // const commentInfo = await this.getCommentById(commentId);
-    // const post = await postData.getPostById(commentInfo.postId);
-    // if (post.claimed) throw "Cannot comment on claimed post";
+    // const post = await postData.getPostById(commentInfo.postId.toString());
+    // if (post.claimed) throw "Cannot reply on claimed post";
     const userInfo = await userData.getUserById(userId);
     let username = userInfo.username;
 
@@ -93,16 +93,9 @@ let exportedMethods = {
       { "comments._id": new ObjectId(id) },
       { projection: { _id: 0, "comments.$": 1 } }
     );
-    return foundComment;
-  },
-
-  // async getCommentsByPost() {
-
-  // },
-
-  // async getCommentsByUser() {
-
-  // }
+    return foundComment.comments[0];
+  }
 };
+
 
 export default exportedMethods;
