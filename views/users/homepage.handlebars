@@ -11,14 +11,14 @@
         <label for="search-bar" class="search-label">
           <input name="searchText" type="text" placeholder="Search for an item" class="search-bar" id="search-bar"
             value="" />
-          <button type="submit" class="search-button">Search</button>
         </label>
+        <button type="submit" class="search-button">Search</button>
         <div class="filter-container">
           <div class="filter-toggle-button">
             Filter
             <img src="public/images/chevron-down.svg" alt="filter button" class="filter-toggle-button-image" />
           </div>
-          <label for="filter" class="filter-label">
+          <div class="filter-label">
             <div>
               <input id="electronics" name="tagSelect" type="checkbox" value="Electronics" />
               <label for="electronics">Electronics</label>
@@ -55,7 +55,7 @@
               <input id="hightolow-checkbox" name="tagSelect" type="checkbox" value="Rating" />
               <label for="hightolow-checkbox">High to Low Rating</label>
             </div>
-          </label>
+          </div>
         </div>
         <button type="submit" class="filter-button">Filter</button>
       </form>
@@ -96,14 +96,14 @@
 </header>
 
 <main>
-  <form method="POST" action="/homepage" class="search-form" id="search-form">
+  <form method="POST" action="/homepage" class="search-form" id="search-form2">
     <div class={{divClass}} id="hidden-filter">
       <div class="filter-container">
         <div class="filter-toggle-button">
           Filter
           <img src="public/images/chevron-down.svg" alt="filter button" class="filter-toggle-button-image" />
         </div>
-        <label for="filter" class="filter-label">
+        <div class="filter-label">
           <div>
             <input id="electronics2" name="tagFilter" type="checkbox" value="Electronics" />
             <label for="electronics2">Electronics</label>
@@ -137,10 +137,10 @@
             <label for="other2">Other</label>
           </div>
           <div class="hightolow-container">
-            <input id="hightolow-checkbox" name="tagFilter" type="checkbox" value="Rating" />
+            <input id="hightolow-checkbox2" name="tagFilter" type="checkbox" value="Rating" />
             <label for="hightolow-checkbox">High to Low Rating</label>
           </div>
-        </label>
+        </div>
       </div>
       <button type="submit" class="search-button">Filter Tags</button>
     </div>
@@ -161,7 +161,7 @@
               {{/each}}
             </div>
             <div class="information-container"> 
-              <p id="userLink" class="username">Owner: {{username}}</p>
+              <p class="username">Owner: {{username}}</p>
               <p class="description">Description: {{description}}</p>
               <p class="tags">Tags: {{tags}}</p>
               <p class="location">Location: {{location}}</p>

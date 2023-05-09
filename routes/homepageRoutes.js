@@ -17,6 +17,7 @@ router
       if (req.session.fromAddPost === true) {
         req.session.fromAddPost = false;
         res.render("users/homepage", {
+          title: "Homepage",
           alertClass: "alertShowing",
           divClass: "hidden-filter",
           posts: postList,
@@ -28,6 +29,7 @@ router
         req.session.fromAddPost = false;
 
         res.render("users/homepage", {
+          title: "Homepage",
           alertClass: "alertHidden",
           divClass: "hidden-filter",
           posts: postList,
@@ -251,6 +253,7 @@ router
 
     if (tags) {
       res.render("users/homepage", {
+        title: "Homepage",
         alertClass: "alertHidden",
         divClass: "hidden-filter",
         posts: uniqueArr,
@@ -261,6 +264,7 @@ router
       });
     } else {
       res.render("users/homepage", {
+        title: "Homepage",
         alertClass: "alertHidden",
         divClass: "search-label",
         posts: uniqueArr,

@@ -50,8 +50,9 @@
         <h2 class="posts-heading">Posts</h2>
         <div class="posts">
             {{#each posts}}
-            <a href="../../post/{{_id}}" class="post">
-                <p class="name">{{name}}</p>
+            {{!-- <a href="../../post/{{_id}}" class="post"> --}}
+            <div class="post">
+                 <a href="../../post/{{_id}}" class="name">{{name}}</a>
                 <div class="pictures-information-container">
                     <div class="images">
                         {{#each imgUrls}}
@@ -87,7 +88,9 @@
                     </form>
                 </div>
                 {{/if}}
-            </a>
+            </div>
+               
+            {{!-- </a> --}}
             {{/each}}
         </div>
         {{else}}

@@ -389,7 +389,7 @@ main {
   align-items: center;
   flex-direction: column;
   transition: 0.1s;
-  cursor: pointer;
+  /* cursor: pointer; */
   text-decoration: none;
 }
 
@@ -441,6 +441,12 @@ main {
   margin-bottom: 10px;
   font-size: 26px;
   font-weight: 700;
+  transition: all 300ms;
+}
+
+.name:hover {
+  font-size: 30px;
+  color: blue;
 }
 
 
