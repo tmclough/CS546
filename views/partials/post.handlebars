@@ -4,11 +4,11 @@
     <form action="/post/rating/{{post._id}}" method="POST" name={{post._id}} id="claim-form">
       <label for="rating">Leave a rating for the poster here:</label>
       <select name="rating" id="rating">
-        <option name="ratingValue" value="1">1 star</option>
-        <option name="ratingValue" value="2">2 stars</option>
-        <option name="ratingValue" value="3">3 stars</option>
-        <option name="ratingValue" value="4">4 stars</option>
-        <option name="ratingValue" value="5">5 stars</option>
+        <option value="1">1 star</option>
+        <option value="2">2 stars</option>
+        <option value="3">3 stars</option>
+        <option value="4">4 stars</option>
+        <option value="5">5 stars</option>
       </select>
       <br>
       <button type="submit" class="submit-button">Submit</button>
