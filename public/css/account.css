@@ -5,6 +5,7 @@
   margin: 0;
 }
 
+
 body {
   height: 100vh;
   width: 100vw;
@@ -15,9 +16,11 @@ body {
       z-index: -1; */
 }
 
+
 header {
   position: relative;
 }
+
 
 .navbar {
   opacity: 1;
@@ -31,6 +34,7 @@ header {
   border-bottom: 2px solid black;
 }
 
+
 .home-bar {
   margin-left: 30px;
   margin-right: 25px;
@@ -38,6 +42,7 @@ header {
   justify-content: center;
   align-items: center;
 }
+
 
 .home-link {
   text-decoration: none;
@@ -49,6 +54,7 @@ header {
   margin-right: 23px;
 }
 
+
 .search-form {
   width: 600px;
   display: flex;
@@ -56,11 +62,13 @@ header {
   align-items: center;
 }
 
+
 .search-label {
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
 
 .search-bar {
   font-size: 21px;
@@ -75,6 +83,7 @@ header {
       align-self: center; */
 }
 
+
 .search-button {
   font-size: 18px;
   padding: 9px 19px;
@@ -86,19 +95,23 @@ header {
       align-self: center; */
 }
 
+
 .search-button:hover {
   background-color: rgb(100, 142, 231);
   color: white;
   box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.25);
 }
 
+
 .search-button:active {
   background-color: rgb(152, 178, 233);
 }
 
+
 .filter-container {
   position: relative;
 }
+
 
 .filter-toggle-button {
   margin-left: 10px;
@@ -110,6 +123,7 @@ header {
   justify-content: center;
   align-items: center;
 }
+
 
 .filter-label {
   opacity: 0;
@@ -130,14 +144,17 @@ header {
   padding: 15px 15px 5px 15px;
 }
 
+
 .filter-label div {
   margin-bottom: 10px;
   font-weight: 700;
 }
 
+
 .filter-label div input {
   margin-right: 6.5px;
 }
+
 
 .filter-label div label {
   cursor: pointer;
@@ -145,9 +162,11 @@ header {
   user-select: none;
 }
 
+
 .filter-label div label:hover {
   color: white;
 }
+
 
 .filter-button {
   font-size: 18px;
@@ -159,9 +178,11 @@ header {
   margin-left: -12px;
 }
 
+
 .links {
   margin-right: 30px;
 }
+
 
 .signup-link,
 .login-link,
@@ -175,6 +196,7 @@ header {
   font-weight: 700;
 }
 
+
 .signup-link,
 .logout-link {
   margin-left: 24px;
@@ -185,10 +207,12 @@ header {
   box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.25);
 }
 
+
 .userpage-link,
 .addpost-link {
   color: #005900;
 }
+
 
 .signup-link:hover,
 .login-link:hover,
@@ -198,11 +222,13 @@ header {
   opacity: 0.8;
 }
 
+
 .signup-link:hover,
 .logout-link:hover {
   background-color: red;
   color: white;
 }
+
 
 .signup-link:active,
 .login-link:active,
@@ -212,17 +238,21 @@ header {
   opacity: 0.6;
 }
 
+
 .home-link:hover {
   opacity: 0.8;
 }
+
 
 .home-link:active {
   opacity: 0.6;
 }
 
+
 .addpost-link {
   margin-right: 18px;
 }
+
 
 .toggle-button {
   margin-right: 30px;
@@ -232,19 +262,23 @@ header {
   padding-top: 5px;
 }
 
+
 .toggle-button-image {
   transition: all 0.2s ease-in-out;
   width: 30px;
   height: auto;
 }
 
+
 .toggle-button-image:hover {
   filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5));
 }
 
+
 .toggle-button-image.rotate {
   transform: rotate(180deg);
 }
+
 
 .dropdown-menu {
   width: 200px;
@@ -259,10 +293,12 @@ header {
   transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
+
 .dropdown-menu.open {
   opacity: 1;
   visibility: visible;
 }
+
 
 .dropdown-links {
   height: 100%;
@@ -272,6 +308,7 @@ header {
   flex-direction: column;
 }
 
+
 .dropdown-links a {
   text-decoration: none;
   cursor: pointer;
@@ -280,37 +317,45 @@ header {
   transition: 0.15s;
 }
 
+
 .dropdown-links a:hover {
   color: rgb(127, 225, 255);
 }
+
 
 @media (max-width: 1170px) {
   .navbar .links {
     display: none;
   }
 
+
   .navbar .toggle-button {
     display: block;
   }
 }
 
+
 main {
   padding-top: 120px;
 }
+
 
 .user-info {
   margin-left: 150px;
   margin-bottom: 30px;
 }
 
+
 .user-info p {
   margin-bottom: 12px;
   color: rgb(73, 72, 72);
 }
 
+
 .user-info-heading {
   margin-bottom: 12px;
 }
+
 
 .posts-section {
   display: flex;
@@ -321,16 +366,19 @@ main {
   width: 100%;
 }
 
+
 .posts-heading {
   margin-top: 8px;
   margin-bottom: -12px;
 }
+
 
 .posts {
   min-width: 50%;
   height: 100px;
   padding: 40px;
 }
+
 
 .post {
   border: 1px solid rgba(0, 0, 0, 0.1);
@@ -345,10 +393,12 @@ main {
   text-decoration: none;
 }
 
+
 .posts a {
   text-decoration: none;
   color: black;
 }
+
 
 .post:hover {
   background-color: rgb(246, 251, 255);
@@ -356,14 +406,17 @@ main {
   opacity: 0.8;
 }
 
+
 .post:active {
   opacity: 0.6;
 }
+
 
 .pictures-information-container {
   display: flex;
   justify-content: space-between;
 }
+
 
 .information-container {
   display: flex;
@@ -372,20 +425,24 @@ main {
   padding: 20px;
 }
 
+
 .information-container p {
   margin-bottom: 30px;
 }
+
 
 .username {
   font-size: 20px;
   margin-bottom: 30px;
 }
 
+
 .name {
   margin-bottom: 10px;
   font-size: 26px;
   font-weight: 700;
 }
+
 
 .images {
   display: flex;
@@ -395,6 +452,7 @@ main {
   margin-right: 30px;
 }
 
+
 .image {
   overflow: hidden;
   height: 200px;
@@ -403,6 +461,7 @@ main {
   border-radius: 10px;
   margin-bottom: 15px;
 }
+
 
 .images,
 .description,
@@ -416,10 +475,12 @@ main {
   color: rgb(46, 46, 46);
 }
 
+
 .main-heading {
   margin-bottom: 12px;
   color: rgb(236, 57, 57);
 }
+
 
 .accept-reject-btns {
   display: flex;
@@ -427,6 +488,7 @@ main {
   align-items: center;
   flex-direction: column;
 }
+
 
 #accept-claim-btn {
   margin-bottom: 20px;
@@ -439,6 +501,7 @@ main {
   transition: 0.15s;
 }
 
+
 #reject-claim-btn {
   border-radius: 8px;
   font-size: 18px;
@@ -448,6 +511,7 @@ main {
   cursor: pointer;
   transition: 0.15s;
 }
+
 
 #accept-claim-btn:hover,
 #reject-claim-btn:hover {

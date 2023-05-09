@@ -18,8 +18,6 @@ router.route("/").get(async (req, res) => {
     // let divClass = "hiddenDiv"
     console.log(posts[0].userId);
     if (posts[0].userId === req.session.user._id) {
-      // divClass = "accept-reject-btns"
-      console.log("using showing");
       res.render("users/account", {
         title: "Account",
         userLogin: req.session.user ? false : true,
@@ -28,11 +26,8 @@ router.route("/").get(async (req, res) => {
         divClass: "accept-reject-btns",
         posts,
         userInfo,
-
-        //jsFile: "/public/js/signUp.js",
       });
     } else {
-      console.log("using hidden");
       res.render("users/account", {
         title: "Account",
         userLogin: req.session.user ? false : true,

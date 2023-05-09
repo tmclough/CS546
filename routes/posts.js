@@ -143,9 +143,12 @@ router.route("/account/:id").get(async (req, res) => {
 
   try {
     let id = validation.checkId(req.params.id, "id");
+    // let post = postData.getPostById(req.params.id);
     const posts = await postData.getPostbyUser(id);
     const userInfo = await userData.getUserById(id);
+    // let divClass = "hiddenDiv";
     if (posts[0].userId === req.session.user._id) {
+      // divClass = "accept-reject-btns"
       console.log("using showing");
       res.render("users/account", {
         title: "Account",
@@ -155,10 +158,12 @@ router.route("/account/:id").get(async (req, res) => {
         posts,
         userInfo,
         divClass: "accept-reject-btns",
+        //jsFile: "/public/js/signUp.js",
       });
     } else {
       console.log("using hidden");
    
+      //let divClass = "hiddenDiv";
       res.render("users/account", {
         title: "Account",
         userLogin: req.session.user ? false : true,
@@ -167,6 +172,7 @@ router.route("/account/:id").get(async (req, res) => {
         posts,
         userInfo,
         divClass: "hiddenDiv",
+        //jsFile: "/public/js/signUp.js",
       });
       
     }
