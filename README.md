@@ -3,7 +3,7 @@ CS546 Web App
 Stevens Curbside Pickup
 
 ## Instructions:
-Download node from https://nodejs.org/en/download/ (this only has to be done once)
+> Download node from https://nodejs.org/en/download/ (this only has to be done once)
 run npm i in a console, which will install the dependencies (this only has to be done once)
 run npm seed to seed the database
 run npm start to start the server, then go to http://localhost:3000 in your browser
