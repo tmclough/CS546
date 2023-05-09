@@ -16,7 +16,7 @@ router.route("/").get(async (req, res) => {
     const posts = await postData.getPostbyUser(xss(req.session.user._id));
     const userInfo = await userData.getUserById(xss(req.session.user._id));
     // let divClass = "hiddenDiv"
-    if (posts[0].userId === req.session.user._id) {
+    if (posts && posts.length > 0 && posts[0].userId === req.session.user._id) {
       res.render("users/account", {
         title: "Account",
         userLogin: req.session.user ? false : true,
