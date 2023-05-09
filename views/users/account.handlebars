@@ -65,7 +65,7 @@
                         <p class="location">Location: {{location}}</p>
                         <p class="posted-date">Posted On: {{postedDate}}</p>
                         <p class="rating">User Rating: {{rating}}</p>
-                        <p class="claimed">
+                        <p class="">
                             {{#if claimed}}
                             Status: Post claimed by another user
                             {{else}}
@@ -74,15 +74,17 @@
                         </p>
                     </div>
                 </div>
+      
                 {{#if claimed}}
-                <div class="accept-reject-btns">
-                    <form action="account/accept/claim/{{_id}}">
-                        <button type="submit" id="accept-claim-btn">Accept Claim</button>
-                    </form>
-                    <form action="account/reject/claim/{{_id}}">
-                        <button type="submit" id="reject-claim-btn">Reject Claim</button>
-                    </form>
-                </div>
+                    <div class={{divClass}}>
+                        <form action="account/accept/claim/{{_id}}">
+                            <button type="submit" id="accept-claim-btn">Accept Claim</button>
+                        </form>
+                        <form action="account/reject/claim/{{_id}}">
+                            <button type="submit" id="reject-claim-btn">Reject Claim</button>
+                        </form>
+                    </div>
+                
                 {{/if}}
             </a>
             {{/each}}
