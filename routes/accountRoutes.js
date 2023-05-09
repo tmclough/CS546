@@ -15,47 +15,15 @@ router.route("/").get(async (req, res) => {
   try {
     const posts = await postData.getPostbyUser(xss(req.session.user._id));
     const userInfo = await userData.getUserById(xss(req.session.user._id));
-    // let divClass = "hiddenDiv"
-    console.log(posts[0].userId);
-    if (posts[0].userId === req.session.user._id) {
-      // divClass = "accept-reject-btns"
-      console.log("using showing");
-      res.render("users/account", {
-        title: "Account",
-        userLogin: req.session.user ? false : true,
-        cssFile: "/public/css/account.css",
-        jsFile: "/public/js/account.js",
-        divClass: "accept-reject-btns",
-        posts,
-        userInfo,
-
-        //jsFile: "/public/js/signUp.js",
-      });
-    } else {
-      console.log("using hidden");
-      res.render("users/account", {
-        title: "Account",
-        userLogin: req.session.user ? false : true,
-        cssFile: "/public/css/account.css",
-        jsFile: "/public/js/account.js",
-        divClass: "`hiddenDiv`",
-        posts,
-        userInfo,
-
-        //jsFile: "/public/js/signUp.js",
-      });
-    }
-
-    // let isOwnerOfPost = false;
-
-    // for (let i = 0; i < posts.length; i++) {
-    //   if (posts[i].userId === req.session.user._id) {
-    //     isOwnerOfPost = true;
-    //     break;
-    //   }
-    // }
-
-    // console.log(isOwnerOfPost);
+    res.render("users/account", {
+      title: "Account",
+      userLogin: req.session.user ? false : true,
+      cssFile: "/public/css/account.css",
+      jsFile: "/public/js/account.js",
+      posts,
+      userInfo,
+      //jsFile: "/public/js/signUp.js",
+    });
   } catch (e) {
     res.status(500).render("error/errorPage", { error: e, errorCode: 500 });
   }
