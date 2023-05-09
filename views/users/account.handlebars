@@ -50,32 +50,32 @@
         <h2 class="posts-heading">Posts</h2>
         <div class="posts">
             {{#each posts}}
-            {{!-- <a href="../../post/{{_id}}" class="post"> --}}
             <div class="post">
-                 <a href="../../post/{{_id}}" class="name">{{name}}</a>
-                <div class="pictures-information-container">
-                    <div class="images">
-                        {{#each imgUrls}}
-                        <img src="{{this}}" alt="Post Image" class="image">
-                        {{/each}}
+                <a href="../../post/{{_id}}" class="post-link">
+                    <p class="name">{{name}}</p>
+                    <div class="pictures-information-container">
+                        <div class="images">
+                            {{#each imgUrls}}
+                            <img src="{{this}}" alt="Post Image" class="image">
+                            {{/each}}
+                        </div>
+                        <div class="information-container">
+                            <p class="username">Owner: {{username}}</p>
+                            <p class="description">Description: {{description}}</p>
+                            <p class="tags">Tags: {{tags}}</p>
+                            <p class="location">Location: {{location}}</p>
+                            <p class="posted-date">Posted On: {{postedDate}}</p>
+                            <p class="rating">User Rating: {{rating}}</p>
+                            <p class="">
+                                {{#if claimed}}
+                                Status: Post claimed by another user
+                                {{else}}
+                                Status: Post unclaimed
+                                {{/if}}
+                            </p>
+                        </div>
                     </div>
-                    <div class="information-container">
-                        <p class="username">Owner: {{username}}</p>
-                        <p class="description">Description: {{description}}</p>
-                        <p class="tags">Tags: {{tags}}</p>
-                        <p class="location">Location: {{location}}</p>
-                        <p class="posted-date">Posted On: {{postedDate}}</p>
-                        <p class="rating">User Rating: {{rating}}</p>
-                        <p class="">
-                            {{#if claimed}}
-                            Status: Post claimed by another user
-                            {{else}}
-                            Status: Post unclaimed
-                            {{/if}}
-                        </p>
-                    </div>
-                </div>
-
+                </a>
                 {{#if claimed}}
                 <div class={{../divClass}}>
                     <form action="account/accept/claim/{{_id}}">
@@ -89,8 +89,6 @@
                 </div>
                 {{/if}}
             </div>
-               
-            {{!-- </a> --}}
             {{/each}}
         </div>
         {{else}}
