@@ -59,40 +59,42 @@
         </div>
         <button type="submit" class="filter-button">Filter</button>
       </form>
-
+    </div>
+    <div class="rightside">
+      {{#if userLogin}}
+      <div class="links">
+        <a href="/login" class="login-link">Log In</a>
+        <a href="/signup" class="signup-link">Sign Up</a>
+      </div>
+      {{else}}
+      <p class="hello-message">Hello <span class="username-span">{{userInfo.username}}!</span></p>
+      <div class="links">
+        <a href="/post" class="addpost-link">Add Post</a>
+        <a href="/account" class="userpage-link">Account</a>
+        <a href="/logout" class="logout-link">Log Out</a>
+      </div>
+      {{/if}}
+      <div class="toggle-button">
+        <img src="public/images/align-justify.svg" alt="toggle button" class="toggle-button-image">
+      </div>
     </div>
     {{#if userLogin}}
-    <div class="links">
-      <a href="/login" class="login-link">Log In</a>
-      <a href="/signup" class="signup-link">Sign Up</a>
+    <div class="dropdown-menu">
+      <div class="dropdown-links">
+        <a href="/login">Log In</a>
+        <a href="/signup">Sign Up</a>
+      </div>
     </div>
     {{else}}
-    <div class="links">
-      <a href="/post" class="addpost-link">Add Post</a>
-      <a href="/account" class="userpage-link">Account</a>
-      <a href="/logout" class="logout-link">Log Out</a>
+    <div class="dropdown-menu">
+      <div class="dropdown-links">
+        <a href="/post">Add Post</a>
+        <a href="/userpage">Account</a>
+        <a href="/logout">Log Out</a>
+      </div>
     </div>
     {{/if}}
-    <div class="toggle-button">
-      <img src="public/images/align-justify.svg" alt="toggle button" class="toggle-button-image">
-    </div>
   </div>
-  {{#if userLogin}}
-  <div class="dropdown-menu">
-    <div class="dropdown-links">
-      <a href="/login">Log In</a>
-      <a href="/signup">Sign Up</a>
-    </div>
-  </div>
-  {{else}}
-  <div class="dropdown-menu">
-    <div class="dropdown-links">
-      <a href="/post">Add Post</a>
-      <a href="/userpage">Account</a>
-      <a href="/logout">Log Out</a>
-    </div>
-  </div>
-  {{/if}}
 </header>
 
 <main>

@@ -12,6 +12,7 @@ router.route("/").get((req, res) => {
 router
   .route("/homepage")
   .get(async (req, res) => {
+    let userInfo = req.session.user;
     try {
       const postList = await postData.getAllPosts();
       if (req.session.fromAddPost === true) {
@@ -24,6 +25,7 @@ router
           cssFile: "/public/css/homepage.css",
           jsFile: "/public/js/homepage.js",
           userLogin: req.session.user ? false : true,
+          userInfo: userInfo,
         });
       } else {
         req.session.fromAddPost = false;
@@ -36,6 +38,7 @@ router
           cssFile: "/public/css/homepage.css",
           jsFile: "/public/js/homepage.js",
           userLogin: req.session.user ? false : true,
+          userInfo: userInfo,
         });
       }
     } catch (e) {

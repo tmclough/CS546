@@ -166,6 +166,21 @@ header {
   box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.25);
 }
 
+.rightside {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hello-message {
+  margin-right: 30px;
+  font-size: 20px;
+}
+
+.username-span {
+  color: rgb(100, 142, 231);
+}
+
 .links {
   margin-right: 30px;
 }
@@ -291,7 +306,7 @@ header {
   color: rgb(127, 225, 255);
 }
 
-@media (max-width: 1170px) {
+@media (max-width: 1270px) {
   .navbar .links {
     display: none;
   }
@@ -436,11 +451,10 @@ main {
   z-index: 9999;
   
 } */
-.alertHidden{
+.alertHidden {
   display: none;
-
 }
-.alertShowing{
+.alertShowing {
   background-color: #f8d7da;
   color: #721c24;
   padding: 10px;
@@ -451,7 +465,6 @@ main {
   left: 50%;
   transform: translateX(-50%);
   z-index: 9999;
-
 }
 .close {
   float: right;
@@ -461,4 +474,3 @@ main {
 #alertMessage {
   margin: 0;
 }
-
