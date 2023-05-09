@@ -174,7 +174,7 @@ router.route("/account/:id").get(async (req, res) => {
         divClass: "hiddenDiv",
         //jsFile: "/public/js/signUp.js",
       });
-      console.log(divClass);
+      
     }
   } catch (e) {
     res.status(500).render("error/errorPage", { error: e, errorCode: 500 });
