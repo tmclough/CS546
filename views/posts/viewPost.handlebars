@@ -47,7 +47,7 @@
             <div class="post-container2">
                 <div class="post-information">
                     <h1 class="name">{{post.name}}</h1>
-                    <p class="owner">Owner: <span class="owner-name">{{post.username}}</span></p>
+                    <a href="account/{{post.userId}}" class="owner">Owner:{{post.username}}</a>
                     <p class="description">Description: {{post.description}}</p>
                     <p class="tags-heading">Tags:</p>
                     <ul class="tags">

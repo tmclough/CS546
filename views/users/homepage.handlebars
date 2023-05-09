@@ -160,19 +160,19 @@
               <img src="{{this}}" alt="Post Image" class="image">
               {{/each}}
             </div>
-            <div class="information-container">
-              <p class="username">Owner: {{username}}</p>
+            <div class="information-container"> 
+              <p id="userLink" class="username">Owner: {{username}}</p>
               <p class="description">Description: {{description}}</p>
               <p class="tags">Tags: {{tags}}</p>
               <p class="location">Location: {{location}}</p>
               <p class="posted-date">Posted On: {{postedDate}}</p>
               <p class="rating">User Rating: {{rating}}</p>
-              <p class="claimed">
+              <p class="claimed">      
                 {{#if claimed}}
                 Status: Post Pending Claim
                 {{else}}
                 Status: Post Unclaimed
-                {{/if}}
+                {{/if}}    
               </p>
             </div>
           </div>
