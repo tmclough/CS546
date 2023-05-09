@@ -41,21 +41,8 @@ router.route("/").get(async (req, res) => {
         divClass: "`hiddenDiv`",
         posts,
         userInfo,
-
-        //jsFile: "/public/js/signUp.js",
       });
     }
-
-    // let isOwnerOfPost = false;
-
-    // for (let i = 0; i < posts.length; i++) {
-    //   if (posts[i].userId === req.session.user._id) {
-    //     isOwnerOfPost = true;
-    //     break;
-    //   }
-    // }
-
-    // console.log(isOwnerOfPost);
   } catch (e) {
     res.status(500).render("error/errorPage", { error: e, errorCode: 500 });
   }
