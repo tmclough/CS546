@@ -117,7 +117,7 @@ let exportedMethods = {
     return post;
   },
   async getPostsByTag(tag) {
-    //do validation
+
     const postCollection = await posts();
     const post = await postCollection.find({ tags: tag }).toArray();
     if (!post) throw "Error: post not found";

@@ -81,7 +81,7 @@ export const tags = [
   "Appliances",
   "Furniture",
   "Clothing",
-  "Sports Equipment",
+  "Sport Equipment",
   "Books",
   "School Supplies",
   "Other",
@@ -225,17 +225,17 @@ const exportedMethods = {
       arr = [arr];
     }
     arr = this.checkStringArray(arr, varName);
-    // arr = arr.map((i) => {
-    //   return i.toLowerCase();
-    // });
-    // let lowerCaseTags = tags.map((i) => {
-    //   return i.toLowerCase();
-    // });
-    // for (let i = 0; i < arr.length; i++) {
-    //   if (!lowerCaseTags.includes(arr[i])) {
-    //     throw `Error: Invalid Tags ${arr[i]}`;
-    //   }
-    // }
+    arr = arr.map((i) => {
+      return i.toLowerCase();
+    });
+    let lowerCaseTags = tags.map((i) => {
+      return i.toLowerCase();
+    });
+    for (let i = 0; i < arr.length; i++) {
+      if (!lowerCaseTags.includes(arr[i])) {
+        throw `Error: Invalid Tags ${arr[i]}`;
+      }
+    }
     return arr;
   },
 
@@ -244,11 +244,11 @@ const exportedMethods = {
     if (urlArr.length > 4) throw "Error: maximum of 4 images per post";
     let urlRegex = new RegExp(
       "^(https?:\\/\\/)?" + // validate protocol
-        "((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|" + // validate domain name
-        "((\\d{1,3}\\.){3}\\d{1,3}))" + // validate OR ip (v4) address
-        "(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*" + // validate port and path
-        "(\\?[;&a-z\\d%_.~+=-]*)?" + // validate query string
-        "(\\#[-a-z\\d_]*)?$",
+      "((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|" + // validate domain name
+      "((\\d{1,3}\\.){3}\\d{1,3}))" + // validate OR ip (v4) address
+      "(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*" + // validate port and path
+      "(\\?[;&a-z\\d%_.~+=-]*)?" + // validate query string
+      "(\\#[-a-z\\d_]*)?$",
       "i"
     ); // validate fragment locator)
     for (let i = 0; i < urlArr.length; i++)
