@@ -253,7 +253,7 @@ router
     for (let i in uniquePosts) {
       uniqueArr.push(uniquePosts[i]);
     }
-
+    let userInfo = req.session.user;
     if (tags) {
       res.render("users/homepage", {
         title: "Homepage",
@@ -264,6 +264,7 @@ router
         jsFile: "/public/js/homepage.js",
         searchText: searchText,
         userLogin: req.session.user ? false : true,
+        userInfo
       });
     } else {
       res.render("users/homepage", {
@@ -275,6 +276,7 @@ router
         jsFile: "/public/js/homepage.js",
         searchText: searchText,
         userLogin: req.session.user ? false : true,
+        userInfo
       });
     }
   });
